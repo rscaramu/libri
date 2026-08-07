@@ -1,0 +1,46 @@
+LICENZA
+
+Questo archivio contiene due categorie di materiale, con condizioni
+diverse.
+
+
+1. IL CODICE
+
+Tutti i file sorgente della cartella codice/, e tutti i blocchi di
+codice contenuti nei file della cartella soluzioni/, sono rilasciati
+con licenza MIT.
+
+Copyright (c) 2026 Roberto Scaramuzzino
+
+Con la presente si concede gratuitamente, a chiunque ottenga una copia
+di questo software e dei file di documentazione associati (il
+"Software"), il permesso di utilizzare il Software senza restrizioni,
+inclusi senza limitazione i diritti di usare, copiare, modificare,
+unire, pubblicare, distribuire, sublicenziare e vendere copie del
+Software, e di permettere alle persone a cui il Software e' fornito di
+farlo, alle seguenti condizioni:
+
+La nota di copyright di cui sopra e la presente nota di permesso devono
+essere incluse in tutte le copie o porzioni sostanziali del Software.
+
+IL SOFTWARE E' FORNITO "COSI' COM'E'", SENZA GARANZIA DI ALCUN TIPO,
+ESPRESSA O IMPLICITA, INCLUSE MA NON LIMITATE ALLE GARANZIE DI
+COMMERCIABILITA', IDONEITA' PER UN PARTICOLARE SCOPO E NON VIOLAZIONE.
+IN NESSUN CASO GLI AUTORI O I TITOLARI DEL COPYRIGHT SARANNO
+RESPONSABILI PER QUALSIASI RECLAMO, DANNO O ALTRA RESPONSABILITA', SIA
+IN UN'AZIONE CONTRATTUALE, ILLECITO O ALTRO, DERIVANTE DA O IN
+CONNESSIONE CON IL SOFTWARE O L'USO O ALTRE OPERAZIONI NEL SOFTWARE.
+
+
+2. IL TESTO
+
+Il testo discorsivo dei file della cartella soluzioni/ e dei file
+README.md e' materiale tratto dal libro "Manuale completo di Lua" ed e'
+protetto dal diritto d'autore.
+
+Copyright (c) 2026 Roberto Scaramuzzino. Tutti i diritti riservati.
+
+E' consentito leggerlo, consultarlo, citarne brevi estratti con
+indicazione della fonte e discuterne pubblicamente. Non e' consentito
+ripubblicarlo integralmente o in porzioni sostanziali, ne' tradurlo,
+ne' includerlo in altre opere, senza autorizzazione scritta.
