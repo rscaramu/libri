@@ -1,0 +1,26 @@
+# ESP32 — La guida completa alla famiglia · capitolo 26 (MQTT e domotica)
+# Listato 26.4 — Un dispositivo ESPHome completo. Compilato e caricato dall'interfaccia di Home Assistant, aggiornabile via OTA da lì.
+# Il codice mostrato nel libro è il nucleo dell'esempio: le funzioni richiamate
+# e non definite qui sono indicate nella didascalia o nel capitolo.
+
+esphome:
+  name: salotto-1
+esp32:
+  board: esp32-c6-devkitc-1
+  framework:
+    type: esp-idf
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+api:
+sensor:
+  - platform: dht
+    pin: GPIO4
+    model: DHT22
+    temperature:
+      name: "Temperatura salotto"
+    update_interval: 60s
+switch:
+  - platform: gpio
+    pin: GPIO5
+    name: "Relè salotto"
