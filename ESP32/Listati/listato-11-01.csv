@@ -1,0 +1,12 @@
+# ESP32 — La guida completa alla famiglia · capitolo 11 (Flash, partizioni e strumenti a basso livello)
+# Listato 11.1 — Una tabella per una flash da 8 MB con due partizioni applicazione da 3 MB per l'OTA e un filesystem da circa 2 MB.
+# Il codice mostrato nel libro è il nucleo dell'esempio: le funzioni richiamate
+# e non definite qui sono indicate nella didascalia o nel capitolo.
+
+# Name,    Type, SubType, Offset,   Size,    Flags
+nvs,       data, nvs,     0x9000,   0x6000,
+otadata,   data, ota,     0xf000,   0x2000,
+phy_init,  data, phy,     0x11000,  0x1000,
+app0,      app,  ota_0,   0x20000,  0x300000,
+app1,      app,  ota_1,   0x320000, 0x300000,
+storage,   data, spiffs,  0x620000, 0x1E0000,

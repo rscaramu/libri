@@ -1,0 +1,8 @@
+mio-progetto/
+├── CMakeLists.txt
+├── sdkconfig
+├── main/
+│   ├── CMakeLists.txt
+│   └── main.c
+└── components/
+    └── (componenti propri, opzionali)
