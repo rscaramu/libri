@@ -1,1 +1,0 @@
-I_media = (I_attivo × t_attivo + I_sonno × t_sonno) / T

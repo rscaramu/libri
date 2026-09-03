@@ -1,6 +1,0 @@
-Writing at 0x00010000... (100 %)
-Wrote 262144 bytes (143521 compressed) at 0x00010000
-Hash of data verified.
-
-Leaving...
-Hard resetting via RTS pin...
