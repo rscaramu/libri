@@ -1,0 +1,12 @@
+#include "esp_heap_caps.h"
+
+// Buffer grande, va bene in PSRAM
+uint8_t *frame = heap_caps_malloc(320 * 240 * 2,
+                                  MALLOC_CAP_SPIRAM);
+
+// Buffer per DMA: deve essere interno e allineato
+uint8_t *dma = heap_caps_malloc(4096,
+               MALLOC_CAP_DMA | MALLOC_CAP_INTERNAL);
+
+// Quanta PSRAM è ancora libera
+size_t libera = heap_caps_get_free_size(MALLOC_CAP_SPIRAM);
