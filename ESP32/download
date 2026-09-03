@@ -1,0 +1,9 @@
+.pio/
+build/
+managed_components/
+sdkconfig
+sdkconfig.old
+*.bin
+*.elf
+.vscode/
+.DS_Store
