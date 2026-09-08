@@ -1,0 +1,3 @@
+// frammento-07-02.txt — 
+
+xxd -i modello.tflite > modello.h
