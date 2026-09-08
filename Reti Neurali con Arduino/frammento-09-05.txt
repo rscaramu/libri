@@ -1,4 +1,0 @@
-// frammento-09-05.txt — 
-
-npm install -g edge-impulse-cli
-edge-impulse-data-forwarder --version

@@ -1,3 +1,0 @@
-// frammento-19-09.txt — L'analyzer stampa ogni op del modello con i suoi tensori, le dimensioni e i tipi. Si confronta la lista delle op con quella dell'appendice C, e si scopre l'op mancante sul PC invece che sulla scheda.
-
-tf.lite.experimental.Analyzer.analyze(model_path="gesti.tflite")

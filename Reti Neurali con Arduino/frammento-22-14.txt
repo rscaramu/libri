@@ -1,9 +1,0 @@
-// frammento-22-14.txt — L'intestazione di 16 byte davanti al modello. Il campo versioneFeature è quello che evita l'errore del paragrafo 22.5.
-
-struct IntestazioneModello {
-  uint32_t magic;          // 0x4D4C5431  "MLT1"
-  uint16_t versione;       // del modello
-  uint16_t versioneFeature;// del codice delle feature richiesto
-  uint32_t lunghezza;      // byte del .tflite che segue
-  uint32_t crc32;          // del .tflite
-};

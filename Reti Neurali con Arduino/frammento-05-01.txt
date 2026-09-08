@@ -1,6 +1,0 @@
-// frammento-05-01.txt — 
-
-float neurone(float x0, float x1, float x2) {
-  float s = w0*x0 + w1*x1 + w2*x2 + b;
-  return attiva(s);
-}

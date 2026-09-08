@@ -1,3 +1,0 @@
-// frammento-21-13.txt — 
-
-I_media = I_sveglio * D + I_sonno * (1 - D)
