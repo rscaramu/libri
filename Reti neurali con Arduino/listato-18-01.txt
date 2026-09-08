@@ -1,0 +1,20 @@
+// listato-18-01.txt — La logica di combinazione. Stato condiviso, finestre temporali, veto. Sono trenta righe, e sono la parte del progetto che si scrive per ultima e si corregge più spesso.
+
+struct Stato {
+  float persona = 0;  unsigned long tPersona = 0;
+  bool  sveglia = false; unsigned long tSveglia = 0;
+  float anomalia = 0; int anomConf = 0;
+};
+Stato st;
+
+bool comandoValido(unsigned long ora) {
+  bool personaRecente = (ora - st.tPersona < 10000)
+                        && st.persona > 0.7f;
+  bool svegliaRecente = st.sveglia && (ora - st.tSveglia < 3000);
+  return personaRecente && svegliaRecente;
+}
+
+bool anomaliaConfermata(float punteggio) {
+  st.anomConf = punteggio > SOGLIA ? st.anomConf + 1 : 0;
+  return st.anomConf >= 5;               // cinque finestre consecutive
+}

@@ -1,0 +1,6 @@
+// listato-11-04.txt — Da file binario a header C. La seconda riga aggiunge const e allineamento, come spiegato nel paragrafo 7.4; la terza mostra l'inizio del file per controllo.
+
+!xxd -i gesti.tflite > gesti_modello.h
+!sed -i 's/unsigned char/alignas(16) const unsigned char/' \
+    gesti_modello.h
+!head -c 300 gesti_modello.h

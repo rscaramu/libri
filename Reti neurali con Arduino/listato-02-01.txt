@@ -1,0 +1,9 @@
+// listato-02-01.txt — Il conto del paragrafo 2.5 scritto come frammento C. Non fa nulla di utile su una scheda, ma è il tipo di calcolo da fare prima di ogni progetto.
+
+// Stima su carta, in righe di C: nessuna libreria serve
+const int ingressi = 384, nascosti = 32, uscite = 3;
+long pesi = (long)ingressi*nascosti + nascosti
+          + (long)nascosti*uscite + uscite;      // 12387
+long mac  = (long)ingressi*nascosti + (long)nascosti*uscite;
+long arena = ingressi + nascosti + uscite + 2048; // ~2.5 KB
+float ms  = mac / 64000.0;                        // ~0.19 ms

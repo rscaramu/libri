@@ -1,0 +1,19 @@
+// listato-22-03.txt — Aggiornamento del modello via HTTP sull'S3. Scarica nella partizione libera, verifica con il listato 22.2, marca la nuova partizione come attiva e riavvia. Se la verifica fallisce, la partizione attiva non è cambiata.
+
+bool aggiornaModello(const char* url) {
+  HTTPClient http; http.begin(url);
+  if (http.GET() != 200) return false;
+  const esp_partition_t* dest = partizioneLibera();     // A o B
+  esp_partition_erase_range(dest, 0, dest->size);
+  WiFiClient* s = http.getStreamPtr();
+  uint8_t buf[4096]; size_t off = 0; int n;
+  while ((n = s->readBytes(buf, sizeof buf)) > 0) {
+    if (esp_partition_write(dest, off, buf, n) != ESP_OK) return false;
+    off += n;
+  }
+  http.end();
+  if (!caricaModello(dest->label)) return false;        // verifica
+  salvaModelloAttivo(dest->label);                      // in NVS
+  ESP.restart();
+  return true;
+}

@@ -1,0 +1,17 @@
+// listato-12-05.txt — Soglia e debouncing. Restituisce la classe una sola volta per gesto, quando due inferenze consecutive concordano sopra la soglia, e poi tace per un secondo.
+
+const float SOGLIA = 0.7f;
+const int   CONFERME = 2;
+int   ultima = 2, conferme = 0;        // 2 = fermo
+unsigned long tenutaFino = 0;
+
+int stabilizza(int classe, float p) {
+  if (p < SOGLIA) classe = 2;
+  if (classe == ultima) conferme++;
+  else { ultima = classe; conferme = 1; }
+  if (classe != 2 && conferme == CONFERME && millis() > tenutaFino) {
+    tenutaFino = millis() + 1000;
+    return classe;                     // evento nuovo
+  }
+  return -1;                           // nessun evento
+}

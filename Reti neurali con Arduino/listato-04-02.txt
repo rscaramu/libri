@@ -1,0 +1,23 @@
+// listato-04-02.txt — Rilevamento di caduta a macchina a stati. Trenta righe, nessun dataset, nessuna libreria: rileva la sequenza caduta libera, urto, immobilità.
+
+// Rilevatore di caduta a soglie. a = modulo accelerazione in g
+enum { ATTESA, CADUTA_LIBERA, URTO } stato = ATTESA;
+unsigned long t0;
+
+bool rileva_caduta(float a) {
+  unsigned long ora = millis();
+  switch (stato) {
+  case ATTESA:
+    if (a < 0.5f) { stato = CADUTA_LIBERA; t0 = ora; }
+    break;
+  case CADUTA_LIBERA:
+    if (a > 2.5f)               { stato = URTO; t0 = ora; }
+    else if (ora - t0 > 500)    stato = ATTESA;
+    break;
+  case URTO:
+    if (ora - t0 > 2000) { stato = ATTESA; return true; }
+    if (a < 0.8f || a > 1.2f) t0 = ora;   // ancora in movimento
+    break;
+  }
+  return false;
+}

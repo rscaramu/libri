@@ -1,0 +1,12 @@
+// listato-22-04.txt — Aggiornamento via BLE sulla Nano: una caratteristica per i dati e una per i comandi. flash è un oggetto mbed::FlashIAP inizializzato nel setup; la logica di verifica è la stessa del listato 22.2.
+
+BLECharacteristic blocco("19B10002-...", BLEWrite, 200);
+BLEByteCharacteristic comando("19B10003-...", BLEWrite);
+// comando: 1 = inizio (cancella la regione libera, off = 0)
+//          2 = fine   (verifica, attiva, riavvia)
+// blocco:  ogni scrittura è appesa alla regione libera all'offset off
+
+void onBlocco(BLEDevice, BLECharacteristic c) {
+  flash.program(c.value(), baseLibera + off, c.valueLength());
+  off += c.valueLength();
+}

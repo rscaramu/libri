@@ -1,0 +1,6 @@
+// listato-08-02.txt — Ambiente Python locale. L'ultima riga stampa la versione di TensorFlow; il repository dichiara quella con cui il codice è stato verificato.
+
+python -m venv tinyml
+source tinyml/bin/activate     # Windows: tinyml\Scripts\activate
+pip install tensorflow numpy pandas matplotlib scikit-learn
+python -c "import tensorflow as tf; print(tf.__version__)"

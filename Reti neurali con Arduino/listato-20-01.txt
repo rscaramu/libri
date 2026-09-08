@@ -1,0 +1,14 @@
+// listato-20-01.txt — Il registro degli eventi. Otto finestre in un buffer circolare, con ora, classe e confidenza; quando il dispositivo sbaglia, i dati dell'errore sono lì. Il dato salvato è già quantizzato: la finestra si ricostruisce con scala e zero point.
+
+struct Registro {
+  uint32_t t; uint8_t classe; uint8_t conf; int8_t dati[384];
+};
+static Registro registro[8];              // 3 KB
+static int nReg = 0;
+
+void registra(int classe, float p, const int8_t* finestra) {
+  Registro& r = registro[nReg % 8]; nReg++;
+  r.t = millis() / 1000; r.classe = classe; r.conf = p * 255;
+  memcpy(r.dati, finestra, sizeof r.dati);
+}
+// sulla seriale, a richiesta: stampa gli ultimi 8 in CSV

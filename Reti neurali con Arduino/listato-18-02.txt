@@ -1,0 +1,21 @@
+// listato-18-02.txt — Il protocollo fra le schede. Righe di testo, un parser di dieci righe, nessuna libreria. Sull'S3 la stessa struttura risponde a SVEGLIA accendendo la camera.
+
+// Protocollo: una riga per messaggio, campi separati da spazio
+//   Nano -> S3:  SVEGLIA | CMD spegni | ANOMALIA 0.31
+//   S3 -> Nano:  PERSONA 0.91 | PERSONA 0.05
+
+// Sulla Nano
+void invia(const char* msg) { Serial1.println(msg); }
+
+void ricevi() {
+  static char riga[32]; static int n = 0;
+  while (Serial1.available()) {
+    char c = Serial1.read();
+    if (c == '\n') {
+      riga[n] = 0; n = 0;
+      if (!strncmp(riga, "PERSONA ", 8)) {
+        st.persona = atof(riga + 8); st.tPersona = millis();
+      }
+    } else if (n < 31) riga[n++] = c;
+  }
+}

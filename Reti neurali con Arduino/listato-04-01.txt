@@ -1,0 +1,12 @@
+// listato-04-01.txt — Un albero decisionale su due feature diventa una funzione C di dieci righe. Le soglie sono state trovate dai dati, non a mano, ma il risultato è leggibile e correggibile.
+
+// Albero di profondità 3 esportato da scikit-learn
+// feature: sd = dev. standard, fd = frequenza dominante (Hz)
+int classifica(float sd, float fd) {
+  if (sd < 0.12f) return FERMO;
+  if (fd < 1.8f) {
+    if (sd < 0.9f) return CAMMINA;
+    return CORRE;
+  }
+  return CORRE;
+}

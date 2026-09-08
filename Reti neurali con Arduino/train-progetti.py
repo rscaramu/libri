@@ -1,0 +1,97 @@
+# train-progetti.py — cadute (Conv1D), anomalie (autoencoder), parola (Conv2D) su dati sintetici
+import os, sys, numpy as np, tensorflow as tf
+from tensorflow import keras
+tf.random.set_seed(0); np.random.seed(0)
+OUT = "modelli"; os.makedirs(OUT, exist_ok=True)
+src = open("train-gesti.py").read(); ns = {}
+exec(src[src.index("def to_header"):src.index("# ---------------- Iris")], {"os": os, "tf": tf, "np": np, "keras": keras}, ns)
+to_header, convert_int8 = ns["to_header"], ns["convert_int8"]
+
+def report(nome, tfl, X_te, y_te=None, shape=None):
+    it = tf.lite.Interpreter(model_content=tfl); it.allocate_tensors(); inp = it.get_input_details()[0]; out = it.get_output_details()[0]
+    s, z = inp["quantization"]; ok = 0
+    for i, x in enumerate(X_te[:200]):
+        q = np.clip(np.round(x / s) + z, -128, 127).astype("int8").reshape(inp["shape"]); it.set_tensor(inp["index"], q); it.invoke()
+        if y_te is not None: ok += it.get_tensor(out["index"])[0].argmax() == y_te[i]
+    ops = sorted(set(d["op_name"] for d in it._get_ops_details())) if hasattr(it, "_get_ops_details") else []
+    print(f"{nome}: .tflite {len(tfl)} byte" + (f"; acc test int8 {ok/min(200,len(X_te)):.3f}" if y_te is not None else "") + f"; scala {s:.5f} zp {z}; op {ops}")
+
+# ================= 14: cadute, 6 assi, 200 campioni, 4 classi =================
+def finestra(cls, rng, n=200, fs=100):
+    t = np.arange(n) / fs; a = np.zeros((n, 3)); g = np.zeros((n, 3)); a[:, 2] = 1
+    if cls == 0:   # cammina
+        f0 = rng.uniform(1.6, 2.4); a[:, 0] += 0.3*np.sin(2*np.pi*f0*t); a[:, 2] += 0.35*np.sin(2*np.pi*2*f0*t); g[:, 0] += 60*np.sin(2*np.pi*f0*t); g[:, 1] += 40*np.sin(2*np.pi*f0*t + 0.5)
+    elif cls == 2: # caduta: caduta libera, urto, rotazione, immobilità
+        c = rng.uniform(0.5, 1.2); ff = (t > c - 0.35) & (t < c); a[ff, 2] -= rng.uniform(0.6, 0.9)
+        imp = np.exp(-((t - c)/0.03)**2); a[:, 0] += rng.uniform(1.5, 3)*imp; a[:, 2] += rng.uniform(2, 3.5)*imp; a[:, 1] += rng.uniform(0.5, 2)*imp
+        g[:, 0] += rng.uniform(200, 400)*np.exp(-((t - c + 0.1)/0.12)**2); g[:, 1] += rng.uniform(100, 250)*np.exp(-((t - c + 0.05)/0.1)**2)
+        after = t > c + 0.1; a[after, 2] = rng.uniform(0, 0.4); a[after, 0] = rng.uniform(0.8, 1.0)
+    elif cls == 3: # altro: sedersi, saltare, chinarsi
+        c = rng.uniform(0.6, 1.4); k = rng.integers(3)
+        if k == 0: imp = np.exp(-((t - c)/0.05)**2); a[:, 2] += rng.uniform(1.2, 2.2)*imp; a[(t > c - 0.2) & (t < c), 2] -= 0.3; g[:, 0] += 30*imp
+        elif k == 1: ff = (t > c - 0.25) & (t < c); a[ff, 2] -= 0.7; imp = np.exp(-((t - c)/0.04)**2); a[:, 2] += 2.5*imp; a[t > c + 0.1, 2] = 1.0; g[:, 1] += 80*imp
+        else: a[:, 0] += 0.6*np.sin(np.pi*np.clip((t - c + 0.5)/1.0, 0, 1)); g[:, 1] += 90*np.sin(np.pi*np.clip((t - c + 0.5)/1.0, 0, 1))
+    else:          # fermo
+        a[:, :2] += rng.uniform(-0.05, 0.05, 2)
+    th = rng.uniform(-0.5, 0.5); R = np.array([[np.cos(th), -np.sin(th), 0], [np.sin(th), np.cos(th), 0], [0, 0, 1]])
+    a = a @ R.T + 0.03*rng.standard_normal((n, 3)); g = g @ R.T + 3*rng.standard_normal((n, 3))
+    x = np.c_[a, g / 500.0]
+    return np.roll(x, rng.integers(-20, 20), axis=0)
+
+def ds14(seed, per):
+    rng = np.random.default_rng(seed); X, y = [], []
+    for c, n in zip(range(4), per):
+        for _ in range(n): X.append(finestra(c, rng)); y.append(c)
+    return np.array(X, "float32"), np.array(y)
+X_tr, y_tr = ds14(1, [300, 300, 200, 300]); X_te, y_te = ds14(2, [60, 60, 50, 60])
+m14 = keras.Sequential([keras.layers.Input((200, 6)), keras.layers.Conv1D(8, 5, activation="relu"), keras.layers.MaxPooling1D(4), keras.layers.Conv1D(16, 5, activation="relu"), keras.layers.MaxPooling1D(4), keras.layers.Conv1D(32, 3, activation="relu"), keras.layers.GlobalAveragePooling1D(), keras.layers.Dropout(0.3), keras.layers.Dense(4, activation="softmax")])
+m14.compile(optimizer=keras.optimizers.Adam(1e-3), loss="sparse_categorical_crossentropy", metrics=["accuracy"])
+m14.fit(X_tr, y_tr, epochs=60, batch_size=32, validation_split=0.2, callbacks=[keras.callbacks.EarlyStopping(patience=8, restore_best_weights=True)], verbose=0)
+print("cadute: parametri", m14.count_params(), "acc test float", round(m14.evaluate(X_te, y_te, verbose=0)[1], 3))
+tfl = convert_int8(m14, X_tr, (1, 200, 6)); open(f"{OUT}/cadute.tflite", "wb").write(tfl); to_header(tfl, "cadute_tflite", f"{OUT}/cadute_modello.h"); report("cadute", tfl, X_te, y_te)
+fl = tf.lite.TFLiteConverter.from_keras_model(m14).convert(); print("cadute float32:", len(fl), "byte")
+
+# ================= 15: anomalie, spettro 64 bin, autoencoder =================
+def spettro_ventola(rng, anom=0):
+    fs, n = 100, 256; t = np.arange(n)/fs; f0 = rng.uniform(23, 27); x = np.zeros((n, 3))
+    for k, amp in enumerate([1.0, 0.4, 0.15]): x += amp*0.02*np.sin(2*np.pi*f0*(k+1)*t + rng.uniform(0, 6))[:, None]*rng.uniform(0.6, 1.4, 3)
+    x += 0.004*rng.standard_normal((n, 3))
+    if anom == 1: x += 0.05*np.sin(2*np.pi*f0*t)[:, None]           # sbilanciamento
+    if anom == 2: x += 0.02*rng.standard_normal((n, 3))              # attrito
+    if anom == 3: x += 0.03*np.sin(2*np.pi*rng.uniform(35, 45)*t)[:, None]  # risonanza
+    f = np.abs(np.fft.rfft(x - x.mean(0), axis=0)); return np.log1p(f[1:65].mean(1))
+rng = np.random.default_rng(3); Xn = np.array([spettro_ventola(rng) for _ in range(800)], "float32")
+mu, sd = Xn.mean(0), Xn.std(0) + 1e-6; Xs = (Xn - mu) / sd
+ae = keras.Sequential([keras.layers.Input((64,)), keras.layers.Dense(16, activation="relu"), keras.layers.Dense(4, activation="relu"), keras.layers.Dense(16, activation="relu"), keras.layers.Dense(64)])
+ae.compile(optimizer="adam", loss="mse"); ae.fit(Xs, Xs, epochs=200, batch_size=32, validation_split=0.2, callbacks=[keras.callbacks.EarlyStopping(patience=15, restore_best_weights=True)], verbose=0)
+err = ((ae.predict(Xs, verbose=0) - Xs)**2).mean(1); soglia = err.mean() + 3*err.std()
+Xa = [(np.array([spettro_ventola(rng, a) for _ in range(50)], "float32") - mu) / sd for a in (1, 2, 3)]
+ea = [((ae.predict(x, verbose=0) - x)**2).mean() for x in Xa]
+print(f"anomalie: parametri {ae.count_params()}; errore normale {err.mean():.3f}±{err.std():.3f} soglia {soglia:.3f}; anomalie {[round(e,3) for e in ea]} (x{[round(e/soglia,1) for e in ea]})")
+tfl = convert_int8(ae, Xs, (1, 64)); open(f"{OUT}/ae.tflite", "wb").write(tfl); to_header(tfl, "ae_tflite", f"{OUT}/ae_modello.h"); report("anomalie", tfl, Xs)
+open(f"{OUT}/ae_norm.h", "w").write("// ae_norm.h — mu, sd e soglia dell'autoencoder (dati sintetici)\n#pragma once\nconst float mu[64] = {%s};\nconst float sd[64] = {%s};\nconst float SOGLIA = %.4f;\n" % (", ".join(f"{v:.4f}" for v in mu), ", ".join(f"{v:.4f}" for v in sd), soglia))
+
+# ================= 16: parola, MFCC 49x13, Conv2D =================
+def mfcc_sint(cls, rng):
+    M = 0.25*rng.standard_normal((49, 13)); t = np.linspace(0, 1, 49)
+    if cls in (0, 1):   # accendi / spegni: tre sillabe con profili diversi
+        centri = [0.25, 0.5, 0.72] if cls == 0 else [0.3, 0.55, 0.78]; ampl = [1.5, 1.2, 0.9] if cls == 0 else [1.0, 1.6, 0.8]
+        for c, a in zip(centri, ampl):
+            env = a*np.exp(-((t - c + rng.uniform(-0.03, 0.03))/0.06)**2); prof = np.exp(-np.arange(13)/ (3 if cls == 0 else 5)); M += env[:, None]*prof[None, :]*rng.uniform(0.8, 1.2)
+    elif cls == 2:      # rumore: energia diffusa
+        M += rng.uniform(0.5, 1.5)*np.exp(-np.arange(13)/6)[None, :]*rng.uniform(0.5, 1.5, (49, 1))
+    return np.roll(M, rng.integers(-4, 4), axis=0)   # silenzio: solo rumore di fondo
+def ds16(seed, per):
+    rng = np.random.default_rng(seed); X, y = [], []
+    for c in range(4):
+        for _ in range(per): X.append(mfcc_sint(c, rng)); y.append(c)
+    return np.array(X, "float32")[..., None], np.array(y)
+X_tr, y_tr = ds16(1, 300); X_te, y_te = ds16(2, 80)
+m16 = keras.Sequential([keras.layers.Input((49, 13, 1)), keras.layers.Conv2D(8, 3, activation="relu", padding="same"), keras.layers.MaxPooling2D(2), keras.layers.Conv2D(16, 3, activation="relu", padding="same"), keras.layers.MaxPooling2D(2), keras.layers.Flatten(), keras.layers.Dropout(0.3), keras.layers.Dense(4, activation="softmax")])
+m16.compile(optimizer=keras.optimizers.Adam(1e-3), loss="sparse_categorical_crossentropy", metrics=["accuracy"])
+m16.fit(X_tr, y_tr, epochs=40, batch_size=32, validation_split=0.2, callbacks=[keras.callbacks.EarlyStopping(patience=6, restore_best_weights=True)], verbose=0)
+print("parola: parametri", m16.count_params(), "acc test float", round(m16.evaluate(X_te, y_te, verbose=0)[1], 3))
+tfl = convert_int8(m16, X_tr, (1, 49, 13, 1)); open(f"{OUT}/parola.tflite", "wb").write(tfl); to_header(tfl, "parola_tflite", f"{OUT}/parola_modello.h"); report("parola", tfl, X_te, y_te)
+fl = tf.lite.TFLiteConverter.from_keras_model(m16).convert(); print("parola float32:", len(fl), "byte")
+for n in ("cadute", "parola", "ae"):
+    print("---", n); tf.lite.experimental.Analyzer.analyze(model_path=f"{OUT}/{n}.tflite")

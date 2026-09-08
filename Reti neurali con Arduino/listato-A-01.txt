@@ -1,0 +1,7 @@
+// listato-A-01.txt — Le due funzioni del paragrafo 12.4, da copiare in ogni sketch che usa il runtime senza wrapper.
+
+int8_t quantizza(float x, float s, int z) {
+  int q = (int)lroundf(x / s) + z;
+  return (int8_t)(q < -128 ? -128 : q > 127 ? 127 : q);
+}
+float dequantizza(int8_t q, float s, int z) { return (q - z) * s; }
