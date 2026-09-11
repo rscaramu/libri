@@ -1,0 +1,11 @@
+*.o
+*.ppu
+*.exe
+*.dcu
+*.pdf
+*.tmp
+__pycache__/
+verif/
+esempi/**/*
+!esempi/**/*.dpr
+!esempi/**/*.pas
