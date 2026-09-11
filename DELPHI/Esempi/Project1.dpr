@@ -1,17 +1,14 @@
 program Project1;
 
-{$APPTYPE CONSOLE}
+uses
+  Vcl.Forms,
+  Unit1 in 'Unit1.pas' {Form1};
 
 {$R *.res}
 
-uses
-  System.SysUtils;
-
 begin
-  try
-    { TODO -oUser -cConsole Main : Insert code here }
-  except
-    on E: Exception do
-      Writeln(E.ClassName, ': ', E.Message);
-  end;
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
 end.

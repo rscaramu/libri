@@ -2,28 +2,28 @@ program Tabella;
 
 {$APPTYPE CONSOLE}
 
-type
-  TFunzione = function(X: Integer): Integer;
+uses
+  SysUtils;
 
-function Quadrato(X: Integer): Integer;
-begin
-  Result := X * X;
-end;
-
-function Cubo(X: Integer): Integer;
-begin
-  Result := X * X * X;
-end;
-
-procedure Tabella(F: TFunzione; Da, A: Integer);
 var
-  X: Integer;
+  FS: TFormatSettings;
+  Totale: Currency;
+
+procedure Riga(const Nome: string; Importo: Currency);
 begin
-  for X := Da to A do
-    WriteLn(X, ' -> ', F(X));
+  WriteLn(Format('%-12s%14s', [Nome,
+    FormatCurr('#,##0.00', Importo, FS)]));
+  Totale := Totale + Importo;
 end;
 
 begin
-  Tabella(Quadrato, 1, 3);
-  Tabella(Cubo, 1, 3);
+  FS := FormatSettings;
+  FS.DecimalSeparator := ',';
+  FS.ThousandSeparator := '.';
+  Totale := 0;
+  Riga('Materiali', 12500.5);
+  Riga('Manodopera', 8300);
+  Riga('Trasporto', 450.75);
+  WriteLn(StringOfChar('-', 26));
+  Riga('Totale', Totale);
 end.
