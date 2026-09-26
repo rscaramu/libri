@@ -1,0 +1,9 @@
+#!/bin/sh
+# Conventional Commits (cap. 16)
+msg=$(head -1 "$1")
+if ! echo "$msg" | grep -qE \
+  '^(feat|fix|docs|chore)(\(.+\))?: .{1,50}$'; then
+  echo "commit-msg: usare il formato 'tipo: descrizione'"
+  echo "  tipi ammessi: feat, fix, docs, chore"
+  exit 1
+fi

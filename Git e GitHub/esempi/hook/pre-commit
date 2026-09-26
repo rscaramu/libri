@@ -1,0 +1,8 @@
+#!/bin/sh
+# Rifiuta commit con marcatori di conflitto o spazi finali (cap. 16)
+if git diff --cached --check; then
+  exit 0
+else
+  echo "pre-commit: correggere gli errori sopra"
+  exit 1
+fi

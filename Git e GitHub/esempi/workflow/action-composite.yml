@@ -1,0 +1,18 @@
+name: Conta le ricette
+description: Conta i file nella cartella ricette
+inputs:
+  cartella:
+    description: Cartella da contare
+    default: ricette
+outputs:
+  totale:
+    description: Numero di file
+    value: ${{ steps.conta.outputs.totale }}
+runs:
+  using: composite
+  steps:
+    - id: conta
+      shell: bash
+      run: |
+        n=$(ls "${{ inputs.cartella }}" | wc -l)
+        echo "totale=$n" >> "$GITHUB_OUTPUT"

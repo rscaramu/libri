@@ -1,0 +1,21 @@
+name: Test riutilizzabile
+
+on:
+  workflow_call:
+    inputs:
+      python:
+        type: string
+        default: "3.12"
+    secrets:
+      TOKEN:
+        required: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python }}
+      - run: python -m pytest -q

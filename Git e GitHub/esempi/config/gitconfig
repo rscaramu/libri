@@ -1,0 +1,82 @@
+[user]
+	name = Anna Rossi
+	email = anna@esempio.it
+	signingkey = ~/.ssh/id_ed25519.pub
+
+[core]
+	editor = code --wait
+	autocrlf = input
+	pager = less -F -X
+	excludesFile = ~/.gitignore_global
+	fsmonitor = true
+	untrackedCache = true
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+	followTags = true
+
+[fetch]
+	prune = true
+	pruneTags = true
+
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
+
+[merge]
+	conflictStyle = zdiff3
+	ff = false
+
+[diff]
+	algorithm = histogram
+	colorMoved = default
+	renames = true
+
+[rerere]
+	enabled = true
+	autoUpdate = true
+
+[commit]
+	verbose = true
+	gpgsign = true
+
+[tag]
+	gpgsign = true
+
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/allowed_signers
+
+[help]
+	autocorrect = prompt
+
+[column]
+	ui = auto
+
+[branch]
+	sort = -committerdate
+
+[tag]
+	sort = version:refname
+
+[color]
+	ui = auto
+
+[alias]
+	st = status -s
+	lg = log --oneline --graph --all --decorate
+	last = log -1 HEAD --stat
+	unstage = restore --staged
+	aliases = !git config --get-regexp '^alias\\.'
+
+[includeIf "gitdir:~/lavoro/"]
+	path = ~/.gitconfig-lavoro
