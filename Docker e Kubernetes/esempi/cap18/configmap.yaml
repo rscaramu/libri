@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: contatore-config
+data:
+  REDIS_HOST: redis
+  SALUTO: "Benvenuti"
+  app.ini: |
+    [server]
+    timeout = 30
+    workers = 4

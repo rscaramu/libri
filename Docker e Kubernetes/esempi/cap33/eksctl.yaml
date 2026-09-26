@@ -1,0 +1,31 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: manuale
+  region: eu-west-1
+  version: "1.31"
+vpc:
+  clusterEndpoints:
+    publicAccess: true
+    privateAccess: true
+addons:
+  - name: vpc-cni
+  - name: coredns
+  - name: kube-proxy
+  - name: aws-ebs-csi-driver
+managedNodeGroups:
+  - name: generale
+    instanceType: m6i.large
+    minSize: 2
+    maxSize: 6
+    desiredCapacity: 3
+    privateNetworking: true
+  - name: spot
+    instanceTypes: [m6i.large, m5.large, m5a.large]
+    spot: true
+    minSize: 0
+    maxSize: 10
+    taints:
+      - key: spot
+        value: "true"
+        effect: NoSchedule

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contatore
+  labels:
+    app: contatore
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: contatore
+  template:
+    metadata:
+      labels:
+        app: contatore
+    spec:
+      containers:
+        - name: web
+          image: ghcr.io/rscaramu/contatore:2.0
+          ports:
+            - containerPort: 8000
+          env:
+            - name: REDIS_HOST
+              value: redis

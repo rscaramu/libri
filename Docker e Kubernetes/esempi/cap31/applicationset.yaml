@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: contatore
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - ambiente: sviluppo
+            cluster: https://kubernetes.default.svc
+          - ambiente: produzione
+            cluster: https://kubernetes.default.svc
+  template:
+    metadata:
+      name: "contatore-{{ambiente}}"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/rscaramu/contatore-deploy
+        targetRevision: main
+        path: "overlays/{{ambiente}}"
+      destination:
+        server: "{{cluster}}"
+        namespace: "{{ambiente}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

@@ -1,0 +1,14 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      FLASK_DEBUG: "1"
+    develop:
+      watch:
+        - action: sync
+          path: ./app.py
+          target: /app/app.py
+        - action: rebuild
+          path: ./requirements.txt

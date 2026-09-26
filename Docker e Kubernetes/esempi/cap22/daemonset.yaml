@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: raccoglitore-log
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: raccoglitore-log
+  template:
+    metadata:
+      labels:
+        app: raccoglitore-log
+    spec:
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+      containers:
+        - name: agente
+          image: busybox:1.36
+          args: ["sh", "-c",
+            "tail -F /var/log/containers/*.log"]
+          volumeMounts:
+            - name: log
+              mountPath: /var/log/containers
+              readOnly: true
+      volumes:
+        - name: log
+          hostPath:
+            path: /var/log/containers

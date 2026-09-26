@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "contatore.fullname" . }}
+  labels:
+    {{- include "contatore.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "contatore.selector" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "contatore.selector" . | nindent 8 }}
+    spec:
+      containers:
+        - name: web
+          {{- $tag := .Values.image.tag
+              | default .Chart.AppVersion }}
+          image: "{{ .Values.image.repository }}:{{ $tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8000
+          env:
+            - name: REDIS_HOST
+              value: >-
+                {{ include "contatore.fullname" . }}-redis
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}

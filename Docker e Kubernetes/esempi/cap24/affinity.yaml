@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contatore
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: contatore
+  template:
+    metadata:
+      labels:
+        app: contatore
+    spec:
+      nodeSelector:
+        disco: ssd
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: contatore
+              topologyKey: kubernetes.io/hostname
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 50
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: redis
+                topologyKey: topology.kubernetes.io/zone
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app: contatore
+      tolerations:
+        - key: dedicato
+          operator: Equal
+          value: web
+          effect: NoSchedule
+      containers:
+        - name: web
+          image: ghcr.io/rscaramu/contatore:2.0

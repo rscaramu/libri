@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - deployment.yaml
+  - service.yaml
+labels:
+  - pairs:
+      app.kubernetes.io/name: contatore
+    includeSelectors: true
+configMapGenerator:
+  - name: contatore-config
+    literals:
+      - REDIS_HOST=redis
+      - SALUTO=Benvenuti

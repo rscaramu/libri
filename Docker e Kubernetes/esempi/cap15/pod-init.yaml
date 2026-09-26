@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-attesa-redis
+spec:
+  initContainers:
+    - name: attendi-redis
+      image: busybox:1.36
+      command: ["sh", "-c",
+        "until nc -z redis 6379; do sleep 2; done"]
+  containers:
+    - name: web
+      image: ghcr.io/rscaramu/contatore:2.0
+      env:
+        - name: REDIS_HOST
+          value: redis

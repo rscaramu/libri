@@ -1,0 +1,32 @@
+name: Rilascio
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+    secrets: inherit
+
+  promuovi:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: rscaramu/contatore-deploy
+          token: ${{ secrets.DEPLOY_TOKEN }}
+
+      - name: Aggiorna l'immagine
+        run: |
+          cd overlays/produzione
+          kustomize edit set image \
+            ghcr.io/rscaramu/contatore=${{ github.ref_name }}
+
+      - name: Commit
+        run: |
+          git config user.name "ci"
+          git config user.email "ci@example.com"
+          git commit -am "Rilascio ${{ github.ref_name }}"
+          git push

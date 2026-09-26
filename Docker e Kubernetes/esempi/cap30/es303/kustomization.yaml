@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+helmCharts:
+  - name: redis
+    repo: oci://registry-1.docker.io/bitnamicharts
+    version: 20.6.0
+    releaseName: cache
+    namespace: cache
+    valuesInline:
+      architecture: standalone
+      auth:
+        enabled: false
+patches:
+  - target:
+      kind: StatefulSet
+      name: cache-redis-master
+    patch: |
+      - op: add
+        path: /spec/template/metadata/labels/monitorato
+        value: "si"

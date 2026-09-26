@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: contatore
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: contatore
+  template:
+    metadata:
+      labels:
+        app: contatore
+    spec:
+      containers:
+        - name: web
+          image: ghcr.io/rscaramu/contatore:3.0
+          ports:
+            - containerPort: 8000
+  strategy:
+    canary:
+      steps:
+        - setWeight: 20
+        - pause: {duration: 5m}
+        - setWeight: 50
+        - pause: {duration: 5m}
+        - analysis:
+            templates:
+              - templateName: tasso-errori

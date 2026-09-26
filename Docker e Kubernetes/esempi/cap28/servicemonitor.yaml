@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: contatore
+  labels:
+    release: monitoraggio
+spec:
+  selector:
+    matchLabels:
+      app: contatore
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s

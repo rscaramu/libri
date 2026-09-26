@@ -1,0 +1,34 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicy
+metadata:
+  name: immagini-da-registro-interno
+spec:
+  failurePolicy: Fail
+  matchConstraints:
+    resourceRules:
+      - apiGroups: ["apps"]
+        apiVersions: ["v1"]
+        operations: ["CREATE", "UPDATE"]
+        resources: ["deployments", "statefulsets"]
+  validations:
+    - expression: >-
+        object.spec.template.spec.containers.all(c,
+          c.image.startsWith('ghcr.io/rscaramu/'))
+      message: "Immagini solo da ghcr.io/rscaramu/"
+    - expression: >-
+        object.spec.template.spec.containers.all(c,
+          !c.image.endsWith(':latest') &&
+          c.image.contains(':'))
+      message: "Etichetta di versione obbligatoria"
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicyBinding
+metadata:
+  name: immagini-da-registro-interno
+spec:
+  policyName: immagini-da-registro-interno
+  validationActions: [Deny]
+  matchResources:
+    namespaceSelector:
+      matchLabels:
+        ambiente: produzione

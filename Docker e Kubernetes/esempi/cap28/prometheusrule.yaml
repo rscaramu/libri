@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: contatore-regole
+  labels:
+    release: monitoraggio
+spec:
+  groups:
+    - name: contatore
+      rules:
+        - alert: ContatoreErrori5xx
+          expr: |
+            sum(rate(http_requests_total{
+              app="contatore", status=~"5.."}[5m]))
+            /
+            sum(rate(http_requests_total{
+              app="contatore"}[5m]))
+            > 0.05
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Piu del 5% di errori 5xx su contatore"

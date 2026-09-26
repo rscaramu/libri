@@ -1,0 +1,15 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: worker-coda
+spec:
+  scaleTargetRef:
+    name: worker
+  minReplicaCount: 0
+  maxReplicaCount: 20
+  triggers:
+    - type: redis
+      metadata:
+        address: redis:6379
+        listName: lavori
+        listLength: "10"

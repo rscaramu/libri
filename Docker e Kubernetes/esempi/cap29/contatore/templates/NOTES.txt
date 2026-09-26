@@ -1,0 +1,5 @@
+Contatore installato come release {{ .Release.Name }}.
+Per provarlo:
+  kubectl port-forward \
+    svc/{{ include "contatore.fullname" . }} 8080:80
+  curl localhost:8080

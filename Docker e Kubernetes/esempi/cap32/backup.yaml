@@ -1,0 +1,8 @@
+apiVersion: dati.example.com/v1
+kind: Backup
+metadata:
+  name: redis-notturno
+spec:
+  sorgente: dati-redis-0
+  destinazione: s3://backup-acme/redis
+  pianificazione: "0 3 * * *"

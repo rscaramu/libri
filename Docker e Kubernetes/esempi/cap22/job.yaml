@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: elaborazione
+spec:
+  completions: 3
+  parallelism: 2
+  backoffLimit: 4
+  ttlSecondsAfterFinished: 600
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: lavoro
+          image: busybox:1.36
+          command: ["sh", "-c",
+            "echo Inizio $HOSTNAME; sleep 5; echo Fine"]
