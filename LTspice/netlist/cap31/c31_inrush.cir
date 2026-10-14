@@ -1,0 +1,10 @@
+* Corrente d'inserzione di un trasformatore
+.param ph=0
+B1 a 0 V=if(time>10m,325*sin(2*pi*50*(time-10m)+ph*pi/180),0)
+R1 a b 2
+L1 b 0 Hc=40 Bs=1.6 Br=1.0 A=1e-3 Lm=0.2 Lg=0 N=1000
+.step param ph list 0 90
+.tran 0 200m 0 20u
+.meas TRAN ipk MAX abs(I(L1)) FROM 0 TO 60m
+.meas TRAN irms RMS I(L1) FROM 160m TO 200m
+.end

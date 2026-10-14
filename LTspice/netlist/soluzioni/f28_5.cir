@@ -1,0 +1,13 @@
+* Soluzione 28.5 - non invertente con guadagno 10
+Vcc vcc 0 15
+Vee vee 0 -15
+XU1 0 x vcc vee out LT1001
+Vi x n 0 AC 1
+Rg n 0 1k
+Rf out n 9k
+.lib LTC.lib
+.ac dec 100 100 10Meg
+.meas AC fc WHEN mag(V(n)/V(x))=1
+.meas AC pm FIND 180+ph(-V(n)/V(x)) WHEN mag(V(n)/V(x))=1
+.options meascplxfmt=cartesian
+.end

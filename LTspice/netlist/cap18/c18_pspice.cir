@@ -1,0 +1,9 @@
+* Costrutti in sintassi PSpice
+V1 a 0 2
+E1 o1 0 VALUE={V(a)*3}
+G1 0 o2 VALUE={V(a)/1k}
+R2 o2 0 1k
+E3 o3 0 TABLE {V(a)} = (0,0) (1,10) (3,20)
+E4 o4 0 POLY(1) a 0 1 2 0.5
+.op
+.end

@@ -1,0 +1,7 @@
+* Partitore parametrico
+.param Vin=12 Rtop=10k Rbot=4.7k
+V1 in 0 {Vin}
+R1 in out {Rtop}
+R2 out 0 {Rbot}
+.op
+.end

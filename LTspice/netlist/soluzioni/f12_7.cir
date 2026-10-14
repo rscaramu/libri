@@ -1,0 +1,7 @@
+* Soluzione 12.7 - effetto di gshunt su un partitore da 1 Gohm
+V1 a 0 10
+R1 a b 1G
+R2 b 0 1G
+.options gshunt=1e-9
+.op
+.end

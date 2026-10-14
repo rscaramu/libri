@@ -1,0 +1,7 @@
+* Armoniche di un'onda quadra
+V1 a 0 PULSE(-1 1 0 10n 10n 0.49999m 1m)
+R1 a 0 1k
+.options plotwinsize=0
+.tran 0 10m 0 1u
+.four 1k 7 -1 V(a)
+.end

@@ -1,0 +1,16 @@
+* Catena di misura: risposta al gradino
+Vcc vcc 0 15
+Vee vee 0 -15
+Vcm cm 0 2.5
+Vd p1 cm PULSE(0 10m 1m 1u 1u 1 2)
+Rsp p1 p 175
+Rsn cm n 175
+X1 p n out vcc vee catena
+.include catena.sub
+.lib LTC.lib
+.tran 0 30m 0 10u
+.meas TRAN vf FIND V(out) AT 30m
+.meas TRAN vmax MAX V(out)
+.meas TRAN ov PARAM 100*(vmax-vf)/vf
+.meas TRAN ts WHEN abs(V(out)-vf)=0.01*vf FALL=LAST
+.end

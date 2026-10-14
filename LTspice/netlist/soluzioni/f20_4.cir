@@ -1,0 +1,11 @@
+* Soluzione 20.4 - resistore serie del regolatore Zener
+.param rs=220
+Vin in 0 9
+Rs in out {rs}
+D1 0 out BZX84C6V2L
+Rload out 0 470
+.lib standard.dio
+.step param rs list 100 120 150 180 220 270 330 390 470
+.dc Vin list 9 9.001
+.meas DC vout FIND V(out) AT 9
+.end

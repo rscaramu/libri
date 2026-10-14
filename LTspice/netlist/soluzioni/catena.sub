@@ -1,0 +1,21 @@
+* Catena di misura: amplificatore per strumentazione
+* con tre LT1007 e filtro di Sallen-Key a 100 Hz
+.subckt catena inp inn out vcc vee rf=10k rg=513
++ r1=10k r2=100k r3=10k r4=100k cs1=220n cs2=110n
++ tcf=0 tcg=0
+XA inp a1 vcc vee o1 LT1007
+XB inn a2 vcc vee o2 LT1007
+Rf1 o1 a1 {rf} tc={tcf}
+Rg a1 a2 {rg} tc={tcg}
+Rf2 o2 a2 {rf} tc={tcf}
+R1 o2 m {r1}
+R2 m d {r2}
+R3 o1 pp {r3}
+R4 pp 0 {r4}
+XC pp m vcc vee d LT1007
+Rs1 d s1 10k
+Rs2 s1 s2 10k
+Cs1 s1 out {cs1}
+Cs2 s2 0 {cs2}
+XD s2 out vcc vee out LT1007
+.ends catena

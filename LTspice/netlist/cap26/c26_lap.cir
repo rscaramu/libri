@@ -1,0 +1,13 @@
+* Funzione di trasferimento di Laplace e circuito RLC
+V1 in 0 PULSE(0 1 0 1u 1u 10m 20m) AC 1
+E1 lap 0 in 0
++ Laplace=1/(1+s/(2*pi*1k*0.7071)+(s/(2*pi*1k))**2)
+R1 in a 88.86
+L1 a b 10m
+C1 b 0 2.533u
+.tran 0 5m 0 1u
+.meas TRAN p1 MAX V(lap)
+.meas TRAN p2 MAX V(b)
+.meas TRAN t1 WHEN V(lap)=0.5
+.meas TRAN t2 WHEN V(b)=0.5
+.end

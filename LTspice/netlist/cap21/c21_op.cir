@@ -1,0 +1,10 @@
+* Misure sul punto di lavoro
+.param rr=2
+V1 a 0 10
+R1 a b 1k
+R2 b 0 {rr*1k}
+.op
+.meas OP vb FIND V(b)
+.meas OP ir1 FIND I(R1)
+.meas OP pr1 PARAM V(a,b)*I(R1)
+.end

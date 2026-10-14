@@ -1,0 +1,13 @@
+* Esercizio 27.1 - oscillatore di Van der Pol
+.param mu=1 x0=0.1
+Bx 0 x I=V(y) Rpar=1T
+Cx x 0 1
+By 0 y I=mu*(1-V(x)**2)*V(y)-V(x) Rpar=1T
+Cy y 0 1
+.ic V(x)={x0} V(y)=0
+.step param x0 list 0.1 4
+.tran 0 60 0 1m
+.meas TRAN amp MAX V(x) FROM 40 TO 60
+.meas TRAN per TRIG V(x) VAL=0 RISE=5
++ TARG V(x) VAL=0 RISE=6
+.end

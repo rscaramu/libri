@@ -1,0 +1,26 @@
+* Regolatori P, PI e PID a confronto
+.param tipo=2
+.param kp=table(tipo,0,4,1,3.6,2,4.8,3,2)
+.param ti=table(tipo,0,1e9,1,3.02,2,1.814,3,2.5)
+.param td=table(tipo,0,0,1,0,2,0.4535,3,0.5) n=10
+Vr r 0 PULSE(0 1 1 1m 1m 100 200)
+Bi 0 i I=(kp/ti)*(V(r)-V(y)) Rpar=1T
+Ci i 0 1
+Bf 0 xf I=if(td>0,(n/td)*(V(y)-V(xf)),0) Rpar=1T
+Cf xf 0 1
+Bu u 0 V=kp*(V(r)-V(y))+V(i)-kp*n*(V(y)-V(xf))*(td>0)
+R1 u a 1
+C1 a 0 1
+E2 b 0 a 0 1
+R2 b c 1
+C2 c 0 1
+E3 d 0 c 0 1
+R3 d y 1
+C3 y 0 1
+.step param tipo list 0 1 2 3
+.tran 0 40 0 5m
+.meas TRAN ymax MAX V(y)
+.meas TRAN yfin FIND V(y) AT 40
+.meas TRAN sovr PARAM (ymax-yfin)/yfin
+.meas TRAN umax MAX V(u)
+.end

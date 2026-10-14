@@ -1,0 +1,9 @@
+* Soluzione 13.6 - Zener ideale
+I1 0 a 1m
+D1 0 a zid
+.model zid D(Ron=0.1 Vfwd=0.6 Vrev=5.1 Rrev=10
++ Revepsilon=0.2 Epsilon=0.1)
+.dc I1 0 20m 0.1m
+.meas DC v1 FIND V(a) AT 1m
+.meas DC v10 FIND V(a) AT 10m
+.end

@@ -1,0 +1,10 @@
+* Soluzione 23.4 - caratteristica del 1N4148 a tre temperature
+V1 a 0 0
+D1 a 0 1N4148
+.lib standard.dio
+.step temp list -40 27 125
+.dc V1 0 1.2 1m
+.meas DC i07 FIND I(D1) AT 0.7
+.meas DC i1 FIND I(D1) AT 1
+.meas DC i12 FIND I(D1) AT 1.2
+.end

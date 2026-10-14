@@ -1,0 +1,11 @@
+* Velocita' di risposta del LT1001 come inseguitore
+Vcc vcc 0 15
+Vee vee 0 -15
+Vin in 0 PULSE(-5 5 10u 10n 10n 40u 80u)
+XU1 in out vcc vee out LT1001
+.lib LTC.lib
+.tran 0 80u 0 10n
+.meas TRAN dt TRIG V(out) VAL=-4 RISE=1
++ TARG V(out) VAL=4 RISE=1
+.meas TRAN sr PARAM 8/dt
+.end

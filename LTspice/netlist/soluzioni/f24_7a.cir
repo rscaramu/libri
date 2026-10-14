@@ -1,0 +1,10 @@
+* Soluzione 24.7 - tolleranze con rand() e un seme
+.param seme=0
+V1 a 0 1
+R1 a 0 {1k*(1+0.05*(2*rand(seme+2*run)-1))}
+R2 a 0 {1k*(1+0.05*(2*rand(seme+2*run+1)-1))}
+.step param run 1 3 1
+.tran 1u
+.meas TRAN r1 FIND 1/I(R1) AT 0
+.meas TRAN r2 FIND 1/I(R2) AT 0
+.end

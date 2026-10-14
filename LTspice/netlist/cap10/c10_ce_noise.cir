@@ -1,0 +1,19 @@
+* Rumore dello stadio a emettitore comune
+Vcc vcc 0 12
+Vs s 0 0 AC 1
+Rs s in 1k
+C1 in b 10u
+R1 vcc b 47k
+R2 b 0 10k
+Rc vcc c 2.2k
+Re e 0 470
+Ce e 0 100u
+Q1 c b e 2N3904
+C2 c out 10u
+RL out 0 10k
+.lib standard.bjt
+.noise V(out) Vs dec 20 10 10Meg
+.meas NOISE eni FIND V(inoise) AT 1k
+.meas NOISE vnout INTEG V(onoise) FROM 20 TO 20k
+.meas NOISE vnin INTEG V(inoise) FROM 20 TO 20k
+.end

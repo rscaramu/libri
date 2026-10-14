@@ -1,0 +1,16 @@
+* Esercizio 32.2 - conduzione discontinua
+.param rl=2.5
+Vin in 0 12
+Vg g 0 PULSE(0 1 0 10n 10n 2.15u 5u)
+S1 in sw g 0 SW1
+D1 0 sw MBRS340
+L1 sw out 22u Rser=20m
+C1 out 0 100u Rser=0.1
+Rload out 0 {rl}
+.model SW1 SW(Ron=50m Roff=10Meg Vt=0.5 Vh=-0.1)
+.lib standard.dio
+.step param rl list 2.5 10 14 20 50
+.tran 0 4m 3m 20n uic
+.meas TRAN vo AVG V(out) FROM 3.8m TO 4m
+.meas TRAN ilmin MIN I(L1) FROM 3.8m TO 4m
+.end

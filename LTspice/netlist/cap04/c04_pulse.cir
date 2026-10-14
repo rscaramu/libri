@@ -1,0 +1,6 @@
+* Generatore PULSE
+V1 a 0 PULSE(0 5 0.2m 50u 50u 0.45m 1m 3)
+R1 a 0 1k
+.tran 4m
+.meas TRAN vfin FIND V(a) AT 3.9m
+.end

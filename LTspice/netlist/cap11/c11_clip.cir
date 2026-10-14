@@ -1,0 +1,10 @@
+* Distorsione di un limitatore a diodi
+V1 in 0 SINE(0 1 1k)
+R1 in out 1k
+D1 out 0 1N4148
+D2 0 out 1N4148
+.lib standard.dio
+.options plotwinsize=0
+.tran 0 10m 0 1u
+.four 1k 5 -1 V(out)
+.end

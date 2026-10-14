@@ -1,0 +1,12 @@
+* Risposta a un gradino piccolo
+.param cl=10n
+Vcc vcc 0 15
+Vee vee 0 -15
+Vin in 0 PULSE(0 1m 10u 10n 10n 50u 100u)
+XU1 in y vcc vee y LT1001
+CL y 0 {cl}
+.lib LTC.lib
+.step param cl list 1p 10n 100n
+.tran 0 60u 0 5n
+.meas TRAN vmax MAX V(y)
+.end

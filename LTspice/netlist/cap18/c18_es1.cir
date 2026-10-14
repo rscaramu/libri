@@ -1,0 +1,10 @@
+* Esercizio 18.1 - confronto di modelli di uno Schottky
+I1 0 a 1
+D1 a 0 D1N5819X
+I2 0 b 1
+D2 b 0 1N5819
+.model D1N5819X D(IS=31.7U RS=.051 N=1.373 CJO=190P M=.3
++ VJ=.3905 BV=40 IBV=1M EG=.69 XTI=2)
+.lib standard.dio
+.op
+.end

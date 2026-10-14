@@ -1,0 +1,22 @@
+* Soluzione 28.6 - precisione in continua e gradino
+.param cf=1n
+Vcc vcc 0 15
+Vee vee 0 -15
+Vin in 0 PULSE(1 1.001 100u 10n 10n 1 2)
+XU1 in n vcc vee o LT1001
+Riso o y 10
+CL y 0 1u
+RL y 0 1k
+Rf y n 10k
+Cf o n {cf}
+XU2 in o2 vcc vee o2 LT1001
+Riso2 o2 y2 10
+CL2 y2 0 1u
+RL2 y2 0 1k
+.lib LTC.lib
+.tran 0 400u 0 50n
+.meas TRAN vy FIND V(y) AT 90u
+.meas TRAN vy2 FIND V(y2) AT 90u
+.meas TRAN vmax MAX V(y) FROM 100u TO 400u
+.meas TRAN t90 WHEN V(y)=1.0009 RISE=1 TD=100u
+.end

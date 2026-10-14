@@ -1,0 +1,14 @@
+* Esercizio 13.2 - dimensionamento del filtro
+V1 a b SINE(0 16.97 50) Rser=0.5
+D1 a p 1N4007
+D2 b p 1N4007
+D3 0 a 1N4007
+D4 0 b 1N4007
+C1 p 0 4700u Rser=20m
+RL p 0 27
+.lib standard.dio
+.tran 0 300m 0 20u
+.meas TRAN vmed AVG V(p) FROM 260m TO 300m
+.meas TRAN ripple PP V(p) FROM 260m TO 300m
+.meas TRAN imed AVG I(RL) FROM 260m TO 300m
+.end

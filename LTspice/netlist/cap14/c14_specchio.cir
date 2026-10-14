@@ -1,0 +1,12 @@
+* Specchio di corrente a due transistor
+Vcc vcc 0 12
+Rref vcc a 11.3k
+Q1 a a 0 2N3904
+Q2 out a 0 2N3904
+Vout vcc out 0
+.lib standard.bjt
+.dc Vout 0 11 0.1
+.meas DC iref FIND I(Rref) AT 6
+.meas DC i2 FIND Ic(Q2) AT 6
+.meas DC i2b FIND Ic(Q2) AT 1
+.end

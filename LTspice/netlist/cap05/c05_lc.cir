@@ -1,0 +1,10 @@
+* Punto di lavoro con L e C
+V1 in 0 10
+R1 in a 1k
+L1 a b 10m
+R2 b 0 4k
+C1 b 0 1u
+R3 a c 2k
+C2 c 0 1u
+.op
+.end

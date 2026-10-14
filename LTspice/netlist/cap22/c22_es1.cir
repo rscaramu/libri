@@ -1,0 +1,12 @@
+* Esercizio 22.1 - partitore discreto e integrato
+.param rc=mc(10k,0.01)
+V1 a 0 10
+R1 a b {mc(10k,0.01)}
+R2 b 0 {mc(10k,0.01)}
+R3 a c {mc(rc,0.0005)}
+R4 c 0 {mc(rc,0.0005)}
+.step param run 1 200 1
+.tran 1u
+.meas TRAN vb FIND V(b) AT 0
+.meas TRAN vc FIND V(c) AT 0
+.end

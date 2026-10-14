@@ -1,0 +1,17 @@
+* Esercizio 30.2 - microcontrollore, MOSFET e LED
+Vdd vdd 0 5
+Vck ck 0 PULSE(0 3.3 1u 1n 1n 4u 10u)
+A1 ck 0 0 0 0 0 g 0 BUF Vhigh=3.3 Rout=50 Trise=5n
+M1 d g 0 2N7002
+D1 a d LED
+R1 vdd a 100
+.model LED D(Is=7.5e-19 N=2 Rs=5)
+.lib standard.mos
+.tran 0 10u 0 1n
+.meas TRAN iled FIND I(D1) AT 4u
+.meas TRAN vds FIND V(d) AT 4u
+.meas TRAN ton TRIG V(ck) VAL=1.65 RISE=1
++ TARG I(D1) VAL={0.9*0.026} RISE=1
+.meas TRAN toff TRIG V(ck) VAL=1.65 FALL=1
++ TARG I(D1) VAL={0.1*0.026} FALL=1
+.end

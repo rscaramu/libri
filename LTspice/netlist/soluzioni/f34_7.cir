@@ -1,0 +1,31 @@
+* Soluzione 34.7 - filtro d'ingresso: modo comune
+.param tol=0.001 tcf=0.05
+.param r1={mc(10k,tol)} r2={mc(100k,tol)}
+.param r3={mc(10k,tol)} r4={mc(100k,tol)}
+.param cp={mc(1n,tcf)} cn={mc(1n,tcf)}
+Vcc vcc 0 15
+Vee vee 0 -15
+Vcm cm 0 2.5
+Vdp cm p1 AC 0.5 180
+Vdn cm n1 AC 0.5
+Rsp p1 a 275
+Rsn n1 b 275
+Cd a b 10n
+Cp a 0 {cp}
+Cn b 0 {cn}
+X1 a b out vcc vee catena r1={r1} r2={r2} r3={r3} r4={r4}
+Vc c 0 2.5 AC 1
+Rcp c a2 275
+Rcn c b2 275
+Cd2 a2 b2 10n
+Cp2 a2 0 {cp}
+Cn2 b2 0 {cn}
+X2 a2 b2 outc vcc vee catena r1={r1} r2={r2} r3={r3} r4={r4}
+.include catena.sub
+.lib LTC.lib
+.step param run 1 200 1
+.ac list 1 50
+.meas AC g1 FIND mag(V(out)) AT 1
+.meas AC cmrr FIND 20*log10(mag(V(out))/mag(V(outc))) AT 50
+.options meascplxfmt=cartesian
+.end

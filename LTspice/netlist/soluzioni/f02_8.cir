@@ -1,0 +1,6 @@
+* Soluzione 2.8 - collegamento tramite etichette
+V1 a 0 4
+R1 a m 1k
+R2 m 0 3k
+.op
+.end

@@ -1,0 +1,18 @@
+* Esercizio 28.1 - capacita all'ingresso invertente
+.param cf=1p
+Vcc vcc 0 15
+Vee vee 0 -15
+V1 in 0 0
+R1 in n 100k
+Rf n out 1Meg
+Cf n out {cf}
+Cin n 0 100p
+Vi x n 0 AC 1
+XU1 0 x vcc vee out LT1001
+.lib LTC.lib
+.step param cf list 1f 2p 3.3p 5p 10p
+.ac dec 100 100 10Meg
+.meas AC fc WHEN mag(V(n)/V(x))=1
+.meas AC pm FIND 180+ph(-V(n)/V(x)) WHEN mag(V(n)/V(x))=1
+.options meascplxfmt=cartesian
+.end

@@ -1,0 +1,8 @@
+* Esercizio 7.2 - caratteristica di un LED
+I1 0 a 10m
+D1 a 0 QTLP690C
+.lib standard.dio
+.dc I1 0 50m 0.1m
+.meas DC i2v WHEN V(a)=2
+.meas DC v20m FIND V(a) AT 20m
+.end

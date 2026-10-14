@@ -1,0 +1,27 @@
+* Buck: modello medio e guadagno d'anello
+.param k=0
+.param rc=table(k,0,22.6k,1,33k) cc=table(k,0,2.35n,1,1.5n)
+.param chf=table(k,0,141p,1,10p)
+Vref ref 0 2.5
+XE ref fb vcc vee comp level2 Avol=100k GBW=10Meg
++ Slew=10Meg
+Vcc vcc 0 5
+Vee vee 0 -5
+Rc comp x {rc}
+Cc x fb {cc}
+Chf comp fb {chf}
+Vi out fbt 0 AC 1
+R1 fbt fb 10k
+R2 fb 0 10k
+Esw sw 0 comp 0 12
+L1 sw out 22u Rser=20m
+C1 out 0 100u Rser=0.1
+Rload out 0 2.5
+.lib UniversalOpAmp2.lib
+.step param k list 0 1
+.ac dec 100 100 1Meg
+.meas AC fc WHEN mag(V(out)/V(fbt))=1
+.meas AC pm FIND 180+ph(-V(out)/V(fbt))
++ WHEN mag(V(out)/V(fbt))=1
+.options meascplxfmt=cartesian
+.end

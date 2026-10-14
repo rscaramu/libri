@@ -1,0 +1,5 @@
+* Soluzione 1.6 - generatore di corrente
+I1 0 n 2m
+R1 n 0 4.7k
+.op
+.end

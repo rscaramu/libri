@@ -1,0 +1,10 @@
+* Esercizio 8.1 - tempo di assestamento al 2%
+V1 a 0 PULSE(0 1 0 1u 1u 1 2)
+R1 a b 10
+L1 b c 1m Rser=0
+C1 c 0 1u
+.tran 0 5m 0 1u
+.meas TRAN tsup WHEN V(c)=1.02 CROSS=last
+.meas TRAN tinf WHEN V(c)=0.98 CROSS=last
+.meas TRAN tass PARAM max(tsup,tinf)
+.end

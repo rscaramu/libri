@@ -1,0 +1,16 @@
+* Amplificatore non invertente: ideale e LT1001
+Vin in 0 0 AC 1
+XU1 fb1 in out1 opamp Aol=100k GBW=1Meg
+R1 fb1 0 1k
+R2 out1 fb1 9k
+Vcc vcc 0 15
+Vee vee 0 -15
+XU2 in fb2 vcc vee out2 LT1001
+R3 fb2 0 1k
+R4 out2 fb2 9k
+.lib opamp.sub
+.lib LTC.lib
+.ac dec 50 1 10Meg
+.meas AC fc1 WHEN mag(V(out1))=10/sqrt(2)
+.meas AC fc2 WHEN mag(V(out2))=10/sqrt(2)
+.end

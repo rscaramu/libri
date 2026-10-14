@@ -1,0 +1,12 @@
+* Soluzione 7.8 - corrente del diodo a tensioni fisse
+V1 a 0 0.5
+D1 a 0 1N4148
+.lib standard.dio
+.dc V1 list 0.5 0.6 0.7 0.8
+.meas DC i5 FIND I(D1) AT 0.5
+.meas DC i6 FIND I(D1) AT 0.6
+.meas DC i7 FIND I(D1) AT 0.7
+.meas DC i8 FIND I(D1) AT 0.8
+.meas DC r1 PARAM i6/i5
+.meas DC r3 PARAM i8/i7
+.end

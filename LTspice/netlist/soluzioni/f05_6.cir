@@ -1,0 +1,7 @@
+* Soluzione 5.6 - diodo Zener
+V1 a 0 12
+R1 a k 470
+D1 0 k BZX84C6V2L
+.lib standard.dio
+.op
+.end

@@ -1,0 +1,31 @@
+* Soluzione 31.6 - ponte e presa centrale
+V1 l 0 SINE(0 325 50)
+L1 l 0 10 Rser=10
+L2 a b {10/(230/12)**2} Rser=0.3
+K1 L1 L2 1
+D1 a p 1N4007
+D2 b p 1N4007
+D3 0 a 1N4007
+D4 0 b 1N4007
+C1 p 0 2200u
+R1 p 0 20
+Rf b 0 10Meg
+V2 l2 0 SINE(0 325 50)
+L3 l2 0 10 Rser=10
+L4 c 0 {10/(230/12)**2} Rser=0.3
+L5 0 d {10/(230/12)**2} Rser=0.3
+K2 L3 L4 L5 1
+D5 c q 1N4007
+D6 d q 1N4007
+C2 q 0 2200u
+R2 q 0 20
+.lib standard.dio
+.tran 0 300m 0 20u uic
+.meas TRAN vb AVG V(p) FROM 200m TO 300m
+.meas TRAN vc AVG V(q) FROM 200m TO 300m
+.meas TRAN pdb AVG V(a,p)*I(D1)+V(b,p)*I(D2)-V(a)*I(D3)
++ -V(b)*I(D4) FROM 200m TO 300m
+.meas TRAN pdc AVG V(c,q)*I(D5)+V(d,q)*I(D6) FROM 200m TO 300m
+.meas TRAN vrb MIN V(a,p) FROM 200m TO 300m
+.meas TRAN vrc MIN V(c,q) FROM 200m TO 300m
+.end

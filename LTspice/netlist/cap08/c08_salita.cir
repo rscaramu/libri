@@ -1,0 +1,9 @@
+* Tempo di salita di un circuito RC
+V1 a 0 PULSE(0 1 0.1m 1n 1n 10m 20m)
+R1 a b 1k
+C1 b 0 100n
+.tran 0 1m 0 0.1u
+.meas TRAN tsal TRIG V(b) VAL=0.1 RISE=1
++ TARG V(b) VAL=0.9 RISE=1
+.meas TRAN rapporto PARAM tsal/100u
+.end

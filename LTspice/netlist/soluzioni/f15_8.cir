@@ -1,0 +1,12 @@
+* Soluzione 15.8 - rele' temporizzato
+Vb a 0 PULSE(0 12 10m 1u 1u 50m 200m)
+Vsense a b 0
+Lb b 0 100m Rser=100
+W1 c 0 Vsense rele
+Vdd vdd 0 5
+Rl vdd c 1k
+.model rele CSW(It=40m Ih=10m Ron=0.1 Roff=10Meg)
+.tran 0 120m 0 10u
+.meas TRAN ton WHEN V(c)=2.5 FALL=1
+.meas TRAN toff WHEN V(c)=2.5 RISE=1
+.end

@@ -1,0 +1,8 @@
+* Esercizio 11.2 - onda quadra filtrata
+V1 a 0 PULSE(-1 1 0 10n 10n 0.49999m 1m)
+R1 a b 1k
+C1 b 0 159.15n
+.options plotwinsize=0
+.tran 0 20m 0 1u
+.four 1k 5 5 V(b)
+.end

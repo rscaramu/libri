@@ -1,0 +1,18 @@
+* Esercizio 23.2 - coefficiente di temperatura degli Zener
+.model Z6 ako:BZX84C6V2L D(Tbv1=3.03e-4)
+.model Z12 ako:BZX84C12L D(Tbv1=6.5e-4)
+I1 0 a 5m
+D1 0 a BZX84C6V2L
+I2 0 b 5m
+D2 0 b BZX84C12L
+I3 0 c 5m
+D3 0 c Z6
+I4 0 d 5m
+D4 0 d Z12
+.lib standard.dio
+.dc temp -40 125 1
+.meas DC s1 DERIV V(a) AT 25
+.meas DC s2 DERIV V(b) AT 25
+.meas DC s3 DERIV V(c) AT 25
+.meas DC s4 DERIV V(d) AT 25
+.end

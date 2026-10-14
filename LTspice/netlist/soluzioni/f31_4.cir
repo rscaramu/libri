@@ -1,0 +1,28 @@
+* Soluzione 31.4 - alimentatore duale con zener e transistor
+V1 l 0 SINE(0 325 50)
+L1 l 0 10 Rser=10
+L2 a 0 {10/(230/18)**2} Rser=0.4
+L3 0 b {10/(230/18)**2} Rser=0.4
+K1 L1 L2 L3 1
+D1 a p 1N4007
+D2 b p 1N4007
+D3 n a 1N4007
+D4 n b 1N4007
+C1 p 0 1000u
+C2 0 n 1000u
+Rzp p zp 1k
+DZp 0 zp BZX84C15L
+Q1 p zp op 2N3904
+Rzn zn n 1k
+DZn zn 0 BZX84C15L
+Q2 n zn on 2N3906
+RLp op 0 100
+RLn on 0 300
+.lib standard.dio
+.lib standard.bjt
+.tran 0 300m 0 20u
+.meas TRAN vp AVG V(op) FROM 200m TO 300m
+.meas TRAN vn AVG V(on) FROM 200m TO 300m
+.meas TRAN rp PP V(op) FROM 200m TO 300m
+.meas TRAN rn PP V(on) FROM 200m TO 300m
+.end

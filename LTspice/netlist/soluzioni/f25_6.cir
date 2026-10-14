@@ -1,0 +1,12 @@
+* Soluzione 25.6 - generatore di onda triangolare e quadra
+.param vc=1
+Vc ctl 0 {vc}
+Bph ph 0 V=idtmod(1k*V(ctl),0,1)
+Btri tri 0 V=4*abs(V(ph)-0.5)-1
+Bsq sq 0 V=if(V(ph)<0.5,1,-1)
+.step param vc list 0.1 1 10
+.tran 0 {25m/vc} 0 {1u/vc}
+.meas TRAN per TRIG V(sq) VAL=0 FALL=2
++ TARG V(sq) VAL=0 FALL=3
+.meas TRAN f PARAM 1/per
+.end

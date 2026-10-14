@@ -1,0 +1,14 @@
+* Soluzione 17.4 - resistori reali
+I1 0 a 0 AC 1
+X1 a 0 resreale r=1Meg c=0.2p l=1n
+I2 0 b 0 AC 1
+X2 b 0 resreale r=1 c=0.01p l=5n
+.subckt resreale p n r=1k c=0.1p l=1n
+L1 p m {l} Rser=0
+R1 m n {r}
+C1 p n {c}
+.ends
+.ac dec 50 1k 1G
+.meas AC fa WHEN mag(V(a))=1Meg/sqrt(2)
+.meas AC fb WHEN mag(V(b))=sqrt(2)
+.end

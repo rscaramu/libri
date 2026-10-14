@@ -1,0 +1,8 @@
+* Partitore RC con un resistore senza rumore
+V1 in 0 0 AC 1
+R1 in out 1k noiseless
+R2 out 0 1k
+C1 out 0 1n
+.noise V(out) V1 dec 20 10 10Meg
+.meas NOISE en1k FIND V(onoise) AT 1k
+.end

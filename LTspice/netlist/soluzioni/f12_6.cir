@@ -1,0 +1,9 @@
+* Soluzione 12.6 - oscillatore a rilassamento
+A1 n 0 0 0 0 out 0 0 SCHMITT Vt=0.5 Vh=0.2 Trise=10n
+R1 out n 1k
+C1 n 0 1n
+.tran 0 20u 0 1n
+.meas TRAN t1 WHEN V(out)=0.5 RISE=5
+.meas TRAN t2 WHEN V(out)=0.5 RISE=10
+.meas TRAN freq PARAM 5/(t2-t1)
+.end

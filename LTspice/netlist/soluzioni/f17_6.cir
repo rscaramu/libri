@@ -1,0 +1,16 @@
+* Soluzione 17.6 - convertitore R-2R a quattro bit
+V3 b3 0 0
+V2 b2 0 5
+V1 b1 0 0
+V0 b0 0 5
+Rt n0 0 20k
+X0 b0 n0 n1 cella
+X1 b1 n1 n2 cella
+X2 b2 n2 n3 cella
+X3 b3 n3 nc cella
+.subckt cella bit nodo succ
+R2 bit nodo 20k
+Rs nodo succ 10k
+.ends
+.op
+.end

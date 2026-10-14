@@ -1,0 +1,9 @@
+* Esercizio 25.3 - valore efficace su una finestra mobile
+B1 in 0 V=(1+u(time-50m))*sin(2*pi*50*time)
+B2 q 0 V=idt(V(in)**2)
+B3 rms 0 V=sqrt(max(V(q)-delay(V(q),20m),0)/20m)
+.tran 0 100m 0 10u
+.meas TRAN r40 FIND V(rms) AT 40m
+.meas TRAN r60 FIND V(rms) AT 60m
+.meas TRAN r100 FIND V(rms) AT 100m
+.end

@@ -1,0 +1,25 @@
+* Soluzione 31.7 - termistore NTC all'accensione
+.param ntc=1
+V1 l0 0 SINE(0 325 50)
+Bn l0 l R=if(ntc,1+9*exp(-time/5),1m)
+L1 l 0 10 Rser=10
+L2 a b {10/(230/13.5)**2} Rser=0.4
+K1 L1 L2 0.998
+Rf b 0 10Meg
+D1 a p 1N4007
+D2 b p 1N4007
+D3 0 a 1N4007
+D4 0 b 1N4007
+C1 p 0 2200u
+XU1 adj o p LT317A
+R1 o adj 240
+R2 adj 0 720
+RL o 0 10
+.lib standard.dio
+.lib LT317A.sub
+.step param ntc list 0 1
+.tran 0 300m 0 20u uic
+.meas TRAN ipk0 MAX I(D1) FROM 0 TO 50m
+.meas TRAN ip1 MAX abs(I(Bn)) FROM 0 TO 50m
+.meas TRAN vo AVG V(o) FROM 200m TO 300m
+.end

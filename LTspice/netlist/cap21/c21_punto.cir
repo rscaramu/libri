@@ -1,0 +1,15 @@
+* Misure su un punto
+V1 a 0 SINE(0 10 1k)
+R1 a 0 1k
+.tran 0 5m 0 1u
+.meas TRAN x2 FIND V(a) AT=0.25m
+.meas TRAN t1 WHEN V(a)=0 RISE=2
+.meas TRAN t2 WHEN V(a)=0 RISE=3
+.meas TRAN per TRIG V(a) VAL=0 RISE=2
++ TARG V(a) VAL=0 RISE=3
+.meas TRAN f PARAM 1/per
+.meas TRAN tl WHEN V(a)=0 RISE=last
+.meas TRAN tcr WHEN V(a)=5 CROSS=3
+.meas TRAN ttd WHEN V(a)=5 CROSS=1 TD=2.1m
+.meas TRAN sr DERIV V(a) AT 0
+.end

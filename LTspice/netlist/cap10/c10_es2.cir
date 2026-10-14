@@ -1,0 +1,8 @@
+* Esercizio 10.2 - rumore termico di un resistore
+I1 0 a 0 AC 1
+R1 a 0 10k
+R2 b 0 10k temp=127
+I2 0 b 0 AC 1
+.noise V(a) I1 list 1k
+.meas NOISE en FIND V(onoise) AT 1k
+.end

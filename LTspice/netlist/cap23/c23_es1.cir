@@ -1,0 +1,9 @@
+* Esercizio 23.1 - termistore NTC in un partitore
+.param b=3950
+V1 vcc 0 3.3
+Rf vcc out 10k
+Rt out 0 {10k*exp(b*(1/(temp+273.15)-1/298.15))}
+.step temp list -20 24.5 25 25.5 80
+.dc V1 list 3.3 3.301
+.meas DC v FIND V(out) AT 3.3
+.end

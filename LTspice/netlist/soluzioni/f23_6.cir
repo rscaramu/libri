@@ -1,0 +1,15 @@
+* Soluzione 23.6 - deriva di una coppia differenziale
+.param vc=0
+Vcc vcc 0 15
+Vee vee 0 -15
+Vc b1 0 {vc}
+Q1 c1 b1 e 2N3904
+Q2 c2 0 e 2N3904 1.213
+Rc1 vcc c1 10k
+Rc2 vcc c2 10k
+Rt e vee 14.3k
+.lib standard.bjt
+.step temp list -40 27 125
+.dc Vc -10m 10m 0.01m
+.meas DC vos WHEN V(c1,c2)=0
+.end

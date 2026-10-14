@@ -1,0 +1,11 @@
+* Soluzione 5.8 - resistenza d'uscita al collettore
+Vcc vcc 0 12
+R1 vcc b 47k
+R2 b 0 10k
+Rc vcc c 2.2k
+Re e 0 470
+Q1 c b e 2N3904
+It 0 c 10u
+.lib standard.bjt
+.op
+.end

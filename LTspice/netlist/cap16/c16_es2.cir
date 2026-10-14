@@ -1,0 +1,19 @@
+* Esercizio 16.2 - amplificatore differenziale e modo comune
+Vcc vcc 0 15
+Vee vee 0 -15
+Vcm cm 0 1
+* resistori ideali
+R1 cm n1 10k
+R2 o1 n1 100k
+R3 cm p1 10k
+R4 p1 0 100k
+XU1 p1 n1 vcc vee o1 LT1001
+* R4 con un errore dell'1%
+R5 cm n2 10k
+R6 o2 n2 100k
+R7 cm p2 10k
+R8 p2 0 101k
+XU2 p2 n2 vcc vee o2 LT1001
+.lib LTC.lib
+.op
+.end

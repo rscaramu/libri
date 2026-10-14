@@ -1,0 +1,10 @@
+* Soluzione 6.4 - RC serie in regime sinusoidale
+V1 in 0 SINE(0 1 1k)
+R1 in c 1k
+C1 c 0 159n
+.tran 0 20m 0 1u
+.meas TRAN vr MAX V(in,c) FROM 15m TO 20m
+.meas TRAN vc MAX V(c) FROM 15m TO 20m
+.meas TRAN tzr WHEN V(in,c)=0 RISE=16
+.meas TRAN tzc WHEN V(c)=0 RISE=16
+.end

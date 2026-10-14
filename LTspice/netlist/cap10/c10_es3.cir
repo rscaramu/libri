@@ -1,0 +1,8 @@
+* Esercizio 10.3 - rumore di una sorgente ad alta resistenza
+Vs s 0 0 AC 1
+Rs s out 100k
+E1 amp 0 out 0 100
+.noise V(amp) Vs dec 50 0.1 10k
+.meas NOISE vn10 INTEG V(inoise) FROM 0.1 TO 10
+.meas NOISE vn10k INTEG V(inoise) FROM 0.1 TO 10k
+.end

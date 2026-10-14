@@ -1,0 +1,12 @@
+* Linea ideale: riflessioni con carichi diversi
+.param rl=50
+V1 g 0 PULSE(0 2 1n 0.1n 0.1n 20n 100n)
+Rs g in 50
+T1 in 0 out 0 Z0=50 Td=5n
+RL out 0 {rl}
+.step param rl list 10 50 1Meg
+.tran 0 40n 0 10p
+.meas TRAN vin1 FIND V(in) AT 5n
+.meas TRAN vout FIND V(out) AT 10n
+.meas TRAN vin2 FIND V(in) AT 15n
+.end

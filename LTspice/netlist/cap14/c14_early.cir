@@ -1,0 +1,11 @@
+* Misura della tensione di Early
+Ib 0 b 10u
+Vce c 0 5
+Q1 c b 0 2N3904
+.lib standard.bjt
+.dc Vce 0 20 0.05
+.meas DC ic5 FIND Ic(Q1) AT 5
+.meas DC ic15 FIND Ic(Q1) AT 15
+.meas DC pend PARAM (ic15-ic5)/10
+.meas DC vaf PARAM ic5/pend-5
+.end

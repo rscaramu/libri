@@ -1,0 +1,13 @@
+* Monte Carlo dell'amplificatore di riferimento
+Vref ref 0 {mc(1.25,0.01)}
+XU1 ref fb vcc vee out level2 Avol=1Meg GBW=10Meg
++ Slew=10Meg
+R1 out fb {mc(3k,0.01)}
+R2 fb 0 {mc(1k,0.01)}
+Vcc vcc 0 15
+Vee vee 0 -15
+.lib UniversalOpAmp2.lib
+.step param run 1 500 1
+.tran 1u
+.meas TRAN vo FIND V(out) AT 0
+.end

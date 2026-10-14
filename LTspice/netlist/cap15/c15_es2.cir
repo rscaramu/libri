@@ -1,0 +1,9 @@
+* Esercizio 15.2 - generatore di corrente a JFET
+Vdd d 0 10
+J1 d 0 s 2N3819
+Rs s 0 910
+.lib standard.jft
+.dc Vdd 5 20 0.1
+.meas DC i5 FIND Id(J1) AT 5
+.meas DC i20 FIND Id(J1) AT 20
+.end

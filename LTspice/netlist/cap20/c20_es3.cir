@@ -1,0 +1,12 @@
+* Esercizio 20.3 - sovraelongazione con carico capacitivo
+.param cl=10n
+Vcc vcc 0 15
+Vee vee 0 -15
+Vin in 0 PULSE(0 0.1 10u 10n 10n 50u 100u)
+XU1 in out vcc vee out LT1001
+CL out 0 {cl}
+.lib LTC.lib
+.step dec param cl 1n 100n 5
+.tran 0 100u 0 10n
+.meas TRAN vmax MAX V(out)
+.end

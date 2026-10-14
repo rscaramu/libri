@@ -1,0 +1,10 @@
+* Esercizio 19.2 - scelta dello Zener
+.param k=1
+.param zener=select(k,"BZX84C6V2L","BZX84C8V2L","BZX84C10L")
+Vin in 0 15
+Rs in out 220
+D1 0 out {zener}
+Rload out 0 1k
+.lib standard.dio
+.op
+.end

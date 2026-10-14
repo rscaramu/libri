@@ -1,0 +1,13 @@
+* Esercizio 25.1 - rivelatore di picco ideale e reale
+B1 in 0 V=(0.2+time/10m)*sin(2*pi*1k*time)
+B2 0 pk I=uramp(V(in)-V(pk)) Rpar=1G
+Cp pk 0 1u
+D1 in r 1N4148
+C1 r 0 1u
+R1 r 0 100k
+.lib standard.dio
+.tran 0 10m 0 1u
+.meas TRAN vin MAX V(in)
+.meas TRAN vpk FIND V(pk) AT 10m
+.meas TRAN vr FIND V(r) AT 10m
+.end

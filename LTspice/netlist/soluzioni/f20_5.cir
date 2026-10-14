@@ -1,0 +1,12 @@
+* Soluzione 20.5 - corrente nello Zener
+.param rl=1k
+Vin in 0 12
+Rs in out 220
+D1 0 out BZX84C6V2L
+Rload out 0 {rl}
+.lib standard.dio
+.step Vin list 9 12 15
+.step param rl list 330 470 680 1k
+.tran 1u
+.meas TRAN iz FIND -I(D1) AT 0
+.end

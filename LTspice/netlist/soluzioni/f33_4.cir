@@ -1,0 +1,22 @@
+* Soluzione 33.4 - passa-banda a retroazione multipla
+.param f0=1k q=5 g=10 c=10n w={2*pi*f0}
+.param r3={2*q/(w*c)} r1={r3/(2*g)} r2={q/(w*c*(2*q*q-g))}
+V1 in 0 AC 1
+Vcc vcc 0 15
+Vee vee 0 -15
+R1 in a {r1}
+R2 a 0 {r2}
+C1 a n {c}
+C2 a out {c}
+R3 n out {r3}
+XU1 0 n vcc vee out level2 Avol=1Meg GBW=10Meg Slew=10Meg
+.lib UniversalOpAmp2.lib
+.ac dec 1000 100 10k
+.meas AC gmax MAX mag(V(out))
+.meas AC f1 WHEN mag(V(out))=gmax/sqrt(2) RISE=1
+.meas AC f2 WHEN mag(V(out))=gmax/sqrt(2) FALL=1
+.meas AC bw PARAM f2-f1
+.meas AC fc WHEN im(V(out))=0
+.meas AC fg PARAM sqrt(f1*f2)
+.options meascplxfmt=cartesian
+.end

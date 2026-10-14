@@ -1,0 +1,10 @@
+* Interruttore controllato in tensione
+Vc c 0 PULSE(0 5 1m 1u 1u 2m 4m)
+S1 a 0 c 0 interr
+Vdd vdd 0 10
+R1 vdd a 1k
+.model interr SW(Ron=1 Roff=10Meg Vt=2.5 Vh=-0.5)
+.tran 0 6m 0 1u
+.meas TRAN von FIND V(a) AT 2m
+.meas TRAN voff FIND V(a) AT 4m
+.end

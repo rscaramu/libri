@@ -1,0 +1,9 @@
+* Oscillatore a rilassamento: soglia netta
+B1 out 0 V=if(V(c)>1.6667+V(out)/3,0,5)
+R1 out c 10k
+C1 c 0 100n
+.ic V(c)=0
+.tran 0 20m 0 1u
+.meas TRAN per TRIG V(out) VAL=2.5 RISE=2
++ TARG V(out) VAL=2.5 RISE=3
+.end

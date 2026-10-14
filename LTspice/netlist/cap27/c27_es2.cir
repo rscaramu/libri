@@ -1,0 +1,10 @@
+* Esercizio 27.2 - serbatoio con scarico non lineare
+.param a=1 k=0.1
+Iq 0 h PWL(0 0.2 100 0.2 100.01 0.05)
+Bo h 0 I=k*sqrt(max(V(h),0)) Rpar=1T
+Ch h 0 {a}
+.ic V(h)=0
+.tran 0 200 0 10m
+.meas TRAN h100 FIND V(h) AT 100
+.meas TRAN h200 FIND V(h) AT 200
+.end

@@ -1,0 +1,17 @@
+* Esercizio 14.2 - stabilita' termica della polarizzazione
+Vcc vcc 0 9
+R1 vcc b 47k
+R2 b 0 10k
+Rc vcc c 4.7k
+Re e 0 1k
+Q1 c b e 2N3904
+Rb vcc b2 2.5Meg
+Rc2 vcc c2 4.7k
+Q2 c2 b2 0 2N3904
+.lib standard.bjt
+.dc temp 0 100 5
+.meas DC i1a FIND Ic(Q1) AT 0
+.meas DC i1b FIND Ic(Q1) AT 100
+.meas DC i2a FIND Ic(Q2) AT 0
+.meas DC i2b FIND Ic(Q2) AT 100
+.end

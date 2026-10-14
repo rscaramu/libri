@@ -1,0 +1,9 @@
+* Porta AND con un ingresso a massa
+Va a 0 PULSE(0 1 0 1n 1n 50n 100n)
+Vz z 0 0
+A1 a 0 0 0 0 0 y1 0 AND
+A2 a z 0 0 0 0 y2 0 AND
+.tran 0 200n 0 1n
+.meas TRAN y1max MAX V(y1)
+.meas TRAN y2max MAX V(y2)
+.end

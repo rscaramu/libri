@@ -1,0 +1,19 @@
+* Soluzione 32.7 - rendimento dell'LTC3406 e carico
+.param rl=3.6
+V1 in 0 5
+XU1 in 0 sw in fb LTC3406
+L1 sw out 2.2u Rser=50m
+C1 out 0 10u Rser=5m
+R1 out fb 200k
+R2 fb 0 100k
+Cff out fb 22p
+Rload out 0 {rl}
+.lib LTC3406.sub
+.step param rl list 3.6 18 90
+.tran 0 1m 0.8m
+.meas TRAN vo AVG V(out) FROM 0.8m TO 1m
+.meas TRAN vrip PP V(out) FROM 0.8m TO 1m
+.meas TRAN pin AVG -V(in)*I(V1) FROM 0.8m TO 1m
+.meas TRAN pout AVG V(out)*I(Rload) FROM 0.8m TO 1m
+.meas TRAN eta PARAM pout/pin
+.end

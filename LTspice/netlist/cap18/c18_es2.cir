@@ -1,0 +1,8 @@
+* Esercizio 18.2 - inseguitore e corrente di riposo
+Vcc vcc 0 12
+Vee vee 0 -12
+Vin in 0 1
+XU1 in out vcc vee out LT1001
+.lib LTC.lib
+.op
+.end

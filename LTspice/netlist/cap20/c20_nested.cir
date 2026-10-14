@@ -1,0 +1,10 @@
+* Scansioni annidate di R e C
+.param r=1k c=1u
+V1 a 0 PULSE(0 1 0 1n 1n 1 2)
+R1 a b {r}
+C1 b 0 {c}
+.step param r list 1k 2k
+.step param c list 1u 2u
+.tran 0 20m 0 10u
+.meas TRAN tau WHEN V(b)=0.632
+.end

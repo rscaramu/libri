@@ -1,0 +1,7 @@
+* Esercizio 1.1 - serie di tre resistori
+V1 in 0 12
+R1 in a 1k
+R2 a b 2.2k
+R3 b 0 4.7k
+.op
+.end

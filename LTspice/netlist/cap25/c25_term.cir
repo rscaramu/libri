@@ -1,0 +1,16 @@
+* Temperatura di giunzione di un transistor
+Vcc vcc 0 12
+Vb bb 0 PULSE(0 2.75 1 1m 1m 10 40)
+Rb bb b 100
+Q1 vcc b e 2N3904
+Re e 0 40
+Bp 0 tj I=V(vcc,e)*Ic(Q1)+V(b,e)*Ib(Q1)
+Rth tj amb 62.5
+Cth tj amb 0.1
+Vamb amb 0 25
+.lib standard.bjt
+.tran 0 30 0 10m
+.meas TRAN ic FIND Ic(Q1) AT 5
+.meas TRAN pd FIND I(Bp) AT 5
+.meas TRAN tjmax MAX V(tj)
+.end

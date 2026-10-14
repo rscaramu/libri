@@ -1,0 +1,13 @@
+* Soluzione 22.7 - specchio con un modello comune
+.model QA ako:2N3904 NPN(IS={10f*(1+gauss(0.05))})
+.model QB ako:2N3904 NPN(IS={10f*(1+gauss(0.05))})
+Vcc vcc 0 12
+Rref vcc a 11.3k
+Q1 a a 0 QA
+Q2 out a 0 QA
+Vout vcc out 6
+.lib standard.bjt
+.step param run 1 200 1
+.tran 1u
+.meas TRAN rap FIND Ic(Q2)/I(Rref) AT 0
+.end

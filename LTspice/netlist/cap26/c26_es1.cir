@@ -1,0 +1,15 @@
+* Esercizio 26.1 - amplificatore operazionale con due G
+V1 in 0 0 AC 1
+R1 in n 1k
+Rf n o 10k
+G1 0 x 0 n 1m
+Ra x 0 100Meg
+Ca x 0 159.15p
+G2 0 o x 0 20m
+Ro o 0 50
+.ac dec 50 10 10Meg
+.meas AC g0 FIND mag(V(o)) AT 10
+.meas AC bw WHEN mag(V(o))=g0/sqrt(2)
+.meas AC gbw PARAM 11*bw
+.options meascplxfmt=cartesian
+.end

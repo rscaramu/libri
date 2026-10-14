@@ -1,0 +1,13 @@
+* Pendolo non lineare
+.param g=9.81 l=1 th0=0.1
+Bw 0 w I=-g/l*sin(V(th)) Rpar=1T
+Cw w 0 1
+Bt 0 th I=V(w) Rpar=1T
+Ct th 0 1
+.ic V(th)={th0} V(w)=0
+.step param th0 list 0.1 1 2 3
+.tran 0 20 0 1m
+.meas TRAN per TRIG V(th) VAL=0 FALL=1
++ TARG V(th) VAL=0 FALL=2
+.meas TRAN thmax MAX V(th) FROM 15 TO 20
+.end

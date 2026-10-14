@@ -1,0 +1,17 @@
+* Soluzione 32.4 - convertitore boost
+Vin in 0 5
+Vg g 0 PULSE(0 1 0 10n 10n 2.9u 5u)
+L1 in sw 22u Rser=20m
+S1 sw 0 g 0 SW1
+D1 sw out MBRS340
+C1 out 0 100u Rser=0.05
+Rload out 0 12
+.model SW1 SW(Ron=50m Roff=10Meg Vt=0.5 Vh=-0.1)
+.lib standard.dio
+.tran 0 5m 4m 20n uic
+.meas TRAN vo AVG V(out) FROM 4.8m TO 5m
+.meas TRAN il AVG I(L1) FROM 4.8m TO 5m
+.meas TRAN pin AVG -V(in)*I(Vin) FROM 4.8m TO 5m
+.meas TRAN pout AVG V(out)*I(Rload) FROM 4.8m TO 5m
+.meas TRAN eta PARAM pout/pin
+.end

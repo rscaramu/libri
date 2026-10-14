@@ -1,0 +1,13 @@
+* Soluzione 9.8 - ritardo di gruppo del filtro RC
+V1 in 0 0 AC 1
+R1 in out 1k
+C1 out 0 159.15n
+.options meascplxfmt=cartesian
+.ac list 100 100.1 1000 1001
+.meas AC p1 FIND ph(V(out)) AT 100
+.meas AC p2 FIND ph(V(out)) AT 100.1
+.meas AC p3 FIND ph(V(out)) AT 1000
+.meas AC p4 FIND ph(V(out)) AT 1001
+.meas AC tg100 PARAM -(p2-p1)*pi/180/(2*pi*0.1)
+.meas AC tg1k PARAM -(p4-p3)*pi/180/(2*pi*1)
+.end

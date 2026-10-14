@@ -1,0 +1,28 @@
+* Soluzione 32.6 - avviamento graduale
+.param ts=0
+Vin in 0 12
+Vr ramp 0 PULSE(0 1 0 4.99u 10n 0 5u)
+Vref ref 0 PWL(0 0 {ts+1n} 2.5)
+XE ref fb vcc vee comp level2 Avol=100k GBW=10Meg Slew=10Meg
+Vcc vcc 0 5
+Vee vee 0 -5
+Rc comp x 33k
+Cc x fb 1.5n
+Chf comp fb 10p
+R1 out fb 10k
+R2 fb 0 10k
+A1 comp ramp 0 0 0 0 g 0 SCHMITT Vt=0 Vh=1m Trise=10n
+S1 in sw g 0 SW1
+D1 0 sw MBRS340
+L1 sw out 22u Rser=20m
+C1 out 0 100u Rser=0.1
+Rload out 0 2.5
+.model SW1 SW(Ron=50m Roff=10Meg Vt=0.5 Vh=-0.1)
+.lib standard.dio
+.lib UniversalOpAmp2.lib
+.step param ts list 0 1m
+.tran 0 2m 0 20n uic
+.meas TRAN vmax MAX V(out)
+.meas TRAN ilmax MAX I(L1)
+.meas TRAN t95 WHEN V(out)=4.75 RISE=1
+.end

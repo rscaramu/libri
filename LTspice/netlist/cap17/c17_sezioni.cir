@@ -1,0 +1,7 @@
+* Caricamento di una sezione di libreria
+.lib "modelli.lib" lenti
+V1 a 0 5
+R1 a k 1k
+D1 k 0 dd
+.op
+.end

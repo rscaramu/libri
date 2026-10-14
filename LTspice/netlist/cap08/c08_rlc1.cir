@@ -1,0 +1,8 @@
+* RLC serie: passo automatico
+V1 a 0 PULSE(0 1 0 1u 1u 1 2)
+R1 a b 10
+L1 b c 1m Rser=0
+C1 c 0 1u
+.tran 20m
+.meas TRAN vmax MAX V(c)
+.end

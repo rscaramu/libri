@@ -1,0 +1,14 @@
+* Margine di fase di due tarature
+.param tipo=2
+.param kp=table(tipo,2,4.8,3,2.0)
+.param ti=table(tipo,2,1.814,3,2.5)
+.param td=table(tipo,2,0.4535,3,0.5) n=10
+V1 in 0 0 AC 1
+E1 t 0 in 0 Laplace=kp*(1+1/(ti*s)+td*s/(1+td*s/n))
++ /(1+s)**3
+.step param tipo list 2 3
+.ac dec 200 0.01 100
+.meas AC fc WHEN mag(V(t))=1
+.meas AC pm FIND 180+ph(V(t)) WHEN mag(V(t))=1
+.options meascplxfmt=cartesian
+.end

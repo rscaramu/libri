@@ -1,0 +1,13 @@
+* Esercizio 13.3 - recupero inverso a confronto
+V1 a 0 PULSE(5 -5 1u 1n 1n 20u 40u)
+R1 a k1 100
+D1 k1 0 1N4148
+V2 b 0 PULSE(5 -5 1u 1n 1n 20u 40u)
+R2 b k2 100
+D2 k2 0 1N4007
+.lib standard.dio
+.tran 0 20u 0 2n
+.meas TRAN irev1 MIN I(D1) FROM 1u TO 20u
+.meas TRAN irev2 MIN I(D2) FROM 1u TO 20u
+.meas TRAN trr2 WHEN I(D2)=-5m RISE=1
+.end

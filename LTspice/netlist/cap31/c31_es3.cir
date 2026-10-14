@@ -1,0 +1,24 @@
+* Esercizio 31.3 - tensione di rete minima
+.param vr=230
+V1 l 0 SINE(0 {vr*sqrt(2)} 50)
+L1 l 0 10 Rser=10
+L2 a b {10/(230/13.5)**2} Rser=0.4
+K1 L1 L2 0.998
+Rf b 0 10Meg
+D1 a p 1N4007
+D2 b p 1N4007
+D3 0 a 1N4007
+D4 0 b 1N4007
+C1 p 0 2200u
+XU1 adj o p LT317A
+R1 o adj 240
+R2 adj 0 720
+RL o 0 10
+.lib standard.dio
+.lib LT317A.sub
+.step param vr list 110 120 130 140 150
+.tran 0 300m 0 20u uic
+.meas TRAN vo AVG V(o) FROM 200m TO 300m
+.meas TRAN vrip PP V(o) FROM 200m TO 300m
+.meas TRAN vpmin MIN V(p) FROM 200m TO 300m
+.end

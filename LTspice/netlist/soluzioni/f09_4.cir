@@ -1,0 +1,15 @@
+* Soluzione 9.4 - due filtri RC in cascata
+V1 in 0 0 AC 1
+R1 in a 1k
+C1 a 0 159.15n
+R2 a out1 1k
+C2 out1 0 159.15n
+R3 in b 1k
+C3 b 0 159.15n
+E1 bb 0 b 0 1
+R4 bb out2 1k
+C4 out2 0 159.15n
+.ac dec 100 10 100k
+.meas AC f1 WHEN mag(V(out1))=1/sqrt(2)
+.meas AC f2 WHEN mag(V(out2))=1/sqrt(2)
+.end

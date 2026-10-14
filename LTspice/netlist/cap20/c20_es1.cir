@@ -1,0 +1,20 @@
+* Esercizio 20.1 - degenerazione parziale dell'emettitore
+.param rx=100
+Vcc vcc 0 12
+Vs s 0 0 AC 1
+Rs s in 1k
+C1 in b 10u
+R1 vcc b 47k
+R2 b 0 10k
+Rc vcc c 2.2k
+Rx e m {rx}
+Ry m 0 {470-rx}
+Ce m 0 100u
+Q1 c b e 2N3904
+C2 c out 10u
+RL out 0 10k
+.lib standard.bjt
+.step param rx list 50 100 150 200 300
+.ac list 900 1k 1.1k
+.meas AC g FIND mag(V(out)) AT 1k
+.end

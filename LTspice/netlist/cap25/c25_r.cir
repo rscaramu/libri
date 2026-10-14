@@ -1,0 +1,9 @@
+* Resistori comportamentali
+V1 a 0 PWL(0 0 1 10)
+Vc c 0 2
+R1 a 0 R=1k*V(c)
+B1 a 0 R=500*(1+V(a)/10)
+.tran 1
+.meas TRAN i1 FIND I(R1) AT 0.5
+.meas TRAN i2 FIND I(B1) AT 0.5
+.end

@@ -1,0 +1,17 @@
+* Pendenza termica di un diodo al variare di EG
+.model DX ako:1N4148 D(EG=0.69 XTI=2)
+I1 0 a 1m
+D1 a 0 1N4148
+I2 0 b 1m
+D2 b 0 DX
+I3 0 c 1m
+D3 c 0 1N4148 temp=75
+.lib standard.dio
+.dc temp -40 125 1
+.meas DC v1 FIND V(a) AT 27
+.meas DC s1 DERIV V(a) AT 27
+.meas DC v2 FIND V(b) AT 27
+.meas DC s2 DERIV V(b) AT 27
+.meas DC v3 FIND V(c) AT 27
+.meas DC s3 DERIV V(c) AT 27
+.end

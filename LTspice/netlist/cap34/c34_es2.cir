@@ -1,0 +1,23 @@
+* Esercizio 34.2 - linearita' del ponte
+.param x=0.008
+Vcc vcc 0 15
+Vee vee 0 -15
+Vexc e 0 5
+Ra1 e p1 350
+Ra2 p1 0 {350*(1+x)}
+Ra3 e n1 350
+Ra4 n1 0 350
+X1 p1 n1 out1 vcc vee catena
+Rb1 e p2 {350*(1-x)}
+Rb2 p2 0 {350*(1+x)}
+Rb3 e n2 350
+Rb4 n2 0 350
+X2 p2 n2 out2 vcc vee catena
+.include catena.sub
+.lib LTC.lib
+.step param x list 0.002 0.004 0.008
+.tran 0 1m
+.meas TRAN vq FIND V(out1) AT 1m
+.meas TRAN vh FIND V(out2) AT 1m
+.meas TRAN nl PARAM 100*(2*vq/vh-1)
+.end

@@ -1,0 +1,10 @@
+* Soluzione 20.8 - ordine dei valori
+.param r1=1k r2=1k
+V1 a 0 10
+R1 a b {r1}
+R2 b 0 {r2}
+.step param r1 list 3k 1k 2k
+.step param r2 list 3k 2k 1k
+.dc V1 list 10 10.001
+.meas DC vb FIND V(b) AT 10
+.end

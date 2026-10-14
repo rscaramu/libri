@@ -1,0 +1,18 @@
+* Catena di misura: punto di lavoro a fondo scala
+.param x=0.008
+Vcc vcc 0 15
+Vee vee 0 -15
+Vexc e 0 5
+Rp1 e p 350
+Rp2 p 0 {350*(1+x)}
+Rp3 e n 350
+Rp4 n 0 350
+X1 p n out vcc vee catena
+.include catena.sub
+.lib LTC.lib
+.save V(*) V(x1:*)
+.op
+.meas OP vd FIND V(p,n)
+.meas OP vo FIND V(out)
+.meas OP g PARAM vo/vd
+.end

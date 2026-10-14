@@ -1,0 +1,10 @@
+* Confronto di tre diodi con select() e .step
+.param n=0
+.param diodo=select(n,"1N4148","1N4007","BAT54")
+I1 0 a 10m
+D1 a 0 {diodo}
+.lib standard.dio
+.step param n list 0 1 2
+.dc I1 list 10m 10.001m
+.meas DC vf FIND V(a) AT 10m
+.end

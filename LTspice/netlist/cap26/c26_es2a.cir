@@ -1,0 +1,11 @@
+* Esercizio 26.2 - linearizzazione di un termistore
+V1 vcc 0 5
+Rf vcc vd 10k
+Rt vd 0 {10k*exp(3950*(1/(temp+273.15)-1/298.15))}
+G1 0 t vd 0 table=(0.32602,1, 1.32033,0.5, 2.5,0.25,
++ 3.85375,0)
+Rl t 0 1
+.step temp list 0 10 25 37 50 75 100
+.dc V1 list 5 5.001
+.meas DC vt FIND V(t) AT 5
+.end

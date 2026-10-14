@@ -1,0 +1,23 @@
+* Soluzione 33.7 - Monte Carlo del filtro del quarto ordine
+.param f0=1k r=10k c0={1/(2*pi*r*f0)}
+.param q1=0.5412 q2=1.3066 tr=0.01 tc=0.05
+V1 in 0 AC 1
+Vcc vcc 0 15
+Vee vee 0 -15
+R1 in a {mc(r,tr)}
+R2 a b {mc(r,tr)}
+C1 a o1 {mc(2*q1*c0,tc)}
+C2 b 0 {mc(c0/(2*q1),tc)}
+XU1 b o1 vcc vee o1 level2 Avol=1Meg GBW=10Meg Slew=10Meg
+R3 o1 c {mc(r,tr)}
+R4 c d {mc(r,tr)}
+C3 c out {mc(2*q2*c0,tc)}
+C4 d 0 {mc(c0/(2*q2),tc)}
+XU2 d out vcc vee out level2 Avol=1Meg GBW=10Meg Slew=10Meg
+.lib UniversalOpAmp2.lib
+.step param run 1 200 1
+.ac dec 100 100 3k
+.meas AC f3 WHEN mag(V(out))=1/sqrt(2)
+.meas AC pk MAX mag(V(out))
+.options meascplxfmt=cartesian
+.end

@@ -1,0 +1,7 @@
+* Soluzione 4.5 - tensione di rete
+V1 rete 0 SINE(0 325.27 50)
+R1 rete 0 1k
+.tran 0 100m 0 20u
+.meas TRAN vpicco MAX V(rete) FROM 0 TO 100m
+.meas TRAN vrms RMS V(rete) FROM 0 TO 100m
+.end

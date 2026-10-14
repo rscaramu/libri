@@ -1,0 +1,7 @@
+* Soluzione 1.5 - parallelo alimentato in serie
+V1 in 0 5
+R1 in p 1k
+R2 p 0 2.2k
+R3 p 0 3.3k
+.op
+.end

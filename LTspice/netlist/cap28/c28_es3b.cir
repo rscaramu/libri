@@ -1,0 +1,11 @@
+* Esercizio 28.3 - sovraelongazione ad anello chiuso
+.param wc=2*pi*1k r=1 p=r*wc
+Vin in 0 PULSE(0 1 0 1n 1n 1 2)
+Bi 0 i I=wc*(V(in)-V(out)) Rpar=1T
+Ci i 0 1
+R1 i out 1
+C1 out 0 {1/p}
+.step param r list 0.5 1 2 4 8
+.tran 0 5m 0 0.5u
+.meas TRAN sovr MAX V(out)-1
+.end

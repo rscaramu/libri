@@ -1,0 +1,15 @@
+* Contatore a tre bit e convertitore digitale-analogico
+Vck ck 0 PULSE(0 1 0 1n 1n 49n 100n)
+A1 nq0 0 ck 0 0 nq0 q0 0 DFLOP Td=2n Trise=1n
+A2 nq1 0 nq0 0 0 nq1 q1 0 DFLOP Td=2n Trise=1n
+A3 nq2 0 nq1 0 0 nq2 q2 0 DFLOP Td=2n Trise=1n
+Bdac dac 0 V=4*V(q2)+2*V(q1)+V(q0)
+.tran 0 2u 0 0.5n
+.meas TRAN p0 TRIG V(q0) VAL=0.5 RISE=2
++ TARG V(q0) VAL=0.5 RISE=3
+.meas TRAN p2 TRIG V(q2) VAL=0.5 RISE=1
++ TARG V(q2) VAL=0.5 RISE=2
+.meas TRAN rit TRIG V(ck) VAL=0.5 RISE=4
++ TARG V(q2) VAL=0.5 RISE=1
+.meas TRAN dmax MAX V(dac)
+.end

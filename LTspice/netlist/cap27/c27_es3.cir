@@ -1,0 +1,15 @@
+* Esercizio 27.3 - avviamento con rampa di tensione
+.param kt=0.05 j=1e-4 b=1e-5 tr=0.16
+V1 a 0 PWL(0 0 {tr} 12)
+Ra a l 1
+La l c 1m
+Vi c d 0
+Be d 0 V=kt*V(w)
+F1 0 w Vi {kt}
+Cj w 0 {j}
+Rb w 0 {1/b}
+.step param tr list 0.1 0.16 0.2
+.tran 0 0.5 0 10u
+.meas TRAN ipk MAX I(Vi)
+.meas TRAN w5 FIND V(w) AT 0.5
+.end

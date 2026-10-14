@@ -1,0 +1,17 @@
+* Soluzione 21.7 - rele con Zener e diodo in serie
+Vcc vcc 0 12
+Vg g 0 PULSE(0 5 1m 1u 1u 5m 20m)
+Rb g b 1k
+Q1 c b 0 2N3904
+Lr vcc x 100m
+Rr x c 200
+D1 c k 1N4148
+DZ vcc k BZX84C6V2L
+.lib standard.bjt
+.lib standard.dio
+.tran 0 10m 0 0.1u
+.meas TRAN vcemax MAX V(c)
+.meas TRAN i0 FIND I(Lr) AT 5.9m
+.meas TRAN toff TRIG V(g) VAL=2.5 FALL=1
++ TARG I(Lr) VAL=i0/10 FALL=1
+.end

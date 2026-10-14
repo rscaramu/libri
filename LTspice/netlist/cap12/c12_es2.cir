@@ -1,0 +1,7 @@
+* Esercizio 12.2 - induttori in parallelo
+V1 a 0 5
+R1 a b 10
+L1 b 0 1m Rser=0
+L2 b 0 1m
+.op
+.end

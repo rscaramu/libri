@@ -1,0 +1,14 @@
+* MOSFET di potenza come interruttore lato basso
+Vdd vdd 0 24
+Rload vdd d 4.8
+M1 d g 0 IRF530
+Rg gin g 10
+Vg gin 0 PULSE(0 10 1u 10n 10n 5u 10u)
+.lib standard.mos
+.tran 0 10u 0 1n
+.meas TRAN vds FIND V(d) AT 5u
+.meas TRAN id FIND Id(M1) AT 5u
+.meas TRAN ron PARAM vds/id
+.meas TRAN tsp TRIG V(gin) VAL=5 RISE=1
++ TARG V(d) VAL=12 FALL=1
+.end

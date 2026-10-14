@@ -1,0 +1,6 @@
+* Soluzione 4.8 - scarica senza uic
+C1 a 0 47u ic=10
+R1 a 0 1k
+.tran 100m
+.meas TRAN v47 FIND V(a) AT 47m
+.end

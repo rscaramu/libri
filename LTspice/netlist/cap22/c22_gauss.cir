@@ -1,0 +1,8 @@
+* Monte Carlo di un filtro RC con distribuzione gaussiana
+V1 in 0 0 AC 1
+R1 in out {1k*(1+gauss(0.05/3))}
+C1 out 0 {100n*(1+gauss(0.1/3))}
+.step param run 1 500 1
+.ac dec 50 100 100k
+.meas AC fc WHEN mag(V(out))=1/sqrt(2)
+.end

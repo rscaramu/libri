@@ -1,0 +1,12 @@
+* Esercizio 17.1 - filtro RC parametrico
+V1 in 0 0 AC 1
+X1 in a filtrorc fc=500
+X2 in b filtrorc fc=2k r=4.7k
+.subckt filtrorc in out fc=1k r=10k
+R1 in out {r}
+C1 out 0 {1/(2*pi*fc*r)}
+.ends
+.ac dec 100 10 100k
+.meas AC f1 WHEN mag(V(a))=1/sqrt(2)
+.meas AC f2 WHEN mag(V(b))=1/sqrt(2)
+.end

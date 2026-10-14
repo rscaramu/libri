@@ -1,0 +1,8 @@
+* Soluzione 13.4 - caratteristica di uno Schottky
+I2 0 b 1m
+D2 b 0 BAT54
+.lib standard.dio
+.dc dec I2 1u 100m 20
+.meas DC vb1 FIND V(b) AT 1m
+.meas DC vb100 FIND V(b) AT 100m
+.end

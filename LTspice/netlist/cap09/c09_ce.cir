@@ -1,0 +1,19 @@
+* Stadio a emettitore comune: risposta in frequenza
+Vcc vcc 0 12
+Vs s 0 0 AC 1
+Rs s in 1k
+C1 in b 10u
+R1 vcc b 47k
+R2 b 0 10k
+Rc vcc c 2.2k
+Re e 0 470
+Ce e 0 100u
+Q1 c b e 2N3904
+C2 c out 10u
+RL out 0 10k
+.lib standard.bjt
+.ac dec 50 1 100Meg
+.meas AC gmax MAX mag(V(out))
+.meas AC fl WHEN mag(V(out))=gmax/sqrt(2) RISE=1
+.meas AC fh WHEN mag(V(out))=gmax/sqrt(2) FALL=1
+.end

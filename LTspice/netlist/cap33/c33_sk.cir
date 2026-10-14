@@ -1,0 +1,23 @@
+* Filtro di Butterworth del quarto ordine, Sallen-Key
+.param f0=1k r=10k c0={1/(2*pi*r*f0)}
+.param q1=0.5412 q2=1.3066
+V1 in 0 AC 1
+Vcc vcc 0 15
+Vee vee 0 -15
+R1 in a {r}
+R2 a b {r}
+C1 a o1 {2*q1*c0}
+C2 b 0 {c0/(2*q1)}
+XU1 b o1 vcc vee o1 level2 Avol=1Meg GBW=10Meg Slew=10Meg
+R3 o1 c {r}
+R4 c d {r}
+C3 c out {2*q2*c0}
+C4 d 0 {c0/(2*q2)}
+XU2 d out vcc vee out level2 Avol=1Meg GBW=10Meg Slew=10Meg
+.lib UniversalOpAmp2.lib
+.ac dec 100 10 100k
+.meas AC f3 WHEN mag(V(out))=1/sqrt(2)
+.meas AC a2k FIND mag(V(out)) AT 2k
+.meas AC a10k FIND mag(V(out)) AT 10k
+.meas AC pk2 MAX mag(V(out)/V(o1))
+.end

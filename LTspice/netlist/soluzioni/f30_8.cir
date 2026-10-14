@@ -1,0 +1,13 @@
+* Anello ad aggancio di fase con MODULATOR e XOR
+Vref ref 0 PULSE(0 1 0 10n 10n 41.66u 83.33u)
+A1 fm 0 0 0 0 0 vco 0 MODULATOR mark=15k space=5k
+A2 vco 0 0 0 0 0 vsq 0 BUF Ref=0 Trise=10n
+A3 ref vsq 0 0 0 0 pd 0 XOR Trise=10n
+R1 pd fm 10k
+C1 fm 0 4.7n
+.tran 0 20m 0 0.2u
+.meas TRAN vfm AVG V(fm) FROM 15m TO 20m
+.meas TRAN per TRIG V(vsq) VAL=0.5 RISE=100
++ TARG V(vsq) VAL=0.5 RISE=200
+.meas TRAN f PARAM 100/per
+.end

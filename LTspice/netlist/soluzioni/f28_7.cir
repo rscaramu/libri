@@ -1,0 +1,23 @@
+* Soluzione 28.7 - metodo completo di Middlebrook
+Vcc vcc 0 15
+Vee vee 0 -15
+* copia A: generatore di tensione in serie
+XU1 0 ya vcc vee oa LT1001
+Va ya oa 0 AC 1
+CLa ya 0 10n
+* copia B: generatore di corrente in parallelo
+XU2 0 yb vcc vee ob LT1001
+Vs1 ob m 0
+Vs2 m yb 0
+Ii 0 m 0 AC 1
+CLb yb 0 10n
+.lib LTC.lib
+.ac dec 100 1k 10Meg
+.meas AC fv WHEN mag(V(oa)/V(ya))=1
+.meas AC pmv FIND 180+ph(-V(oa)/V(ya)) WHEN mag(V(oa)/V(ya))=1
+.meas AC fm WHEN mag(((-V(oa)/V(ya))*(-I(Vs1)/I(Vs2))-1)
++ /((-V(oa)/V(ya))+(-I(Vs1)/I(Vs2))+2))=1
+.meas AC pmm FIND 180+ph(((-V(oa)/V(ya))*(-I(Vs1)/I(Vs2))
++ -1)/((-V(oa)/V(ya))+(-I(Vs1)/I(Vs2))+2)) AT fm
+.options meascplxfmt=cartesian
+.end

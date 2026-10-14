@@ -1,0 +1,7 @@
+* Esercizio 3.2 - rete corretta
+V1 in 0 5
+R1 in out 2.2k
+R2 out 0 3.3k
+R3 out 0 1Meg
+.op
+.end

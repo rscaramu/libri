@@ -1,0 +1,9 @@
+* Limitatore morbido con una tabella
+V1 in 0 0
+E1 out 0 in 0 table=(-2,-1, -1,-0.9, 0,0, 1,0.9, 2,1)
+R1 out 0 1k
+.dc V1 -3 3 0.01
+.meas DC v05 FIND V(out) AT 0.5
+.meas DC v15 FIND V(out) AT 1.5
+.meas DC v3 FIND V(out) AT 3
+.end

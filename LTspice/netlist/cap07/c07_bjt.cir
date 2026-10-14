@@ -1,0 +1,7 @@
+* Caratteristiche d'uscita del 2N3904
+Vce c 0 5
+Ib 0 b 10u
+Q1 c b 0 2N3904
+.lib standard.bjt
+.dc Vce 0 10 0.02 Ib 10u 50u 10u
+.end

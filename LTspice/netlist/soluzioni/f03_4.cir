@@ -1,0 +1,9 @@
+* Soluzione 3.4 - ponte di Wheatstone parametrico
+.param Valim=10 Rfix=1k Rx=1k
+Valim top 0 {Valim}
+R1 top a {Rfix}
+R2 top b {Rfix}
+R3 a 0 {Rfix}
+Rx b 0 {Rx}
+.op
+.end

@@ -1,0 +1,7 @@
+* Soluzione 19.7 - termistore con table()
+.param r37=table(37,0,32.6k,25,10k,50,3.6k,100,0.68k)
+V1 a 0 1
+R1 a 0 {r37}
+.options logparams
+.op
+.end

@@ -1,0 +1,9 @@
+* Frequenza di transizione del 2N3904
+Ib 0 b 30u AC 1
+Vce c 0 5
+Q1 c b 0 2N3904
+.lib standard.bjt
+.ac dec 50 1k 10G
+.meas AC h21 FIND mag(Ic(Q1)) AT 10k
+.meas AC ft WHEN mag(Ic(Q1))=1
+.end

@@ -1,0 +1,18 @@
+* Soluzione 34.5 - offset nel caso peggiore
+.param k=0 vos=60u
+.param s1={table(k,0,1,1,1,2,-1,3,-1)}
+.param s2={table(k,0,1,1,-1,2,1,3,-1)}
+Vcc vcc 0 15
+Vee vee 0 -15
+Vcm cm 0 2.5
+Rsp cm p1 175
+Rsn cm n1 175
+Vo1 p p1 {s1*vos}
+Vo2 n n1 {s2*vos}
+X1 p n out vcc vee catena
+.include catena.sub
+.lib LTC.lib
+.step param k list 0 1 2 3
+.tran 0 1m
+.meas TRAN vo FIND V(out) AT 1m
+.end

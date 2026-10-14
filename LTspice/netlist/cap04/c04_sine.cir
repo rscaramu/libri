@@ -1,0 +1,7 @@
+* Generatore SINE smorzato
+V1 a 0 SINE(0 2 1k 1m 500)
+R1 a 0 1k
+.tran 0 8m 0 5u
+.meas TRAN vpk1 MAX V(a) FROM 1m TO 2m
+.meas TRAN vpk3 MAX V(a) FROM 3m TO 4m
+.end

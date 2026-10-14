@@ -1,0 +1,12 @@
+* Corrente di collettore al variare del guadagno
+Vcc vcc 0 12
+R1 vcc b 47k
+R2 b 0 10k
+Rc vcc c 2.2k
+Re e 0 470
+Q1 c b e 2N3904
+.lib standard.bjt
+.step NPN 2N3904(BF) list 100 200 300 400
+.dc Vcc list 12 12.001
+.meas DC ic FIND Ic(Q1) AT 12
+.end

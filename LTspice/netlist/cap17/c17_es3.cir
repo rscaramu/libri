@@ -1,0 +1,11 @@
+* Esercizio 17.3 - LED con resistore calcolato
+V1 a 0 12
+X1 a 0 led_r vs=12 i=15m
+.subckt led_r p n vs=5 i=10m
+R1 p k {(vs-1.9)/i}
+D1 k n rosso
+.model rosso D(Is=1e-22 Rs=6 N=1.5 Cjo=50p Xti=100)
+.ends
+.save V(*) I(x1:D1)
+.op
+.end

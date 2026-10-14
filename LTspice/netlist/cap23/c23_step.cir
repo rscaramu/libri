@@ -1,0 +1,11 @@
+* Resistore e diodo a tre temperature
+V1 a 0 1
+R1 a 0 1k tc=0.0039
+I1 0 d 1m
+D1 d 0 1N4148
+.lib standard.dio
+.step temp list -40 27 125
+.dc V1 list 1 1.001
+.meas DC ir FIND I(R1) AT 1
+.meas DC vd FIND V(d) AT 1
+.end

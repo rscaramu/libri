@@ -1,0 +1,16 @@
+* Transistor modellato come sottocircuito
+Vcc vcc 0 12
+R1 vcc b 47k
+R2 b 0 10k
+Rc vcc c 2.2k
+Re e 0 470
+X1 c b e npncont
+.subckt npncont c b e
+Lc c ci 5n Rser=0
+Lb b bi 5n Rser=0
+Le e ei 3n Rser=0
+Q1 ci bi ei 2N3904
+.ends
+.lib standard.bjt
+.op
+.end

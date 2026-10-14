@@ -1,0 +1,6 @@
+* Virgola decimale al posto del punto
+V1 a 0 10
+R1 a b 1,5k
+R2 b 0 1k
+.op
+.end

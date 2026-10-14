@@ -1,0 +1,11 @@
+* Cavo coassiale con perdite: 100 m
+V1 g 0 PULSE(0 2 10n 1n 1n 200n 2u)
+Rs g in 50
+O1 in 0 out 0 RG58
+RL out 0 50
+.model RG58 LTRA(R=0.05 L=250n C=100p LEN=100)
+.tran 0 2u 0 1n
+.meas TRAN td WHEN V(out)=0.5 RISE=1
+.meas TRAN vout FIND V(out) AT 700n
+.meas TRAN vin FIND V(in) AT 700n
+.end

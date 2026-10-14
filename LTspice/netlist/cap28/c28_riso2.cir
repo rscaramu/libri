@@ -1,0 +1,14 @@
+* Resistore di isolamento: risposta al gradino
+.param ri=50
+Vcc vcc 0 15
+Vee vee 0 -15
+Vin in 0 PULSE(0 1m 10u 10n 10n 50u 100u)
+XU1 in o vcc vee o LT1001
+Riso o y {ri}
+CL y 0 100n
+.lib LTC.lib
+.step param ri list 1m 10 50 200
+.tran 0 60u 0 5n
+.meas TRAN vmax MAX V(y)
+.meas TRAN t90 WHEN V(y)=0.9m RISE=1
+.end

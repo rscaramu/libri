@@ -1,0 +1,16 @@
+* Soluzione 25.8 - carico a potenza costante con protezione
+V1 a 0 PWL(0 0 1 15 2 0)
+Rs a b 1
+Ben enb 0 V=if(V(b)>10,1,if(V(b)<8,0,buf(V(en))))
+Ren enb en 1k
+Cen en 0 1n
+Rss en ss 10k
+Css ss 0 1u
+B1 b 0 P=10*V(ss)
+C1 b 0 100u
+.tran 0 2 0 1m
+.meas TRAN ton WHEN V(en)=0.5 RISE=1
+.meas TRAN von FIND V(a) WHEN V(en)=0.5 RISE=1
+.meas TRAN toff WHEN V(en)=0.5 FALL=1
+.meas TRAN voff FIND V(a) WHEN V(en)=0.5 FALL=1
+.end

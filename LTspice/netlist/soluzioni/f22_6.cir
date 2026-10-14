@@ -1,0 +1,24 @@
+* Soluzione 22.6 - contributo dell'offset
+.param vr=mc(1.25,0.01) ra=mc(3k,0.01) rb=mc(1k,0.01)
+Vcc vcc 0 15
+Vee vee 0 -15
+* amplificatore con offset
+Vref ref 0 {vr}
+Vos ref p {gauss(1m)}
+XU1 p fb vcc vee out level2 Avol=1Meg GBW=10Meg
++ Slew=10Meg
+R1 out fb {ra}
+R2 fb 0 {rb}
+* stesso amplificatore senza offset
+Vref2 ref2 0 {vr}
+XU2 ref2 fb2 vcc vee out2 level2 Avol=1Meg GBW=10Meg
++ Slew=10Meg
+R3 out2 fb2 {ra}
+R4 fb2 0 {rb}
+.lib UniversalOpAmp2.lib
+.step param run 1 500 1
+.tran 1u
+.meas TRAN vo FIND V(out) AT 0
+.meas TRAN vo2 FIND V(out2) AT 0
+.meas TRAN dv PARAM vo-vo2
+.end

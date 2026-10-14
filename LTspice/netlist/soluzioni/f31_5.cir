@@ -1,0 +1,11 @@
+* Soluzione 31.5 - ciclo di isteresi del nucleo
+.param vp=312
+B1 a 0 V=if(time>10m,vp*cos(2*pi*50*(time-10m)),0)
+R1 a b 2
+L1 b 0 Hc=40 Bs=1.6 Br=1.0 A=1e-3 Lm=0.2 Lg=0 N=1000
+.step param vp list 312 468
+.tran 0 200m 160m 10u
+.meas TRAN fmax MAX L1:flux
+.meas TRAN fmin MIN L1:flux
+.meas TRAN imax MAX I(L1)
+.end

@@ -1,0 +1,24 @@
+* Esercizio 17.2 - amplificatore per strumentazione
+Vcc vcc 0 15
+Vee vee 0 -15
+Vcm cm 0 2
+Vd d 0 0.01
+E1 inp cm d 0 0.5
+E2 inn cm d 0 -0.5
+X1 inp inn out vcc vee ina g=100
+.subckt ina inp inn out vp vn g=10
+.param r=10k
+XA inp a1 vp vn o1 level2 Avol=1Meg GBW=10Meg Slew=10Meg
+XB inn b1 vp vn o2 level2 Avol=1Meg GBW=10Meg Slew=10Meg
+R1 o1 a1 {r}
+Rg a1 b1 {2*r/(g-1)}
+R2 o2 b1 {r}
+XC p n vp vn out level2 Avol=1Meg GBW=10Meg Slew=10Meg
+R3 o2 n 10k
+R4 out n 10k
+R5 o1 p 10k
+R6 p 0 10k
+.ends
+.lib UniversalOpAmp2.lib
+.op
+.end

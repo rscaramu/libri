@@ -1,0 +1,16 @@
+* Soluzione 29.4 - risposta al gradino del processo
+Vu u 0 PULSE(0 1 0 1m 1m 100 200)
+R1 u a 1
+C1 a 0 1
+E2 b 0 a 0 1
+R2 b c 1
+C2 c 0 1
+E3 d 0 c 0 1
+R3 d y 1
+C3 y 0 1
+.tran 0 20 0 1m
+.meas TRAN t28 WHEN V(y)=0.283
+.meas TRAN t63 WHEN V(y)=0.632
+.meas TRAN tc PARAM 1.5*(t63-t28)
+.meas TRAN l PARAM t63-tc
+.end

@@ -1,0 +1,12 @@
+* Esercizio 18.3 - l'operatore ^
+.param K1={2^3}
+.param K2={2**3}
+.param K3={pow(2,3)}
+V1 a 0 {K1}
+V2 b 0 {K2}
+V3 c 0 {K3}
+R1 a 0 1k
+R2 b 0 1k
+R3 c 0 1k
+.op
+.end

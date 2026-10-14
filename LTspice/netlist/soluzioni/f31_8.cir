@@ -1,0 +1,16 @@
+* Soluzione 31.8 - induttore saturabile in un buck
+.param sat=1
+Vsw sw 0 PULSE(0 12 0 5n 5n 2.078u 5u) Rser=50m
+L1 sw out Flux=if(sat,190u*tanh(x/2)+5u*x,100u*x) Rser=20m
+C1 out 0 100u
+Rl out 0 5
+Rx out x 2.5
+Sx x 0 c 0 sw1
+Vc c 0 PWL(0 0 1m 0 1.001m 1)
+.model sw1 SW(Ron=1m Roff=1G Vt=0.5)
+.step param sat list 0 1
+.tran 0 2m 1.9m 10n
+.meas TRAN ipp PP I(L1)
+.meas TRAN imax MAX I(L1)
+.meas TRAN iavg AVG I(L1)
+.end

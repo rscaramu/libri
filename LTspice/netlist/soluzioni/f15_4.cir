@@ -1,0 +1,10 @@
+* Soluzione 15.4 - transcaratteristica del 2N7002
+Vds d 0 5
+Vgs g 0 0
+M1 d g 0 2N7002
+.lib standard.mos
+.dc Vgs 0 5 1m
+.meas DC v1u WHEN Id(M1)=1u
+.meas DC v1m WHEN Id(M1)=1m
+.meas DC i1 FIND Id(M1) AT 1
+.end

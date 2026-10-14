@@ -1,0 +1,22 @@
+* Esercizio 33.1 - filtro con valori normalizzati
+.param e=0 r={if(e==2,10.2k,10k)}
+Vg in 0 AC 1
+Vcc vcc 0 15
+Vee vee 0 -15
+R1 in a {r}
+R2 a b {r}
+C1 a o1 {if(e,18n,17.23n)}
+C2 b 0 {if(e,15n,14.70n)}
+XU1 b o1 vcc vee o1 level2 Avol=1Meg GBW=10Meg Slew=10Meg
+R3 o1 c {r}
+R4 c d {r}
+C3 c out {if(e,39n,41.59n)}
+C4 d 0 {if(e,5.6n,6.09n)}
+XU2 d out vcc vee out level2 Avol=1Meg GBW=10Meg Slew=10Meg
+.lib UniversalOpAmp2.lib
+.step param e list 0 1 2
+.ac dec 200 10 100k
+.meas AC f3 WHEN mag(V(out))=1/sqrt(2)
+.meas AC pk MAX mag(V(out))
+.meas AC a2k FIND mag(V(out)) AT 2k
+.end

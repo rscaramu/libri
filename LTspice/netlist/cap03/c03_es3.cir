@@ -1,0 +1,22 @@
+* Esercizio 3.3 - notazioni equivalenti
+V1 a 0 10
+Ra1 a b1 4k7
+Ra2 a b2 4.7k
+Ra3 a b3 4700
+Ra4 a b4 4.7e3
+Rb1 b1 0 1k
+Rb2 b2 0 1k
+Rb3 b3 0 1k
+Rb4 b4 0 1k
+I1 0 c1 1m
+I2 0 c2 1m
+C1 c1 0 10uF
+C2 c2 0 10u
+Rl1 c1 0 100Meg
+Rl2 c2 0 100Meg
+.tran 1m uic
+.meas TRAN vb1 FIND V(b1) AT 1m
+.meas TRAN vb4 FIND V(b4) AT 1m
+.meas TRAN vc1 FIND V(c1) AT 1m
+.meas TRAN vc2 FIND V(c2) AT 1m
+.end

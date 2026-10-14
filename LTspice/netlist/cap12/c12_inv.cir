@@ -1,0 +1,4 @@
+* Invertitore ideale retroazionato
+A1 out 0 0 0 0 out 0 0 BUF
+.tran 1u
+.end

@@ -1,0 +1,9 @@
+* Esercizio 21.1 - onda triangolare
+V1 a 0 PULSE(-2 2 0 0.5m 0.5m 0 1m)
+R1 a 0 1k
+.tran 0 5m 0 1u
+.meas TRAN vrms RMS V(a) FROM 1m TO 5m
+.meas TRAN vpk MAX V(a) FROM 1m TO 5m
+.meas TRAN cresta PARAM vpk/vrms
+.meas TRAN vmed AVG V(a) FROM 1m TO 5m
+.end

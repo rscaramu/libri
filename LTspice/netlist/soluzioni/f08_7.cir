@@ -1,0 +1,7 @@
+* Soluzione 8.7 - Tstart per ridurre i dati
+V1 a 0 PULSE(0 1 0 1u 1u 4.999m 10m)
+R1 a b 1k
+C1 b 0 1u
+.tran 0 1 0.99 100u
+.meas TRAN vrms RMS V(b) FROM 0.99 TO 1
+.end

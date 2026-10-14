@@ -1,0 +1,7 @@
+* Soluzione 10.8 - rumore di resistori in serie
+I1 0 a 0 AC 1
+R1 a m 1k
+R2 m 0 1k
+.noise V(a) I1 list 1k
+.meas NOISE en FIND V(onoise) AT 1k
+.end

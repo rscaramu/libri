@@ -1,0 +1,19 @@
+* Soluzione 34.7 - filtro d'ingresso: banda e rumore
+Vcc vcc 0 15
+Vee vee 0 -15
+Vcm cm 0 2.5
+Vd cm p1 0 AC 1
+Rsp p1 a 275
+Rsn cm b 275
+Cd a b 10n
+Cp a 0 1n
+Cn b 0 1n
+X1 a b out vcc vee catena
+.include catena.sub
+.lib LTC.lib
+.noise V(out) Vd dec 50 0.1 1k
+.meas NOISE g1 FIND V(onoise)/V(inoise) AT 1
+.meas NOISE g100 FIND V(onoise)/V(inoise) AT 100
+.meas NOISE vno INTEG V(onoise) FROM 0.1 TO 1k
+.meas NOISE en PARAM vno/g1
+.end

@@ -1,0 +1,14 @@
+* Attrattore di Lorenz
+.param sg=10 rh=28 bt=8/3
+Bx 0 x I=sg*(V(y)-V(x)) Rpar=1T
+Cx x 0 1
+By 0 y I=V(x)*(rh-V(z))-V(y) Rpar=1T
+Cy y 0 1
+Bz 0 z I=V(x)*V(y)-bt*V(z) Rpar=1T
+Cz z 0 1
+.ic V(x)=1 V(y)=1 V(z)=1
+.tran 0 30 0 5m
+.meas TRAN x10 FIND V(x) AT 10
+.meas TRAN x20 FIND V(x) AT 20
+.meas TRAN x30 FIND V(x) AT 30
+.end

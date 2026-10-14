@@ -1,0 +1,17 @@
+* Caso peggiore di un amplificatore di riferimento
+.param run=0
+.func bit(n,i) {floor(n/pow(2,i))-2*floor(n/pow(2,i+1))}
+.func wc(nom,tol,i)
++ {if(run==0,nom,if(bit(run-1,i),nom*(1+tol),nom*(1-tol)))}
+Vref ref 0 {wc(1.25,0.01,0)}
+XU1 ref fb vcc vee out level2 Avol=1Meg GBW=10Meg
++ Slew=10Meg
+R1 out fb {wc(3k,0.01,1)}
+R2 fb 0 {wc(1k,0.01,2)}
+Vcc vcc 0 15
+Vee vee 0 -15
+.lib UniversalOpAmp2.lib
+.step param run 0 8 1
+.tran 1u
+.meas TRAN vo FIND V(out) AT 0
+.end

@@ -1,0 +1,12 @@
+* Esercizio 11.3 - distorsione al variare dell'ampiezza
+.param amp=1
+V1 in 0 SINE(0 {amp} 1k)
+R1 in out 1k
+D1 out 0 1N4148
+D2 0 out 1N4148
+.lib standard.dio
+.options plotwinsize=0
+.step param amp list 0.2 0.5 1
+.tran 0 5m 0 1u
+.four 1k 9 4 V(out)
+.end

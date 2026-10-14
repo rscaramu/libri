@@ -1,0 +1,9 @@
+* Recupero inverso di un diodo
+V1 a 0 PULSE(5 -5 1u 1n 1n 2u 4u)
+R1 a k 100
+D1 k 0 1N4148
+.lib standard.dio
+.tran 0 3u 0 0.5n
+.meas TRAN irev MIN I(D1) FROM 1u TO 3u
+.meas TRAN trr WHEN I(D1)=-5m RISE=1
+.end

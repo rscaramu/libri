@@ -1,0 +1,14 @@
+* Esercizio 22.2 - caso peggiore del regolatore Zener
+.param run=0
+.func bit(n,i) {floor(n/pow(2,i))-2*floor(n/pow(2,i+1))}
+.func wc(nom,tol,i)
++ {if(run==0,nom,if(bit(run-1,i),nom*(1+tol),nom*(1-tol)))}
+Vin in 0 {wc(12,0.1,0)}
+Rs in out {wc(220,0.05,1)}
+D1 0 out BZX84C6V2L
+Rload out 0 {wc(1k,0.2,2)}
+.lib standard.dio
+.step param run 0 8 1
+.tran 1u
+.meas TRAN vo FIND V(out) AT 0
+.end

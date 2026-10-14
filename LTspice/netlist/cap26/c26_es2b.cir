@@ -1,0 +1,12 @@
+* Esercizio 26.2 - tabella con un punto ogni 10 gradi
+V1 vcc 0 5
+Rf vcc vd 10k
+Rt vd 0 {10k*exp(3950*(1/(temp+273.15)-1/298.15))}
+G1 0 t vd 0 table=(0.32602,1, 0.42693,0.9, 0.56357,0.8,
++ 0.74824,0.7, 0.99557,0.6, 1.32033,0.5, 1.73234,0.4,
++ 2.22794,0.3, 2.78126,0.2, 3.34298,0.1, 3.85375,0)
+Rl t 0 1
+.step temp list 0 10 25 37 50 75 100
+.dc V1 list 5 5.001
+.meas DC vt FIND V(t) AT 5
+.end

@@ -1,0 +1,10 @@
+* Soluzione 1.7 - voltmetro su partitore ad alta impedenza
+V1 a 0 5
+R1 a b 470k
+R2 b 0 4.7Meg
+V2 c 0 5
+R3 c d 470k
+R4 d 0 4.7Meg
+Rvolt d 0 100k
+.op
+.end

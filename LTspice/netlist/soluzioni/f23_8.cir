@@ -1,0 +1,13 @@
+* Soluzione 23.8 - sensore di temperatura PTAT
+.param kq=1.380649e-23/1.602177e-19
+I1 0 a 10u
+Q1 a a 0 2N3904
+I2 0 b 100u
+Q2 b b 0 2N3904
+.lib standard.bjt
+.dc temp -40 125 1
+.meas DC dv27 FIND V(b,a) AT 27
+.meas DC tm40 FIND V(b,a)/(kq*log(10))-273.15 AT -40
+.meas DC t27 FIND V(b,a)/(kq*log(10))-273.15 AT 27
+.meas DC t125 FIND V(b,a)/(kq*log(10))-273.15 AT 125
+.end

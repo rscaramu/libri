@@ -1,0 +1,29 @@
+* Soluzione 34.6 - capacita' del cavo e modo comune
+.param tol=0.001 tcv=0.1
+.param r1={mc(10k,tol)} r2={mc(100k,tol)}
+.param r3={mc(10k,tol)} r4={mc(100k,tol)}
+.param cp={mc(1n,tcv)} cn={mc(1n,tcv)}
+Vcc vcc 0 15
+Vee vee 0 -15
+Vcm cm 0 2.5
+Vdp cm p1 AC 0.5 180
+Vdn cm n1 AC 0.5
+Rsp p1 p 175
+Rsn n1 n 175
+Cp p 0 {cp}
+Cn n 0 {cn}
+X1 p n out vcc vee catena r1={r1} r2={r2} r3={r3} r4={r4}
+Vc c 0 2.5 AC 1
+Rcp c p2 175
+Rcn c n2 175
+Cp2 p2 0 {cp}
+Cn2 n2 0 {cn}
+X2 p2 n2 outc vcc vee catena r1={r1} r2={r2} r3={r3} r4={r4}
+.include catena.sub
+.lib LTC.lib
+.step param run 1 200 1
+.ac list 50 1k
+.meas AC cm50 FIND 20*log10(mag(V(out))/mag(V(outc))) AT 50
+.meas AC cm1k FIND 20*log10(mag(V(out))/mag(V(outc))) AT 1k
+.options meascplxfmt=cartesian
+.end

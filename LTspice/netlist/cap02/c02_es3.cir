@@ -1,0 +1,7 @@
+* Esercizio 2.3 - due etichette uguali
+V1 out 0 5
+R1 out 0 1k
+V2 out 0 5
+R2 out 0 2k
+.op
+.end

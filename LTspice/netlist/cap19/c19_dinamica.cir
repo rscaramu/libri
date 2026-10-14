@@ -1,0 +1,11 @@
+* Visibilita' dinamica delle funzioni
+.param voltage=1
+.func doubled() {2*voltage}
+.subckt example out
+V1 out 0 {doubled()}
+.param voltage=10
+.ends
+X1 n1 example
+R1 n1 0 1k
+.op
+.end

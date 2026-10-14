@@ -1,0 +1,12 @@
+* Modulatore PWM con un comparatore digitale
+.param ctl=0.3
+Vt tri 0 PULSE(0 1 0 5u 5u 0 10u)
+Vc ctl 0 {ctl}
+A1 ctl tri 0 0 0 0 pwm 0 SCHMITT Vt=0 Vh=5m Vhigh=5
++ Trise=10n
+R1 pwm out 10k
+C1 out 0 100n
+.step param ctl list 0.1 0.3 0.7
+.tran 0 10m 8m 50n
+.meas TRAN vout AVG V(out)
+.end

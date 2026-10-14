@@ -1,0 +1,13 @@
+* Integratore con onda quadra d'ingresso
+Vcc vcc 0 15
+Vee vee 0 -15
+Vin in 0 PULSE(-1 1 0 1u 1u 0.5m 1m)
+R1 in n 10k
+C1 out n 100n
+Rp out n 1Meg
+XU1 0 n vcc vee out LT1001
+.lib LTC.lib
+.ic V(out)=0
+.tran 0 10m 0 1u
+.meas TRAN vpp PP V(out) FROM 8m TO 10m
+.end

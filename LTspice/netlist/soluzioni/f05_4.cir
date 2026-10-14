@@ -1,0 +1,7 @@
+* Soluzione 5.4 - LED rosso a 10 mA
+V1 a 0 5
+R1 a k 300
+D1 k 0 QTLP690C
+.lib standard.dio
+.op
+.end

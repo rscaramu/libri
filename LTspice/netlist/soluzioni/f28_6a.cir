@@ -1,0 +1,19 @@
+* Soluzione 28.6 - compensazione a due anelli
+.param cf=1n
+Vcc vcc 0 15
+Vee vee 0 -15
+XU1 0 x vcc vee o LT1001
+Vi x n 0 AC 1
+Riso o y 10
+CL y 0 1u
+RL y 0 1k
+Rf y n 10k
+Cf o n {cf}
+.lib LTC.lib
+.step param cf list 1n 4.7n 10n 47n
+.ac dec 100 10 10Meg
+.meas AC fc WHEN mag(V(n)/V(x))=1
+.meas AC pm FIND 180+ph(-V(n)/V(x)) WHEN mag(V(n)/V(x))=1
+.meas AC mm MIN mag(1-V(n)/V(x))
+.options meascplxfmt=cartesian
+.end

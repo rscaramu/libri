@@ -1,0 +1,8 @@
+* Soluzione 21.8 - istante del massimo
+V1 a 0 SINE(0 1 1k 0 300)
+R1 a 0 1k
+.tran 0 3m 0 10u
+.meas TRAN tm WHEN d(V(a))=0 FALL=1
+.meas TRAN vm MAX V(a)
+.meas TRAN tm2 WHEN V(a)=vm
+.end

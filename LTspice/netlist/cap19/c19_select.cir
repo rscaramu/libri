@@ -1,0 +1,10 @@
+* Scelta del modello con select()
+.param n=1
+.param diodo=select(n,"1N4148","1N4007","1N914")
+V1 a 0 5
+R1 a k 1k
+D1 k 0 {diodo}
+.lib standard.dio
+.options logparams
+.op
+.end

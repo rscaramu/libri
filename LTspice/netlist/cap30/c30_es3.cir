@@ -1,0 +1,11 @@
+* Esercizio 30.3 - rivelatore di fronte di salita
+Va a 0 PULSE(0 1 100n 1n 1n 300n 600n)
+A1 a 0 0 0 0 nd 0 0 BUF Td=20n Trise=1n
+A2 a nd 0 0 0 0 y 0 AND Td=1n Trise=1n
+.tran 0 1.2u 0 0.1n
+.meas TRAN w1 TRIG V(y) VAL=0.5 RISE=1
++ TARG V(y) VAL=0.5 FALL=1
+.meas TRAN t1 WHEN V(y)=0.5 RISE=1
+.meas TRAN t2 WHEN V(y)=0.5 RISE=2
+.meas TRAN ymax MAX V(y) FROM 400n TO 700n
+.end

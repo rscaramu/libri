@@ -1,0 +1,10 @@
+* Soluzione 8.5 - RLC con il metodo di Gear
+V1 a 0 PULSE(0 1 0 1u 1u 1 2)
+R1 a b 10
+L1 b c 1m Rser=0
+C1 c 0 1u
+.options method=gear
+.tran 0 3m 0 20u
+.meas TRAN vmax MAX V(c)
+.meas TRAN amp PP V(c) FROM 0.4m TO 0.6m
+.end

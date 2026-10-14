@@ -1,0 +1,14 @@
+* Soluzione 27.6 - palla che rimbalza
+.param m=1 g=9.81 k=1e5 c=44.9
+By 0 y I=V(v) Rpar=1T
+Cy y 0 1
+Bv 0 v I=-g+if(V(y)<0,(-k*V(y)-c*V(v))/m,0) Rpar=1T
+Cv v 0 1
+.ic V(y)=1 V(v)=0
+.tran 0 4 0 0.1m
+.meas TRAN h1 FIND V(y) WHEN V(v)=0 FALL=1
+.meas TRAN h2 FIND V(y) WHEN V(v)=0 FALL=2
+.meas TRAN h3 FIND V(y) WHEN V(v)=0 FALL=3
+.meas TRAN h4 FIND V(y) WHEN V(v)=0 FALL=4
+.meas TRAN h5 FIND V(y) WHEN V(v)=0 FALL=5
+.end

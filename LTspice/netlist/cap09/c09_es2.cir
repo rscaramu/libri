@@ -1,0 +1,17 @@
+* Esercizio 9.2 - rete a doppio T
+V1 in 0 0 AC 1
+R1 in a 10k
+R2 a out 10k
+C3 a 0 31.8n
+C1 in b 15.9n
+C2 b out 15.9n
+R3 b 0 5k
+Rload out 0 10Meg
+.options meascplxfmt=cartesian
+.ac dec 200 10 100k
+.meas AC f1 WHEN mag(V(out))=0.01 FALL=1
+.meas AC f2 WHEN mag(V(out))=0.01 RISE=1
+.meas AC fnotch PARAM sqrt(f1*f2)
+.meas AC g100 FIND mag(V(out)) AT 100
+.meas AC g10k FIND mag(V(out)) AT 10k
+.end

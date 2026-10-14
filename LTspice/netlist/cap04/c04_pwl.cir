@@ -1,0 +1,7 @@
+* Onda triangolare con PWL e REPEAT
+V1 a 0 PWL REPEAT FOREVER (0 -1 0.5m 1 1m -1) ENDREPEAT
+R1 a 0 1k
+.tran 0 3m 0 1u
+.meas TRAN vavg AVG V(a) FROM 0 TO 3m
+.meas TRAN vmax MAX V(a)
+.end

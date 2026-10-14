@@ -1,0 +1,18 @@
+* Misure in frequenza su un passa-banda RC
+V1 in 0 0 AC 1
+R1 in a 1k
+C1 a 0 100n
+R2 a b 1k
+C2 b out 100n
+R3 out 0 100k
+.ac dec 100 10 1Meg
+.meas AC gmax MAX mag(V(out))
+.meas AC fpk WHEN mag(V(out))=gmax
+.meas AC fl WHEN mag(V(out))=gmax/sqrt(2)
+.meas AC fh WHEN mag(V(out))=gmax/sqrt(2) FALL=1
+.meas AC bw TRIG mag(V(out))=gmax/sqrt(2) RISE=1
++ TARG mag(V(out))=gmax/sqrt(2) FALL=last
+.meas AC f0 WHEN ph(V(out))=0
+.meas AC g1k FIND V(out) AT 1k
+.meas AC p1k FIND ph(V(out)) AT 1k
+.end

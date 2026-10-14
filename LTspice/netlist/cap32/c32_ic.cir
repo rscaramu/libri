@@ -1,0 +1,17 @@
+* Convertitore buck con LTC3406: regime e rendimento
+V1 in 0 5
+XU1 in 0 sw in fb LTC3406
+L1 sw out 2.2u Rser=50m
+C1 out 0 10u Rser=5m
+R1 out fb 200k
+R2 fb 0 100k
+Cff out fb 22p
+Rload out 0 3.6
+.lib LTC3406.sub
+.tran 2m steady
+.meas TRAN vo AVG V(out)
+.meas TRAN vrip PP V(out)
+.meas TRAN pin AVG -V(in)*I(V1)
+.meas TRAN pout AVG V(out)*I(Rload)
+.meas TRAN eta PARAM pout/pin
+.end

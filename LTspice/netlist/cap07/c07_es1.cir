@@ -1,0 +1,11 @@
+* Esercizio 7.1 - limitatore a diodi
+Vin in 0 0
+R1 in out 1k
+D1 out 0 1N4148
+D2 0 out 1N4148
+.lib standard.dio
+.dc Vin -5 5 0.02
+.meas DC vpos FIND V(out) AT 5
+.meas DC vneg FIND V(out) AT -5
+.meas DC vlin FIND V(out) AT 0.2
+.end

@@ -1,0 +1,9 @@
+* Tensione del diodo in funzione della temperatura
+I1 0 a 1m
+D1 a 0 1N4148
+.lib standard.dio
+.dc temp -40 125 5
+.meas DC vfreddo FIND V(a) AT -40
+.meas DC vcaldo FIND V(a) AT 125
+.meas DC coeff DERIV V(a) AT 25
+.end

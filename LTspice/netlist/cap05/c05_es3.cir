@@ -1,0 +1,11 @@
+* Esercizio 5.3 - Rc = 3,3 kohm
+Vcc vcc 0 12
+R1 vcc b 47k
+R2 b 0 10k
+Rc vcc c 3.3k
+Re e 0 470
+Q1 c b e 2N3904
+.lib standard.bjt
+.options logopinfo
+.op
+.end

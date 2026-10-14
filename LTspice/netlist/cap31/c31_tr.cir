@@ -1,0 +1,14 @@
+* Trasformatore: tensione a vuoto e a carico
+.param rl=10
+V1 a 0 SINE(0 325 50)
+L1 a 0 10 Rser=10
+L2 b 0 {10/(230/12)**2} Rser=0.3
+K1 L1 L2 1
+RL b 0 {rl}
+.step param rl list 10 1Meg
+.tran 0 200m 100m 10u
+.meas TRAN v1 RMS V(a)
+.meas TRAN v2 RMS V(b)
+.meas TRAN i1 RMS I(L1)
+.meas TRAN i2 RMS I(RL)
+.end

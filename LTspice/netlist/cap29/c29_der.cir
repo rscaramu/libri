@@ -1,0 +1,22 @@
+* PID: derivata sull'errore o sulla misura
+.param kp=2 ti=2.5 td=0.5 n=10 dm=1
+Vr r 0 PULSE(0 1 1 1m 1m 100 200)
+Bz z 0 V=V(y)-(1-dm)*V(r)
+Bi 0 i I=(kp/ti)*(V(r)-V(y)) Rpar=1T
+Ci i 0 1
+Bf 0 xf I=(n/td)*(V(z)-V(xf)) Rpar=1T
+Cf xf 0 1
+Bu u 0 V=kp*(V(r)-V(y))+V(i)-kp*n*(V(z)-V(xf))
+R1 u a 1
+C1 a 0 1
+E2 b 0 a 0 1
+R2 b c 1
+C2 c 0 1
+E3 d 0 c 0 1
+R3 d y 1
+C3 y 0 1
+.step param dm list 0 1
+.tran 0 40 0 5m
+.meas TRAN ymax MAX V(y)
+.meas TRAN umax MAX V(u)
+.end

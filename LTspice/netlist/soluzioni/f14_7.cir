@@ -1,0 +1,13 @@
+* Soluzione 14.7 - specchio di Wilson
+Vcc vcc 0 12
+Rref vcc a 11.3k
+Q1 a b 0 2N3904
+Q2 b b 0 2N3904
+Q3 out a b 2N3904
+Vout vcc out 0
+.lib standard.bjt
+.dc Vout 0 10 0.1
+.meas DC iref FIND I(Rref) AT 5
+.meas DC i5 FIND Ic(Q3) AT 5
+.meas DC i10 FIND Ic(Q3) AT 0
+.end

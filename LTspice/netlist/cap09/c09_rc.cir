@@ -1,0 +1,9 @@
+* Filtro RC passa-basso
+V1 in 0 0 AC 1
+R1 in out 1k
+C1 out 0 159.15n
+.ac dec 50 10 100k
+.meas AC fc WHEN mag(V(out))=1/sqrt(2)
+.meas AC g10k FIND V(out) AT 10k
+.meas AC fase1k FIND ph(V(out)) AT 1k
+.end

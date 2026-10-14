@@ -1,0 +1,13 @@
+* Soluzione 30.5 - monostabile con due porte NAND
+.param r=10k c=10n
+Vtr tr 0 PULSE(5 0 10u 10n 10n 1u 1)
+A1 tr q 0 0 0 x 0 0 AND Vhigh=5 Td=10n Trise=5n
+C1 x y {c}
+R1 y 0 {r}
+A2 y 0 0 0 0 q 0 0 BUF Vhigh=5 Td=10n Trise=5n
+.step param r list 10k 22k 47k
+.tran 0 1m 0 10n
+.meas TRAN tw TRIG V(q) VAL=2.5 FALL=1
++ TARG V(q) VAL=2.5 RISE=1 TD=10u
+.meas TRAN rap PARAM tw/(r*c)
+.end

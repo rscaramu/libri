@@ -1,0 +1,15 @@
+* Le regole dei numeri casuali
+.param rv=mc(1k,0.05)
+V2 x 0 1
+R2 x 0 {rv}
+V3 y 0 1
+R3 y 0 {rv}
+R4 y 0 {mc(1k,0.05)}
+R5 y 0 {mc(1k,0.05)}
+.step param run 1 4 1
+.tran 1u
+.meas TRAN r2 FIND 1/I(R2) AT 0
+.meas TRAN r3 FIND 1/I(R3) AT 0
+.meas TRAN r4 FIND 1/I(R4) AT 0
+.meas TRAN r5 FIND 1/I(R5) AT 0
+.end

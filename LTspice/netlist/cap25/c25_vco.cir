@@ -1,0 +1,15 @@
+* Oscillatore controllato in tensione e valore efficace
+Vc ctl 0 PWL(0 0 10m 0 10.001m 2)
+B1 out 0 V=sin(2*pi*idt(1k+500*V(ctl)))
+B2 rms 0 V=sqrt(idt(V(out)**2)/max(time,1u))
+R1 out 0 1k
+R2 rms 0 1k
+.tran 0 20m 0 1u
+.meas TRAN p1 TRIG V(out) VAL=0 RISE=2
++ TARG V(out) VAL=0 RISE=3
+.meas TRAN p2 TRIG V(out) VAL=0 RISE=20
++ TARG V(out) VAL=0 RISE=21
+.meas TRAN f1 PARAM 1/p1
+.meas TRAN f2 PARAM 1/p2
+.meas TRAN vr FIND V(rms) AT 20m
+.end

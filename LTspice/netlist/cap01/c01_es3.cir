@@ -1,0 +1,6 @@
+* Esercizio 1.3 - netlist corretta
+R1 in out 1k
+V1 in 0 10
+R2 out 0 1Meg
+.op
+.end

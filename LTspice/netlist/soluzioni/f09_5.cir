@@ -1,0 +1,8 @@
+* Soluzione 9.5 - autorisonanza di un induttore
+I1 0 a 0 AC 1
+L1 a 0 100u Rser=0.2 Cpar=10p
+.options meascplxfmt=polar
+.ac dec 1000 1k 100Meg
+.meas AC zmax MAX mag(V(a))
+.meas AC fris WHEN ph(V(a))=0 FALL=1
+.end

@@ -1,0 +1,29 @@
+* Soluzione 29.6 - anello di velocita e di corrente
+.param kt=0.05 j=1e-4 b=1e-5
+.param kpw=0.1 tiw=0.02 kpi=2 tii=1m imx=5
+.func sig(x) {0.5*(1+tanh(x))}
+Vr r 0 PWL(0 0 10m 0 10.01m 200)
+* regolatore di velocita, uscita = riferimento di corrente
+Biw 0 iw I=(kpw/tiw)*(V(r)-V(w))*sig((20-abs(V(r)-V(w)))/2)
++ Rpar=1T
+Ciw iw 0 1
+Birv irv 0 V=kpw*(V(r)-V(w))+V(iw)
+Bir ir 0 V=dnlim(uplim(V(irv),imx,0.05),-imx,0.05)
+* regolatore di corrente, uscita = tensione d'armatura
+Bii 0 ii I=(kpi/tii)*(V(ir)-I(Vi)) Rpar=1T
+Cii ii 0 1
+Bua ua 0 V=dnlim(uplim(kpi*(V(ir)-I(Vi))+V(ii),24,0.1),
++ -24,0.1)
+* motore
+Ra ua l 1
+La l c 1m
+Vi c d 0
+Be d 0 V=kt*V(w)
+F1 0 w Vi {kt}
+Cj w 0 {j}
+Rb w 0 {1/b}
+.tran 0 0.3 0 10u
+.meas TRAN imax MAX I(Vi)
+.meas TRAN wmax MAX V(w)
+.meas TRAN t95 WHEN V(w)=190 RISE=1
+.end

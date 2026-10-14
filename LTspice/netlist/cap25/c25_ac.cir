@@ -1,0 +1,15 @@
+* Linearizzazione delle sorgenti comportamentali
+Va a 0 2 AC 1
+Vb b 0 3
+B1 out 0 V=V(a)*V(b)
+B2 sq 0 V=V(a)**2
+B3 ss 0 V=if(smallsig(),10*V(a),V(a))
+R1 out 0 1k
+R2 sq 0 1k
+R3 ss 0 1k
+.ac list 1k 1.1k
+.meas AC g1 FIND mag(V(out)) AT 1k
+.meas AC g2 FIND mag(V(sq)) AT 1k
+.meas AC g3 FIND mag(V(ss)) AT 1k
+.options meascplxfmt=cartesian
+.end

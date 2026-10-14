@@ -1,0 +1,11 @@
+* Soluzione 7.5 - regolazione di carico
+Vin in 0 12
+Rs in out 220
+D1 0 out BZX84C6V2L
+Iload out 0 0
+.lib standard.dio
+.dc Iload 0 30m 0.1m
+.meas DC v0 FIND V(out) AT 0
+.meas DC v20 FIND V(out) AT 20m
+.meas DC imax WHEN V(out)=6
+.end

@@ -1,0 +1,17 @@
+* Esercizio 32.1 - ondulazione e induttanza
+.param l=22u
+Vin in 0 12
+Vg g 0 PULSE(0 1 0 10n 10n 2.15u 5u)
+S1 in sw g 0 SW1
+D1 0 sw MBRS340
+L1 sw out {l} Rser=20m
+C1 out 0 100u Rser=0.1
+Rload out 0 2.5
+.model SW1 SW(Ron=50m Roff=10Meg Vt=0.5 Vh=-0.1)
+.lib standard.dio
+.step param l list 10u 22u 47u
+.tran 0 3m 2m 20n uic
+.meas TRAN vo AVG V(out) FROM 2.8m TO 3m
+.meas TRAN ilpp PP I(L1) FROM 2.8m TO 3m
+.meas TRAN vrip PP V(out) FROM 2.8m TO 3m
+.end

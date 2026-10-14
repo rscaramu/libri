@@ -1,0 +1,5 @@
+* Resistore con coefficiente di temperatura
+V1 a 0 1
+R1 a 0 1k tc=0.0039 temp=77
+.op
+.end

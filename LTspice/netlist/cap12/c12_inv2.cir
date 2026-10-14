@@ -1,0 +1,6 @@
+* Invertitore retroazionato con ritardo e fronti
+A1 out 0 0 0 0 out 0 0 BUF Td=10n Trise=5n
+.tran 1u
+.meas TRAN vmed AVG V(out)
+.meas TRAN vpp PP V(out)
+.end

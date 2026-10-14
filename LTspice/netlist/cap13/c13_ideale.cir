@@ -1,0 +1,14 @@
+* Diodo reale e diodo ideale a confronto
+V1 a 0 SINE(0 10 50)
+D1 a k1 1N4148
+R1 k1 0 1k
+D2 a k2 dideale
+R2 k2 0 1k
+.model dideale D(Ron=0.1 Roff=1Meg Vfwd=0.6 Epsilon=0.1)
+.lib standard.dio
+.tran 0 40m 0 10u
+.meas TRAN pk1 MAX V(k1) FROM 20m TO 40m
+.meas TRAN pk2 MAX V(k2) FROM 20m TO 40m
+.meas TRAN m1 AVG V(k1) FROM 20m TO 40m
+.meas TRAN m2 AVG V(k2) FROM 20m TO 40m
+.end

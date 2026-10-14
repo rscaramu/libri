@@ -1,0 +1,12 @@
+* Capacita' di un varactor al variare della polarizzazione
+.param vr=1
+Vb b 0 {vr}
+Rb b k 10Meg
+D1 0 k MV2201
+I1 0 k 0 AC 1
+.lib standard.dio
+.options meascplxfmt=cartesian
+.step param vr list 1 4 10
+.ac list 0.9e6 1e6 1.1e6
+.meas AC cj FIND -1/(2*pi*1e6*im(V(k))) AT 1e6
+.end

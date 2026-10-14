@@ -1,0 +1,9 @@
+* Filtro RC con un segnale da file
+V1 in 0 PWL file=chirp.txt
+R1 in out 1k
+C1 out 0 100n
+.tran 0 10m 0 5u
+.meas TRAN vin1 MAX V(in) FROM 0 TO 2m
+.meas TRAN vout1 MAX V(out) FROM 0 TO 2m
+.meas TRAN vout2 MAX V(out) FROM 8m TO 10m
+.end

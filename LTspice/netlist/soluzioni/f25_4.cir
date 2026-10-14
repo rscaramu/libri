@@ -1,0 +1,7 @@
+* Soluzione 25.4 - modulazione d'ampiezza
+Bam am 0 V=sin(2*pi*100k*time)*(1+0.5*sin(2*pi*1k*time))
+R1 am 0 1k
+.tran 0 2m 0 50n
+.options plotwinsize=0
+.four 1k 101 1 V(am)
+.end

@@ -1,0 +1,9 @@
+* Esercizio 6.2 - bilancio energetico
+V1 a 0 SINE(0 10 50)
+D1 a k 1N4148
+R1 k 0 1k
+.lib standard.dio
+.tran 0 100m 0 10u
+.meas TRAN pgen AVG -V(a)*I(V1) FROM 60m TO 100m
+.meas TRAN ptot AVG V(a)*I(R1) FROM 60m TO 100m
+.end

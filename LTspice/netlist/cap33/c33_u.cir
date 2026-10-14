@@ -1,0 +1,10 @@
+* Linea RC distribuita e modello concentrato
+V1 in 0 PULSE(0 1 0 1p 1p 1 2)
+U1 in out 0 FILO L=1m
+.model FILO URC(RPERL=100k CPERL=100n FMAX=100G)
+R1 in x 100
+C1 x 0 100p
+.tran 0 200n 0 10p
+.meas TRAN td1 WHEN V(out)=0.5 RISE=1
+.meas TRAN td2 WHEN V(x)=0.5 RISE=1
+.end

@@ -1,0 +1,7 @@
+* Soluzione 11.4 - armoniche di un'onda triangolare
+V1 a 0 PWL REPEAT FOREVER (0 -1 0.5m 1 1m -1) ENDREPEAT
+R1 a 0 1k
+.options plotwinsize=0
+.tran 0 5m 0 1u
+.four 1k 5 4 V(a)
+.end

@@ -1,0 +1,15 @@
+* Resistore di isolamento: margine di fase
+.param ri=50
+Vcc vcc 0 15
+Vee vee 0 -15
+XU1 0 x vcc vee o LT1001
+Vi x o 0 AC 1
+Riso o y {ri}
+CL y 0 100n
+.lib LTC.lib
+.step param ri list 1m 10 50 200
+.ac dec 100 1k 10Meg
+.meas AC fc WHEN mag(V(o)/V(x))=1
+.meas AC pm FIND 180+ph(-V(o)/V(x)) WHEN mag(V(o)/V(x))=1
+.options meascplxfmt=cartesian
+.end

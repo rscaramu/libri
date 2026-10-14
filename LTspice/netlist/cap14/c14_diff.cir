@@ -1,0 +1,17 @@
+* Coppia differenziale: caratteristica di trasferimento
+Vcc vcc 0 12
+Vee vee 0 -12
+Vd p 0 0
+Vcm cm 0 0
+E1 b1 cm p 0 0.5
+E2 b2 cm p 0 -0.5
+Q1 c1 b1 e 2N3904
+Q2 c2 b2 e 2N3904
+Rc1 vcc c1 10k
+Rc2 vcc c2 10k
+Itail e vee 1m
+.lib standard.bjt
+.dc Vd -0.2 0.2 1m
+.meas DC ad DERIV V(c2,c1) AT 0
+.meas DC sat FIND V(c2,c1) AT 0.2
+.end

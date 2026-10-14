@@ -1,0 +1,17 @@
+* Soluzione 11.6 - stadio in classe AB
+Vcc vcc 0 12
+Vee vee 0 -12
+Vin in 0 SINE(0 5 1k)
+R1 vcc bn 4.7k
+D1 bn in 1N4148
+D2 in bp 1N4148
+R2 bp vee 4.7k
+Q1 vcc bn out 2N3904
+Q2 vee bp out 2N3906
+RL out 0 100
+.lib standard.bjt
+.lib standard.dio
+.options plotwinsize=0
+.tran 0 5m 0 1u
+.four 1k 9 4 V(out)
+.end

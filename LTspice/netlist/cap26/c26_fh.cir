@@ -1,0 +1,9 @@
+* Specchio ideale e amplificatore a transimpedenza
+I1 0 a 50u
+Vs a 0 0
+F1 0 b Vs 10
+R1 b 0 1k
+H1 c 0 Vs -20k
+R2 c 0 1k
+.op
+.end

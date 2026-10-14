@@ -1,0 +1,9 @@
+* Esercizio 28.3 - margine di fase di integratore e polo
+.param wc=2*pi*1k r=1 p=r*wc
+V1 in 0 0 AC 1
+E1 t 0 in 0 Laplace=wc/(s*(1+s/p))
+.step param r list 0.5 1 2 4 8
+.ac dec 200 10 1Meg
+.meas AC pm FIND 180+ph(V(t)) WHEN mag(V(t))=1
+.options meascplxfmt=cartesian
+.end

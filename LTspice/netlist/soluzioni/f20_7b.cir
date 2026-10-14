@@ -1,0 +1,9 @@
+* Soluzione 20.7 - rumore di un RC con prodotto costante
+.param r=1k c=1u/(r/1k)
+V1 in 0 0 AC 1
+R1 in out {r}
+C1 out 0 {c}
+.step param r list 1k 10k 100k
+.noise V(out) V1 dec 50 1 10Meg
+.meas NOISE vn INTEG V(onoise)
+.end

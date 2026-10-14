@@ -1,0 +1,18 @@
+* Motore in corrente continua: modello elettromeccanico
+.param kt=0.05 j=1e-4 b=1e-5
+V1 a 0 PWL(0 0 1m 12)
+Ra a l 1
+La l c 1m
+Vi c d 0
+Be d 0 V=kt*V(w)
+F1 0 w Vi {kt}
+Cj w 0 {j}
+Rb w 0 {1/b}
+It w 0 PWL(0 0 0.3 0 0.301 0.05)
+.tran 0 0.6 0 10u
+.meas TRAN w1 FIND V(w) AT 0.29
+.meas TRAN ipk MAX I(Vi) FROM 0 TO 0.1
+.meas TRAN t63 WHEN V(w)=0.632*w1
+.meas TRAN w2 FIND V(w) AT 0.59
+.meas TRAN i2 FIND I(Vi) AT 0.59
+.end

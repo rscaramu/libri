@@ -1,0 +1,12 @@
+* Soluzione 26.7 - sensore di corrente a effetto Hall
+I1 0 a PULSE(0 10 10u 10n 10n 50u 100u)
+Vs a 0 0
+H1 x 0 Vs 0.04
+Voff off 0 2.5
+E1 out off x 0 Laplace=1/(1+s/(2*pi*120k))
+.tran 0 40u 0 10n
+.meas TRAN v0 FIND V(out) AT 5u
+.meas TRAN v1 FIND V(out) AT 40u
+.meas TRAN tr TRIG V(out) VAL=2.54 RISE=1
++ TARG V(out) VAL=2.86 RISE=1
+.end

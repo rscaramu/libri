@@ -1,0 +1,13 @@
+* Esercizio 16.1 - banda a piena potenza del LT1001
+.param f=2k
+Vcc vcc 0 15
+Vee vee 0 -15
+Vin in 0 SINE(0 5 {f})
+XU1 in fb vcc vee out LT1001
+R1 fb 0 10k
+R2 out fb 10k
+.lib LTC.lib
+.step param f list 2k 8k
+.tran 0 3m 2m 0.1u
+.meas TRAN vpk MAX V(out)
+.end

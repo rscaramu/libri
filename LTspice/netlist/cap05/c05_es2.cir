@@ -1,0 +1,18 @@
+* Esercizio 5.2 - equivalente di Thevenin
+* copia a vuoto
+V1 in1 0 10
+R1 in1 a1 1k
+R2 a1 0 2k
+R3 a1 out1 1.5k
+R4 out1 0 3k
+I1 0 out1 1m
+* copia in cortocircuito
+V2 in2 0 10
+R5 in2 a2 1k
+R6 a2 0 2k
+R7 a2 out2 1.5k
+R8 out2 0 3k
+I2 0 out2 1m
+Vcc out2 0 0
+.op
+.end

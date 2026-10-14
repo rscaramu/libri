@@ -1,0 +1,10 @@
+* Esercizio 6.3 - primo tentativo
+V1 a 0 SINE(0 10 50)
+D1 a k 1N4148
+R1 k 0 1k
+.lib standard.dio
+.save V(a) V(k) I(R1)
+.tran 0 100m 0 10u
+.meas TRAN pD AVG V(a,k)*I(R1) FROM 60m TO 100m
+.meas TRAN pgen AVG -V(a)*I(V1) FROM 60m TO 100m
+.end

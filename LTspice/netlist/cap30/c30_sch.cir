@@ -1,0 +1,14 @@
+* Oscillatore con invertitore a trigger di Schmitt
+A1 c 0 0 0 0 out 0 0 SCHMITT Vt=2.15 Vh=0.55 Vhigh=5
++ Vlow=0 Td=10n Trise=6n
+R1 out c 10k
+C1 c 0 10n
+.tran 0 1m 0 50n
+.meas TRAN per TRIG V(out) VAL=2.5 RISE=3
++ TARG V(out) VAL=2.5 RISE=4
+.meas TRAN f PARAM 1/per
+.meas TRAN thi TRIG V(out) VAL=2.5 RISE=3
++ TARG V(out) VAL=2.5 FALL=3
+.meas TRAN cmax MAX V(c) FROM 0.5m TO 1m
+.meas TRAN cmin MIN V(c) FROM 0.5m TO 1m
+.end

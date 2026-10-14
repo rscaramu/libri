@@ -1,0 +1,9 @@
+* Soluzione 25.7 - carico elettronico su un condensatore
+C1 a 0 1
+Bl a 0 I=if(V(a)>2,1,V(a)/2) Rpar=1G
+.ic V(a)=5
+.tran 0 10 0 1m
+.meas TRAN t2 WHEN V(a)=2
+.meas TRAN t1 WHEN V(a)=1
+.meas TRAN v10 FIND V(a) AT 10
+.end

@@ -1,0 +1,11 @@
+* Soluzione 19.4 - regolatore Zener parametrico
+.param vinmin=9 iload=20m izmin=2m vz=6.2
+.param rs=(vinmin-vz)/(iload+izmin)
+Vin in 0 {vinmin}
+Rs in out {rs}
+D1 0 out BZX84C6V2L
+Il out 0 {iload}
+.lib standard.dio
+.options logparams
+.op
+.end

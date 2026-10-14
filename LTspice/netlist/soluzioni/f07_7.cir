@@ -1,0 +1,9 @@
+* Soluzione 7.7 - effetto del passo sulle misure
+Vin in 0 0
+R1 in out 1k
+D1 out 0 1N4148
+D2 0 out 1N4148
+.lib standard.dio
+.dc Vin -5 5 0.5
+.meas DC v07 FIND V(out) AT 0.7
+.end

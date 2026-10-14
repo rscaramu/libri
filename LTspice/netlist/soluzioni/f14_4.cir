@@ -1,0 +1,10 @@
+* Soluzione 14.4 - guadagno di corrente del 2N3906
+Ib b 0 10u
+Vce c 0 -5
+Q1 c b 0 2N3906
+.lib standard.bjt
+.dc dec Ib 10n 10m 20
+.meas DC b1m FIND Ic(Q1)/Ib(Q1) WHEN Ic(Q1)=-1m
+.meas DC b10m FIND Ic(Q1)/Ib(Q1) WHEN Ic(Q1)=-10m
+.meas DC b100m FIND Ic(Q1)/Ib(Q1) WHEN Ic(Q1)=-100m
+.end

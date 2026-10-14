@@ -1,0 +1,7 @@
+* Amplificatore invertente con un generatore E
+V1 in 0 0.1
+R1 in n 1k
+R2 n out 10k
+E1 out 0 0 n 100k
+.op
+.end

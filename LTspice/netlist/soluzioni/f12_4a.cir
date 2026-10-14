@@ -1,0 +1,7 @@
+* Soluzione 12.4 - condensatori in serie
+V1 a 0 10
+R1 a b 1k
+C1 b m 1u
+C2 m 0 2u
+.op
+.end

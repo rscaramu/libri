@@ -1,0 +1,8 @@
+* RC alimentato in continua: partenza con startup
+V1 a 0 5
+R1 a b 1k
+C1 b 0 1u
+.tran 0 5m 0 1u startup
+.meas TRAN v0 FIND V(b) AT 0
+.meas TRAN v1 FIND V(b) AT 1m
+.end

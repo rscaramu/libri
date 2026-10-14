@@ -1,0 +1,6 @@
+* Soluzione 4.4 - clock a 100 kHz, duty 25%
+V1 clk 0 PULSE(0 5 0 10n 10n 2.49u 10u)
+R1 clk 0 1k
+.tran 0 100u 0 5n
+.meas TRAN vmedia AVG V(clk) FROM 0 TO 100u
+.end

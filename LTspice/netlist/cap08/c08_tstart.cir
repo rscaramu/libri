@@ -1,0 +1,6 @@
+* Salvataggio dei dati solo dopo 8 ms
+V1 a 0 SINE(0 1 1k)
+R1 a 0 1k
+.tran 0 10m 8m 1u
+.meas TRAN vrms RMS V(a)
+.end

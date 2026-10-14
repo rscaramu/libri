@@ -1,0 +1,9 @@
+* Soluzione 4.7 - PWL da file e in linea
+V1 a 0 PWL FILE=rampa.txt
+V2 b 0 PWL(0 0 1m 5 3m 5 3.5m 0)
+R1 a 0 1k
+R2 b 0 1k
+.tran 0 5m 0 1u
+.meas TRAN da AVG V(a) FROM 0 TO 5m
+.meas TRAN db AVG V(b) FROM 0 TO 5m
+.end

@@ -1,0 +1,13 @@
+* Esercizio 15.3 - carica di gate del IRF530
+Vdd vdd 0 24
+Rload vdd d 4.8
+M1 d g 0 IRF530
+Ig 0 g PWL(0 0 1n 1m)
+Rgs g 0 100Meg
+.lib standard.mos
+.tran 0 40u 0 10n
+.meas TRAN t10 WHEN V(g)=10
+.meas TRAN qg PARAM t10*1m
+.meas TRAN tpl1 WHEN V(d)=21.6
+.meas TRAN tpl2 WHEN V(d)=2.4
+.end

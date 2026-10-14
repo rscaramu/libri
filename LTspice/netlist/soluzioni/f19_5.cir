@@ -1,0 +1,11 @@
+* Soluzione 19.5 - funzioni definite dall'utente
+.func par(a,b) {a*b/(a+b)}
+.func decibel(x) {20*log10(x)}
+.param rb=par(22k,47k) g=rb/(10k+rb) gdb=decibel(g)
+V1 a 0 1
+R1 a b 10k
+R2 b 0 22k
+R3 b 0 47k
+.options logparams
+.op
+.end

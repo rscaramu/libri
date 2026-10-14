@@ -1,0 +1,25 @@
+* Esercizio 31.2 - capacita di filtro
+.param cf=2200u
+V1 l 0 SINE(0 325 50)
+L1 l 0 10 Rser=10
+L2 a b {10/(230/13.5)**2} Rser=0.4
+K1 L1 L2 0.998
+Rf b 0 10Meg
+D1 a p 1N4007
+D2 b p 1N4007
+D3 0 a 1N4007
+D4 0 b 1N4007
+C1 p 0 {cf}
+XU1 adj o p LT317A
+R1 o adj 240
+R2 adj 0 720
+RL o 0 10
+.lib standard.dio
+.lib LT317A.sub
+.step param cf list 1000u 2200u 4700u
+.tran 0 300m 0 20u uic
+.meas TRAN vpmin MIN V(p) FROM 200m TO 300m
+.meas TRAN vppp PP V(p) FROM 200m TO 300m
+.meas TRAN idpk MAX I(D1) FROM 200m TO 300m
+.meas TRAN ipk0 MAX I(D1) FROM 0 TO 50m
+.end

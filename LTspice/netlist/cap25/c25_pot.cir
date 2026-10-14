@@ -1,0 +1,9 @@
+* Carico a potenza costante: isteresi
+V1 a 0 PWL(0 0 1 15 2 0)
+Rs a b 1
+B1 b 0 P=10
+C1 b 0 100u
+.tran 0 2 0 1m
+.meas TRAN vup FIND V(a) WHEN V(b)=V(a)/2 RISE=1
+.meas TRAN vdn FIND V(a) WHEN V(b)=V(a)/2 FALL=1 TD=1
+.end

@@ -1,0 +1,10 @@
+* Resistenza d'uscita dello stadio CE con .tf
+Vcc vcc 0 12
+R1 vcc b 47k
+R2 b 0 10k
+Rc vcc c 2.2k
+Re e 0 470
+Q1 c b e 2N3904
+.lib standard.bjt
+.tf V(c) Vcc
+.end

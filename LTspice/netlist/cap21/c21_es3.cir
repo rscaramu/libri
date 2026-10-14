@@ -1,0 +1,13 @@
+* Esercizio 21.3 - limiti di potenza del regolatore Zener
+Vin in 0 12
+Rs in out 220
+D1 0 out BZX84C6V2L
+Rload out 0 1k
+.lib standard.dio
+.dc Vin 9 20 0.05
+.meas DC pd MAX -V(out)*I(D1)
+.meas DC pr MAX V(in,out)*I(Rs)
+.meas DC okd PARAM pd<0.25
+.meas DC okr PARAM pr<0.125
+.meas DC vlim WHEN V(in,out)*I(Rs)=0.125
+.end

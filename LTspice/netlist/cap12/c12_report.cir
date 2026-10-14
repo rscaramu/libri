@@ -1,0 +1,4 @@
+* Rapporto di convergenza
+A1 out 0 0 0 0 out 0 0 BUF Td=10n Trise=5n
+.tran 1u convreport
+.end

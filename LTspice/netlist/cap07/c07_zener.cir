@@ -1,0 +1,11 @@
+* Regolatore Zener: caratteristica di trasferimento
+Vin in 0 12
+Rs in out 220
+D1 0 out BZX84C6V2L
+Rload out 0 1k
+.lib standard.dio
+.dc Vin 0 20 0.05
+.meas DC vout12 FIND V(out) AT 12
+.meas DC vout18 FIND V(out) AT 18
+.meas DC vinmin WHEN V(out)=6
+.end

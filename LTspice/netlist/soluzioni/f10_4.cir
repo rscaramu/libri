@@ -1,0 +1,12 @@
+* Soluzione 10.4 - stadio CE del capitolo 5 con .tf
+Vcc vcc 0 12
+Vs s 0 2.029
+Rs s b 1k
+R1 vcc b 47k
+R2 b 0 10k
+Rc vcc c 2.2k
+Re e 0 470
+Q1 c b e 2N3904
+.lib standard.bjt
+.tf V(c) Vs
+.end

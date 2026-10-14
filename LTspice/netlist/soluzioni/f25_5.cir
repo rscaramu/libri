@@ -1,0 +1,11 @@
+* Soluzione 25.5 - accensione di una lampada
+Vs a 0 PWL(0 0 1u 12)
+Vi a l 0
+Bl l 0 R=2.88+25.92*V(th)
+Bp 0 th I=V(l)*I(Vi)/5 Rpar=1
+Cth th 0 50m
+.tran 0 300m 0 10u
+.meas TRAN ipk MAX I(Vi)
+.meas TRAN ireg FIND I(Vi) AT 300m
+.meas TRAN t90 WHEN I(Vi)=0.5 FALL=1
+.end

@@ -1,0 +1,10 @@
+* Soluzione 22.8 - Monte Carlo dello stesso passa-banda
+V1 in 0 0 AC 1
+L1 in a {mc(10m,0.1)}
+C1 a out {mc(2.297u,0.1)}
+R1 out 0 6.3
+.step param run 1 500 1
+.ac list 990 1k 1.01k
+.meas AC g FIND mag(V(out)) AT 1k
+.options meascplxfmt=cartesian
+.end

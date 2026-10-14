@@ -1,0 +1,13 @@
+* Esercizio 26.3 - anello con ritardo e regolatore P
+.param k=5
+Vr r 0 PULSE(0 1 0.1 1m 1m 100 200)
+Bu u 0 V=k*(V(r)-V(y))
+Bd ud 0 V=delay(V(u),0.1)
+R1 ud y 1
+C1 y 0 1
+.step param k list 10 15 17
+.tran 0 10 0 2m
+.meas TRAN pp1 PP V(y) FROM 3 TO 5
+.meas TRAN pp2 PP V(y) FROM 8 TO 10
+.meas TRAN rap PARAM pp2/pp1
+.end

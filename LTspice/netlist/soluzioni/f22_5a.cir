@@ -1,0 +1,23 @@
+* Soluzione 22.5 - sensibilita della banda dello stadio CE
+.param k=0
+.func dv(i,t) {1+t*(k==i)}
+Vcc vcc 0 12
+Vs s 0 0 AC 1
+Rs s in 1k
+C1 in b {10u*dv(1,0.2)}
+R1 vcc b {47k*dv(2,0.05)}
+R2 b 0 {10k*dv(3,0.05)}
+Rc vcc c {2.2k*dv(4,0.05)}
+Re e 0 {470*dv(5,0.05)}
+Ce e 0 {100u*dv(6,0.2)}
+Q1 c b e 2N3904
+C2 c out {10u*dv(7,0.2)}
+RL out 0 {10k*dv(8,0.05)}
+.lib standard.bjt
+.step param k 0 8 1
+.ac dec 50 1 100Meg
+.meas AC gmax MAX mag(V(out))
+.meas AC fl WHEN mag(V(out))=gmax/sqrt(2) RISE=1
+.meas AC fh WHEN mag(V(out))=gmax/sqrt(2) FALL=1
+.options meascplxfmt=cartesian
+.end

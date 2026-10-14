@@ -1,0 +1,10 @@
+* Amplificatore con un polo: Laplace in retroazione
+V1 in 0 PULSE(0 0.1 1u 1n 1n 50u 100u) AC 1
+E1 out 0 in n Laplace=1e5/(1+s/(2*pi*10))
+R1 n 0 1k
+R2 out n 9k
+.tran 0 30u 0 10n
+.meas TRAN tr TRIG V(out) VAL=0.1 RISE=1
++ TARG V(out) VAL=0.9 RISE=1
+.meas TRAN vf FIND V(out) AT 30u
+.end

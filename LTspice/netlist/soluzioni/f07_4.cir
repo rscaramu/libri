@@ -1,0 +1,7 @@
+* Soluzione 7.4 - caratteristica di un resistore
+V1 a 0 0
+R1 a 0 1k
+.dc V1 -10 10 0.1
+.meas DC g1 DERIV I(R1) AT -5
+.meas DC g2 DERIV I(R1) AT 7
+.end

@@ -1,0 +1,8 @@
+* Esercizio 5.1 - due diodi in serie
+V1 a 0 12
+R1 a k1 2.2k
+D1 k1 k2 1N4148
+D2 k2 0 1N4148
+.lib standard.dio
+.op
+.end

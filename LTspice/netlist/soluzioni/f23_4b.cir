@@ -1,0 +1,12 @@
+* Soluzione 23.4 - resistenza serie con coefficiente termico
+.model DR ako:1N4148 D(Trs1=0.005)
+I1 0 a 1m
+D1 a 0 DR
+.lib standard.dio
+.step temp list -40 27 125
+.dc I1 1m 2 1m
+.meas DC v01 FIND V(a) AT 0.1
+.meas DC v05 FIND V(a) AT 0.5
+.meas DC v1 FIND V(a) AT 1
+.meas DC v2 FIND V(a) AT 2
+.end

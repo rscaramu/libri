@@ -1,0 +1,13 @@
+* Soluzione 16.6 - deriva dell'integratore
+Vcc vcc 0 15
+Vee vee 0 -15
+R1 0 n 10k
+C1 out n 100n
+Rp out n 100Meg
+Vos p 0 60u
+XU1 p n vcc vee out LT1001
+.lib LTC.lib
+.ic V(out)=0
+.tran 0 1 0 1m
+.meas TRAN v1 FIND V(out) AT 1
+.end

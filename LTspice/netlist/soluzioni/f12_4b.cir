@@ -1,0 +1,9 @@
+* Soluzione 12.4 - condensatori con resistenze di perdita
+V1 a 0 10
+R1 a b 1k
+C1 b m 1u
+Rp1 b m 10Meg
+C2 m 0 2u
+Rp2 m 0 10Meg
+.op
+.end

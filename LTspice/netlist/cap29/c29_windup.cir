@@ -1,0 +1,21 @@
+* Regolatore PI di velocita con saturazione
+.param kt=0.05 j=1e-4 b=1e-5 kp=0.5 ti=0.02 aw=0
+Vr r 0 PWL(0 0 10m 0 10.01m 200)
+Bi 0 i I=if(aw*(abs(V(uc))>=24)*(V(uc)*(V(r)-V(w))>0),0,
++ (kp/ti)*(V(r)-V(w))) Rpar=1T
+Ci i 0 1
+Buc uc 0 V=limit(kp*(V(r)-V(w))+V(i),-24,24)
+Ra uc l 1
+La l c 1m
+Vi c d 0
+Be d 0 V=kt*V(w)
+F1 0 w Vi {kt}
+Cj w 0 {j}
+Rb w 0 {1/b}
+.step param aw list 0 1
+.tran 0 0.3 0 10u
+.meas TRAN wmax MAX V(w)
+.meas TRAN imax MAX I(Vi)
+.meas TRAN t95 WHEN V(w)=190 RISE=1
+.meas TRAN vimax MAX V(i)
+.end

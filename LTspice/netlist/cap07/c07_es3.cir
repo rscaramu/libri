@@ -1,0 +1,11 @@
+* Esercizio 7.3 - diodo come sensore di temperatura
+I1 0 a 100u
+D1 a 0 1N4148
+.lib standard.dio
+.dc temp 0 100 1
+.meas DC v0 FIND V(a) AT 0
+.meas DC v50 FIND V(a) AT 50
+.meas DC v100 FIND V(a) AT 100
+.meas DC sens DERIV V(a) AT 25
+.meas DC errlin PARAM v50-(v0+v100)/2
+.end

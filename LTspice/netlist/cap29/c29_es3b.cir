@@ -1,0 +1,19 @@
+* Esercizio 29.3 - regolatore PI con operazionale
+Vcc vcc 0 4
+Vr r 0 PWL(0 0.25 10 0.25 10.01 1.5)
+Bs s 0 V=0.01*V(t)
+Rin s n 100k
+Rf n f 2Meg
+Cf f out 125u
+XU1 r n vcc 0 out level2 Avol=1Meg GBW=10Meg Slew=10Meg
+Bh 0 t I=100*V(out)
+Cth t amb 500
+Rth t amb 0.5
+Vamb amb 0 25
+.lib UniversalOpAmp2.lib
+.ic V(t)=25 V(out)=0 V(f)=0.25
+.tran 0 1500 0 0.5
+.meas TRAN tmax MAX V(t)
+.meas TRAN t145 WHEN V(t)=145 RISE=1
+.meas TRAN tfin FIND V(t) AT 1500
+.end

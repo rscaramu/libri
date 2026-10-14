@@ -1,0 +1,14 @@
+* Catena di misura: rumore riferito all'ingresso
+Vcc vcc 0 15
+Vee vee 0 -15
+Vcm cm 0 2.5
+Vd cm p1 0 AC 1
+Rsp p1 p 175
+Rsn cm n 175
+X1 p n out vcc vee catena
+.include catena.sub
+.lib LTC.lib
+.noise V(out) Vd dec 50 0.1 1k
+.meas NOISE vno INTEG V(onoise) FROM 0.1 TO 1k
+.meas NOISE en10 FIND V(inoise) AT 10
+.end

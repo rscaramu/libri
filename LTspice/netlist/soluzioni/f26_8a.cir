@@ -1,0 +1,9 @@
+* Soluzione 26.8 - Butterworth dell'ottavo ordine con Laplace
+.param w=2*pi*1k
+V1 in 0 PULSE(0 1 1m 1u 1u 1 2)
+E1 out 0 in 0 Laplace=1/(1+s/(w*0.5098)+(s/w)**2)
++ /(1+s/(w*0.6013)+(s/w)**2)/(1+s/(w*0.9000)+(s/w)**2)
++ /(1+s/(w*2.5629)+(s/w)**2)
+.tran 0 100m 0 2u
+.meas TRAN pk MAX V(out)
+.end

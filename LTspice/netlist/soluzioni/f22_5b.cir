@@ -1,0 +1,25 @@
+* Soluzione 22.5 - caso peggiore della banda dello stadio CE
+.param run=0
+.func bit(n,i) {floor(n/pow(2,i))-2*floor(n/pow(2,i+1))}
+.func wc(nom,tol,i)
++ {if(run==0,nom,if(bit(run-1,i),nom*(1+tol),nom*(1-tol)))}
+Vcc vcc 0 12
+Vs s 0 0 AC 1
+Rs s in 1k
+C1 in b 10u
+R1 vcc b {wc(47k,0.05,0)}
+R2 b 0 {wc(10k,0.05,1)}
+Rc vcc c {wc(2.2k,0.05,2)}
+Re e 0 {wc(470,0.05,3)}
+Ce e 0 100u
+Q1 c b e 2N3904
+C2 c out 10u
+RL out 0 10k
+.lib standard.bjt
+.step param run 0 16 1
+.ac dec 50 1 100Meg
+.meas AC gmax MAX mag(V(out))
+.meas AC bw TRIG mag(V(out))=gmax/sqrt(2) RISE=1
++ TARG mag(V(out))=gmax/sqrt(2) FALL=1
+.options meascplxfmt=cartesian
+.end

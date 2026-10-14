@@ -1,0 +1,9 @@
+* Soluzione 16.5 - offset e corrente di polarizzazione
+Vcc vcc 0 15
+Vee vee 0 -15
+XU1 0 out vcc vee out LT1001
+XU2 p o2 vcc vee o2 LT1001
+Rb p 0 1Meg
+.lib LTC.lib
+.op
+.end

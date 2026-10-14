@@ -1,0 +1,18 @@
+* Esercizio 9.3 - impedenza d'ingresso dello stadio CE
+Vcc vcc 0 12
+Vs s 0 0 AC 1
+Rs s in 1k
+C1 in b 10u
+R1 vcc b 47k
+R2 b 0 10k
+Rc vcc c 2.2k
+Re e 0 470
+Ce e 0 100u
+Q1 c b e 2N3904
+C2 c out 10u
+RL out 0 10k
+.lib standard.bjt
+.options meascplxfmt=polar
+.ac list 1k
+.meas AC zin FIND V(in)/I(Rs) AT 1k
+.end

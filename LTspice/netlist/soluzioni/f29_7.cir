@@ -1,0 +1,17 @@
+* Soluzione 29.7 - regolatore a due posizioni con isteresi
+Vr r 0 150
+Bsb sb 0 V=if(V(t)<V(r)-1,1,if(V(t)>V(r)+1,0,buf(V(s))))
+Rs sb s 1k
+Cs s 0 1u
+Bh 0 t I=400*V(s)
+Cth t amb 500
+Rth t amb 0.5
+Vamb amb 0 25
+.ic V(t)=25 V(s)=1
+.tran 0 3000 0 0.5
+.meas TRAN tmax MAX V(t) FROM 1500 TO 3000
+.meas TRAN tmin MIN V(t) FROM 1500 TO 3000
+.meas TRAN per TRIG V(s) VAL=0.5 RISE=5
++ TARG V(s) VAL=0.5 RISE=6
+.meas TRAN pmed AVG 400*V(s) FROM 1500 TO 3000
+.end

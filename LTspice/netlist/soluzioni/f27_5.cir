@@ -1,0 +1,18 @@
+* Soluzione 27.5 - modello a un quarto di veicolo
+.param ms=250 mu=35 ks=16k cs=1k kt=160k
+Vr zr 0 PWL(0 0 0.1 0 0.11 0.05)
+Bzs 0 zs I=V(vs) Rpar=1T
+Czs zs 0 1
+Bvs 0 vs I=(-ks*V(zs,zu)-cs*V(vs,vu))/ms Rpar=1T
+Cvs vs 0 1
+Bzu 0 zu I=V(vu) Rpar=1T
+Czu zu 0 1
+Bvu 0 vu I=(ks*V(zs,zu)+cs*V(vs,vu)-kt*V(zu,zr))/mu
++ Rpar=1T
+Cvu vu 0 1
+.tran 0 3 0 0.1m
+.meas TRAN zsmax MAX V(zs)
+.meas TRAN zumax MAX V(zu)
+.meas TRAN sovr PARAM (zsmax-0.05)/0.05
+.meas TRAN zsfin FIND V(zs) AT 3
+.end

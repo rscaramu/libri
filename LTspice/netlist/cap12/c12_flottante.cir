@@ -1,0 +1,8 @@
+* Nodo flottante tra due condensatori
+V1 a 0 5
+R1 a b 1k
+C1 b c 1u
+R2 c d 1k
+C2 d 0 1u
+.op
+.end

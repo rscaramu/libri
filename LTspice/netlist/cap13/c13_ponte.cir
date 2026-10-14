@@ -1,0 +1,15 @@
+* Raddrizzatore a ponte con filtro capacitivo
+V1 a b SINE(0 16.97 50) Rser=0.5
+D1 a p 1N4007
+D2 b p 1N4007
+D3 0 a 1N4007
+D4 0 b 1N4007
+C1 p 0 2200u Rser=30m
+RL p 0 100
+.lib standard.dio
+.tran 0 200m 0 20u
+.meas TRAN vmax MAX V(p) FROM 160m TO 200m
+.meas TRAN vmin MIN V(p) FROM 160m TO 200m
+.meas TRAN ripple PARAM vmax-vmin
+.meas TRAN ipk MAX I(D1) FROM 160m TO 200m
+.end

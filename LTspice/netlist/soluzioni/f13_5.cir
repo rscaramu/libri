@@ -1,0 +1,19 @@
+* Soluzione 13.5 - semionda e ponte a confronto
+V1 a 0 SINE(0 12.73 50) Rser=0.5
+D1 a p 1N4007
+C1 p 0 1000u
+RL p 0 100
+V2 c d SINE(0 12.73 50) Rser=0.5
+D2 c q 1N4007
+D3 d q 1N4007
+D4 0 c 1N4007
+D5 0 d 1N4007
+C2 q 0 1000u
+RL2 q 0 100
+.lib standard.dio
+.tran 0 300m 0 20u
+.meas TRAN r1 PP V(p) FROM 260m TO 300m
+.meas TRAN r2 PP V(q) FROM 260m TO 300m
+.meas TRAN m1 AVG V(p) FROM 260m TO 300m
+.meas TRAN m2 AVG V(q) FROM 260m TO 300m
+.end

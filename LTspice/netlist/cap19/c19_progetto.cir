@@ -1,0 +1,15 @@
+* Stadio a emettitore comune progettato con parametri
+.param Vcc=9 Ic=1m Ve=1 Vbe=0.65 beta=300
+.param Re=Ve/Ic Rc=(Vcc/2)/Ic
+.param Vb=Ve+Vbe Ip=10*Ic/beta
+.param R2=Vb/Ip R1=(Vcc-Vb)/(Ip+Ic/beta)
+Vcc vcc 0 {Vcc}
+R1 vcc b {R1}
+R2 b 0 {R2}
+Rc vcc c {Rc}
+Re e 0 {Re}
+Q1 c b e 2N3904
+.lib standard.bjt
+.options logparams
+.op
+.end

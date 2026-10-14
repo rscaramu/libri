@@ -1,0 +1,14 @@
+* Soluzione 33.8 - attenuazione del cavo in frequenza
+.param rr=0.05
+V1 g 0 AC 2
+Rs g in 50
+O1 in 0 out 0 RG58
+RL out 0 50
+.model RG58 LTRA(R={rr} L=250n C=100p LEN=100)
+.step param rr list 0.05 0.5
+.ac dec 20 10k 100Meg
+.meas AC a10k FIND mag(V(out)) AT 10k
+.meas AC a1m FIND mag(V(out)) AT 1Meg
+.meas AC a100m FIND mag(V(out)) AT 100Meg
+.options meascplxfmt=cartesian
+.end

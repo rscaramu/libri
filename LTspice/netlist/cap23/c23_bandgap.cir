@@ -1,0 +1,21 @@
+* Riferimento di tensione a bandgap
+.param r2=11k
+Vcc vcc 0 5
+Vee vee 0 -5
+XU1 a b vcc vee out level2 Avol=1Meg GBW=10Meg
++ Slew=10Meg
+R1 out a {r2}
+Q1 a a 0 2N3904
+R2 out b {r2}
+R3 b e 1k
+Q2 e e 0 2N3904 8
+.lib UniversalOpAmp2.lib
+.lib standard.bjt
+.nodeset V(out)=1.2
+.step param r2 list 10.6k 10.9k 11.2k
+.dc temp -40 125 1
+.meas DC v27 FIND V(out) AT 27
+.meas DC vmax MAX V(out)
+.meas DC vmin MIN V(out)
+.meas DC var PARAM vmax-vmin
+.end

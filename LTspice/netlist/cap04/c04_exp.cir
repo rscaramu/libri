@@ -1,0 +1,7 @@
+* Generatore EXP
+V1 a 0 EXP(0 10 1m 0.5m 5m 1m)
+R1 a 0 1k
+.tran 0 12m 0 10u
+.meas TRAN v5 FIND V(a) AT 5m
+.meas TRAN v6 FIND V(a) AT 6m
+.end

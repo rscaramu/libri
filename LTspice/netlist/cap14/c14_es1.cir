@@ -1,0 +1,10 @@
+* Esercizio 14.1 - polarizzazione a 1 mA
+Vcc vcc 0 9
+R1 vcc b 47k
+R2 b 0 10k
+Rc vcc c 4.7k
+Re e 0 1k
+Q1 c b e 2N3904
+.lib standard.bjt
+.op
+.end

@@ -1,0 +1,6 @@
+* Soluzione 1.4 - partitore da 9 V a 3,3 V
+V1 in 0 9
+R1 in out 17.2727k
+R2 out 0 10k
+.op
+.end

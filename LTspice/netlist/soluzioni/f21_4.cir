@@ -1,0 +1,17 @@
+* Soluzione 21.4 - tempi di un invertitore a MOSFET
+Vdd vdd 0 10
+Vin in 0 PULSE(0 10 1u 1n 1n 5u 10u)
+RD vdd out 1k
+M1 out in 0 2N7002
+CL out 0 100p
+.lib standard.mos
+.tran 0 20u 0 1n
+.meas TRAN tf TRIG V(out) VAL=9 FALL=1
++ TARG V(out) VAL=1 FALL=1
+.meas TRAN tr TRIG V(out) VAL=1 RISE=1
++ TARG V(out) VAL=9 RISE=1
+.meas TRAN tphl TRIG V(in) VAL=5 RISE=1
++ TARG V(out) VAL=5 FALL=1
+.meas TRAN tplh TRIG V(in) VAL=5 FALL=1
++ TARG V(out) VAL=5 RISE=1
+.end

@@ -1,0 +1,11 @@
+* Soluzione 26.6 - modulo e fase del ritardo puro
+V1 in 0 0 AC 1
+E1 out 0 in 0 Laplace=exp(-s*0.5m)
+R1 out 0 1k
+.ac list 100 1k 1.5k
+.meas AC m1k FIND mag(V(out)) AT 1k
+.meas AC p100 FIND ph(V(out)) AT 100
+.meas AC p1k FIND ph(V(out)) AT 1k
+.meas AC p15 FIND ph(V(out)) AT 1.5k
+.options meascplxfmt=cartesian
+.end

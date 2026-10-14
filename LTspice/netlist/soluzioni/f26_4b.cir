@@ -1,0 +1,14 @@
+* Soluzione 26.4 - modello senza resistenza d'uscita
+Vs s 0 0 AC 1
+Rs s in 1k
+C1 in b 10u
+R1 b 0 47k
+R2 b 0 10k
+Rpi b 0 2.8k
+G1 c 0 b 0 0.110
+Rc c 0 2.2k
+C2 c out 10u
+RL out 0 10k
+.ac list 999 1k 1.001k
+.meas AC g FIND mag(V(out)) AT 1k
+.end

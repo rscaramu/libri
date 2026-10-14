@@ -1,0 +1,20 @@
+* Ziegler-Nichols: prova del guadagno critico
+.param k=8
+Vr r 0 PULSE(0 0.1 1 1m 1m 100 200)
+Bu u 0 V=k*(V(r)-V(y))
+R1 u a 1
+C1 a 0 1
+E2 b 0 a 0 1
+R2 b c 1
+C2 c 0 1
+E3 d 0 c 0 1
+R3 d y 1
+C3 y 0 1
+.step param k list 6 8 10
+.tran 0 60 0 5m
+.meas TRAN pp1 PP V(y) FROM 20 TO 30
+.meas TRAN pp2 PP V(y) FROM 50 TO 60
+.meas TRAN rap PARAM pp2/pp1
+.meas TRAN tc TRIG V(y) VAL=0.0889 RISE=8
++ TARG V(y) VAL=0.0889 RISE=9
+.end

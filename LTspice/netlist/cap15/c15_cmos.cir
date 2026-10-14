@@ -1,0 +1,11 @@
+* Invertitore CMOS: caratteristica di trasferimento
+Vdd vdd 0 5
+Vin in 0 0
+Mn out in 0 0 nmos1 W=2u L=1u
+Mp out in vdd vdd pmos1 W=5u L=1u
+.model nmos1 NMOS(Level=1 VTO=0.7 KP=100u LAMBDA=0.02)
+.model pmos1 PMOS(Level=1 VTO=-0.7 KP=40u LAMBDA=0.02)
+.dc Vin 0 5 1m
+.meas DC vsoglia WHEN V(out)=V(in)
+.meas DC guadagno DERIV V(out) AT 2.5
+.end

@@ -1,0 +1,12 @@
+* Esercizio 11.1 - distorsione d'incrocio in classe B
+Vcc vcc 0 12
+Vee vee 0 -12
+Vin in 0 SINE(0 5 1k)
+Q1 vcc in out 2N3904
+Q2 vee in out 2N3906
+RL out 0 100
+.lib standard.bjt
+.options plotwinsize=0
+.tran 0 5m 0 1u
+.four 1k 9 4 V(out)
+.end

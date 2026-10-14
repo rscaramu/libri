@@ -1,0 +1,13 @@
+* Margini di un anello con tre poli
+.param k=20
+V1 in 0 0 AC 1
+E1 t 0 in 0 Laplace=k/((1+s/(2*pi*1k))*(1+s/(2*pi*10k))
++ *(1+s/(2*pi*100k)))
+.step param k list 20 100
+.ac dec 200 10 10Meg
+.meas AC fc WHEN mag(V(t))=1
+.meas AC pm FIND 180+ph(V(t)) WHEN mag(V(t))=1
+.meas AC f180 WHEN im(V(t))=0 RISE=1
+.meas AC gm FIND -20*log10(mag(V(t))) WHEN im(V(t))=0 RISE=1
+.options meascplxfmt=cartesian
+.end

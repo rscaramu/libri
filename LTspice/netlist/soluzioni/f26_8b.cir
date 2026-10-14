@@ -1,0 +1,17 @@
+* Soluzione 26.8 - Butterworth dell'ottavo ordine con RLC
+.subckt cella in out q=1
+R1 in a {62.83/q}
+L1 a out 10m
+C1 out 0 2.533u
+.ends
+V1 in 0 PULSE(0 1 1m 1u 1u 1 2)
+X1 in a1 cella q=0.5098
+E1 b1 0 a1 0 1
+X2 b1 a2 cella q=0.6013
+E2 b2 0 a2 0 1
+X3 b2 a3 cella q=0.9000
+E3 b3 0 a3 0 1
+X4 b3 out cella q=2.5629
+.tran 0 100m 0 2u
+.meas TRAN pk MAX V(out)
+.end

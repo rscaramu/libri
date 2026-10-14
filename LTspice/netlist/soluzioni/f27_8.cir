@@ -1,0 +1,17 @@
+* Soluzione 27.8 - proiettile con resistenza dell'aria
+.param g=9.81 v0=50 kd=0.005
+Bx 0 x I=V(vx) Rpar=1T
+Cx x 0 1
+By 0 y I=V(vy) Rpar=1T
+Cy y 0 1
+Bvx 0 vx I=-kd*sqrt(V(vx)**2+V(vy)**2)*V(vx) Rpar=1T
+Cvx vx 0 1
+Bvy 0 vy I=-g-kd*sqrt(V(vx)**2+V(vy)**2)*V(vy) Rpar=1T
+Cvy vy 0 1
+.ic V(x)=0 V(y)=0 V(vx)={v0*cos(pi/4)} V(vy)={v0*sin(pi/4)}
+.step param kd list 0 0.005
+.tran 0 8 0 1m
+.meas TRAN gitt FIND V(x) WHEN V(y)=0 FALL=1 TD=0.1
+.meas TRAN hmax MAX V(y)
+.meas TRAN tvolo WHEN V(y)=0 FALL=1 TD=0.1
+.end

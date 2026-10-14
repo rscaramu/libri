@@ -1,0 +1,17 @@
+* Soluzione 21.6 - risonanza RLC con tre misure
+V1 in 0 0 AC 1
+L1 in a 10m Rser=0
+C1 a out 253.3n
+R1 out 0 20
+.ac dec 500 100 100k
+.meas AC gmax MAX mag(V(out))
+.meas AC f0a WHEN mag(V(out))=gmax*0.99999
+.meas AC f0b WHEN ph(V(out))=0
+.meas AC banda TRIG mag(V(out))=gmax/sqrt(2) RISE=1
++ TARG mag(V(out))=gmax/sqrt(2) FALL=1
+.meas AC fl WHEN mag(V(out))=gmax/sqrt(2) RISE=1
+.meas AC fh WHEN mag(V(out))=gmax/sqrt(2) FALL=1
+.meas AC f0c PARAM sqrt(fl*fh)
+.meas AC qf PARAM f0b/banda
+.options meascplxfmt=cartesian
+.end

@@ -1,0 +1,16 @@
+* Soluzione 34.8 - attenuazione e rumore per l'ADC
+Vcc vcc 0 15
+Vee vee 0 -15
+Vcm cm 0 2.5
+Vd cm p1 0 AC 1
+Rsp p1 p 175
+Rsn cm n 175
+X1 p n out vcc vee catena
+.include catena.sub
+.lib LTC.lib
+.noise V(out) Vd dec 50 0.1 10k
+.meas NOISE g1 FIND V(onoise)/V(inoise) AT 1
+.meas NOISE a500 FIND 20*log10(g1*V(inoise)/V(onoise)) AT 500
+.meas NOISE a950 FIND 20*log10(g1*V(inoise)/V(onoise)) AT 950
+.meas NOISE vno INTEG V(onoise) FROM 0.1 TO 10k
+.end

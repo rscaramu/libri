@@ -1,0 +1,21 @@
+* Esercizio 29.2 - forno con regolatore PI
+.param kp=20 ti=250 aw=0
+.func sig(x) {0.5*(1+tanh(x))}
+Vr r 0 PWL(0 25 10 25 10.01 150)
+Buv uv 0 V=kp*(V(r)-V(t))+V(i)
+Bu u 0 V=dnlim(uplim(V(uv),400,5),0,5)
+Bi 0 i I=(kp/ti)*(V(r)-V(t))*(1-aw*sig((V(uv)-400)/2)
++ *sig((V(r)-V(t))/0.5)) Rpar=1T
+Ci i 0 1
+Bh 0 t I=V(u)
+Cth t amb 500
+Rth t amb 0.5
+Vamb amb 0 25
+.ic V(t)=25 V(i)=0
+.step param aw list 0 1
+.tran 0 1500 0 0.5
+.meas TRAN tmax MAX V(t)
+.meas TRAN t145 WHEN V(t)=145 RISE=1
+.meas TRAN tfin FIND V(t) AT 1500
+.meas TRAN imax MAX V(i)
+.end

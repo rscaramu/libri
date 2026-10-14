@@ -1,0 +1,26 @@
+* Esercizio 33.3 - linea RC: modello a celle
+V1 in 0 PULSE(0 1 0 1p 1p 1 2)
+U1 in u 0 FILO L=1m
+.model FILO URC(RPERL=100k CPERL=100n FMAX=100G)
+.subckt cella a b n=1
+R1 a b {100/n}
+C1 b 0 {100p/n}
+.ends
+X1 in a1 cella n=3
+X2 a1 a2 cella n=3
+X3 a2 a3 cella n=3
+X11 in b1 cella n=10
+X12 b1 b2 cella n=10
+X13 b2 b3 cella n=10
+X14 b3 b4 cella n=10
+X15 b4 b5 cella n=10
+X16 b5 b6 cella n=10
+X17 b6 b7 cella n=10
+X18 b7 b8 cella n=10
+X19 b8 b9 cella n=10
+X20 b9 b10 cella n=10
+.tran 0 50n 0 10p
+.meas TRAN tu WHEN V(u)=0.5 RISE=1
+.meas TRAN t3 WHEN V(a3)=0.5 RISE=1
+.meas TRAN t10 WHEN V(b10)=0.5 RISE=1
+.end

@@ -1,0 +1,9 @@
+* Caratteristica di un diodo con scansione per decadi
+I1 0 a 1m
+D1 a 0 1N4148
+.lib standard.dio
+.dc dec I1 1n 100m 20
+.meas DC v1u FIND V(a) AT 1u
+.meas DC v1m FIND V(a) AT 1m
+.meas DC v10m FIND V(a) AT 10m
+.end

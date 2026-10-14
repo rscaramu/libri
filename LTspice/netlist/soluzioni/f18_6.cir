@@ -1,0 +1,8 @@
+* Soluzione 18.6 - polinomio con VALUE
+V1 a 0 1
+E4 o4 0 VALUE={1+2*V(a)+0.5*V(a)**2}
+.dc V1 list 0 1 3
+.meas DC y0 FIND V(o4) AT 0
+.meas DC y1 FIND V(o4) AT 1
+.meas DC y3 FIND V(o4) AT 3
+.end

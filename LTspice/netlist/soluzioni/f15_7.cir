@@ -1,0 +1,13 @@
+* Soluzione 15.7 - carico induttivo con diodo di ricircolo
+Vdd vdd 0 24
+Rload vdd x 4.8
+L1 x d 100u
+D1 d vdd MURS120
+M1 d g 0 IRF530
+Rg gin g 10
+Vg gin 0 PULSE(0 10 1u 10n 10n 20u 40u)
+.lib standard.mos
+.lib standard.dio
+.tran 0 40u 0 1n
+.meas TRAN vmax MAX V(d)
+.end

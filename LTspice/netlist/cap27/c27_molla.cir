@@ -1,0 +1,13 @@
+* Massa, molla e smorzatore: analogia forza-corrente
+.param m=1 k=100 c=2
+If 0 v PWL(0 0 1m 1)
+Cm v 0 {m}
+Lk v 0 {1/k}
+Rc v 0 {1/c}
+Bx x 0 V=I(Lk)/k
+.tran 0 5 0 1m
+.meas TRAN xmax MAX V(x)
+.meas TRAN xfin FIND V(x) AT 5
+.meas TRAN per TRIG V(v) VAL=0 FALL=1
++ TARG V(v) VAL=0 FALL=2
+.end

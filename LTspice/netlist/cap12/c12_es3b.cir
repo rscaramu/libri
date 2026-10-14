@@ -1,0 +1,10 @@
+* Esercizio 12.3 - anello con condizione iniziale asimmetrica
+A1 n3 0 0 0 0 n1 0 0 BUF Td=10n Trise=2n
+A2 n1 0 0 0 0 n2 0 0 BUF Td=10n Trise=2n
+A3 n2 0 0 0 0 n3 0 0 BUF Td=10n Trise=2n
+.ic V(n1)=1 V(n2)=0 V(n3)=0
+.tran 0 2u 0 0.1n
+.meas TRAN t1 WHEN V(n1)=0.5 RISE=10
+.meas TRAN t2 WHEN V(n1)=0.5 RISE=20
+.meas TRAN freq PARAM 10/(t2-t1)
+.end

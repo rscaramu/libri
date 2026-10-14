@@ -1,0 +1,6 @@
+* Interpolazione con table()
+.param t=table(2.5, 0,0, 1,10, 4,40)
+V1 x 0 {t}
+R1 x 0 1k
+.op
+.end

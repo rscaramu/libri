@@ -1,0 +1,12 @@
+* Esercizio 24.2 - rumore filtrato
+Vr r 0 PWL file=rumore.txt
+R1 r rf 470
+C1 rf 0 100n
+Vq q 0 PWL file=quadra.txt
+R2 q qf 470
+C2 qf 0 100n
+.tran 0 10m 0 1u
+.meas TRAN rin RMS V(r) FROM 1m TO 10m
+.meas TRAN rout RMS V(rf) FROM 1m TO 10m
+.meas TRAN att PARAM rout/rin
+.end

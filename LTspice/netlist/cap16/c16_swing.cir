@@ -1,0 +1,13 @@
+* Escursione d'uscita del LT1001 con carico di 2 kohm
+Vcc vcc 0 15
+Vee vee 0 -15
+Vin in 0 0
+XU1 in fb vcc vee out LT1001
+R1 fb 0 1k
+R2 out fb 9k
+RL out 0 2k
+.lib LTC.lib
+.dc Vin -2 2 1m
+.meas DC vpos MAX V(out)
+.meas DC vneg MIN V(out)
+.end

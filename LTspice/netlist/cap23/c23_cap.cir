@@ -1,0 +1,8 @@
+* Condensatore con coefficiente di temperatura
+V2 in 0 0 AC 1
+R2 in out 1k
+C2 out 0 {100n*(1-750e-6*(temp-25))}
+.step temp list -40 25 125
+.ac dec 100 100 100k
+.meas AC fc WHEN mag(V(out))=1/sqrt(2)
+.end

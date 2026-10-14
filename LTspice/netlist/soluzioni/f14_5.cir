@@ -1,0 +1,10 @@
+* Soluzione 14.5 - fT in funzione della corrente
+.param ib=10u
+Ib 0 b {ib} AC 1
+Vce c 0 5
+Q1 c b 0 2N3904
+.lib standard.bjt
+.step param ib list 1u 3u 10u 30u 100u
+.ac dec 50 1k 10G
+.meas AC ft WHEN mag(Ic(Q1))=1
+.end

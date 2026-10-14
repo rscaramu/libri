@@ -1,0 +1,14 @@
+* Soluzione 27.4 - modello preda-predatore
+.param al=1 be=0.1 de=0.075 ga=1.5
+Bx 0 x I=al*V(x)-be*V(x)*V(y) Rpar=1T
+Cx x 0 1
+By 0 y I=de*V(x)*V(y)-ga*V(y) Rpar=1T
+Cy y 0 1
+.ic V(x)=10 V(y)=5
+.tran 0 50 0 1m
+.meas TRAN per TRIG V(x) VAL=10 RISE=2
++ TARG V(x) VAL=10 RISE=3
+.meas TRAN xmx1 MAX V(x) FROM 0 TO 10
+.meas TRAN xmx5 MAX V(x) FROM 40 TO 50
+.meas TRAN ymx MAX V(y)
+.end

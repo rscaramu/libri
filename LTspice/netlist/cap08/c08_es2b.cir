@@ -1,0 +1,7 @@
+* Esercizio 8.2 - carica a corrente costante con uic
+I1 0 c 1m
+C1 c 0 10u
+Rleak c 0 100Meg
+.tran 0 100m 0 10u uic
+.meas TRAN t5 WHEN V(c)=5
+.end

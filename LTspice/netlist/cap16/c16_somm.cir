@@ -1,0 +1,14 @@
+* Sommatore invertente
+Vcc vcc 0 15
+Vee vee 0 -15
+V1 a 0 1
+V2 b 0 0.5
+V3 c 0 -2
+R1 a n 10k
+R2 b n 20k
+R3 c n 10k
+Rf out n 10k
+XU1 0 n vcc vee out LT1001
+.lib LTC.lib
+.op
+.end

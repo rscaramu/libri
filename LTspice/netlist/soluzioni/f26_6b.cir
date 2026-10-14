@@ -1,0 +1,9 @@
+* Soluzione 26.6 - ritardo con una finestra troppo corta
+V1 in 0 PULSE(0 1 0 1u 1u 1m 4m)
+E1 out 0 in 0 Laplace=exp(-s*0.5m) window=0.2m nfft=1024
+R1 out 0 1k
+.tran 0 4m 0 1u
+.meas TRAN vmx MAX V(out)
+.meas TRAN td WHEN V(out)=0.5 RISE=1
+.meas TRAN v02 FIND V(out) AT 0.2m
+.end

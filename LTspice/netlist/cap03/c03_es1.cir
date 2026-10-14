@@ -1,0 +1,9 @@
+* Esercizio 3.1 - partitore a tre resistori
+.param Valim=15
+V1 in 0 {Valim}
+R1 in n1 10k
+R2 n1 n2 22k
+R3 n2 0
++ 47k
+.op
+.end

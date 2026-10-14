@@ -1,0 +1,11 @@
+* Esercizio 16.3 - Schmitt non invertente con level2
+Vcc vcc 0 5
+Vee vee 0 -5
+Vin in 0 0
+R1 in p 10k
+R2 out p 100k
+XU1 p 0 vcc vee out level2 Avol=1Meg GBW=10Meg Slew=10Meg
+.lib UniversalOpAmp2.lib
+.dc Vin -1 1 0.1m
+.meas DC vsup WHEN V(out)=0 RISE=1
+.end

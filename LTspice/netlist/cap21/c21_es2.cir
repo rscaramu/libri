@@ -1,0 +1,19 @@
+* Esercizio 21.2 - frequenza di un astabile
+Vcc vcc 0 15
+Vee vee 0 -15
+XU1 p n vcc vee out level2 Avol=1Meg GBW=10Meg
++ Slew=10Meg
+R1 out p 10k
+R2 p 0 10k
+R3 out n 10k
+C1 n 0 100n
+.lib UniversalOpAmp2.lib
+.ic V(n)=0.1
+.tran 0 20m 0 1u
+.meas TRAN tr WHEN V(out)=0 RISE=1 TD=5m
+.meas TRAN per TRIG V(out) VAL=0 RISE=1 TD=5m
++ TARG V(out) VAL=0 RISE=2 TD=5m
+.meas TRAN thi TRIG AT=tr TARG V(out) VAL=0 FALL=1 TD=tr
+.meas TRAN f PARAM 1/per
+.meas TRAN duty PARAM thi/per
+.end

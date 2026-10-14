@@ -1,0 +1,9 @@
+* Esercizio 4.3 - oscillazione LC libera
+C1 a 0 1u ic=5
+L1 a 0 1m Rser=0
+C2 b 0 1u ic=5
+L2 b 0 1m Rser=1
+.tran 0 2.2m 0 0.2u uic
+.meas TRAN pa MAX V(a) FROM 1.9m TO 2.1m
+.meas TRAN pb MAX V(b) FROM 1.9m TO 2.1m
+.end

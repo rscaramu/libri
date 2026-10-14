@@ -1,0 +1,14 @@
+* Soluzione 22.8 - caso peggiore di un passa-banda
+.param run=0
+.func bit(n,i) {floor(n/pow(2,i))-2*floor(n/pow(2,i+1))}
+.func wc(nom,tol,i)
++ {if(run==0,nom,if(bit(run-1,i),nom*(1+tol),nom*(1-tol)))}
+V1 in 0 0 AC 1
+L1 in a {wc(10m,0.1,0)}
+C1 a out {wc(2.297u,0.1,1)}
+R1 out 0 6.3
+.step param run 0 4 1
+.ac list 990 1k 1.01k
+.meas AC g FIND mag(V(out)) AT 1k
+.options meascplxfmt=cartesian
+.end

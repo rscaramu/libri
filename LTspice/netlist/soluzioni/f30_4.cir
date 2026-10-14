@@ -1,0 +1,31 @@
+* Soluzione 30.4 - convertitore flash a tre bit
+Vin in 0 PWL(0 0 8u 8)
+A1 in r1 0 0 0 0 c1 0 SCHMITT Vt=0 Vh=1m Vhigh=1
+A2 in r2 0 0 0 0 c2 0 SCHMITT Vt=0 Vh=1m Vhigh=1
+A3 in r3 0 0 0 0 c3 0 SCHMITT Vt=0 Vh=1m Vhigh=1
+A4 in r4 0 0 0 0 c4 0 SCHMITT Vt=0 Vh=1m Vhigh=1
+A5 in r5 0 0 0 0 c5 0 SCHMITT Vt=0 Vh=1m Vhigh=1
+A6 in r6 0 0 0 0 c6 0 SCHMITT Vt=0 Vh=1m Vhigh=1
+A7 in r7 0 0 0 0 c7 0 SCHMITT Vt=0 Vh=1m Vhigh=1
+Vr r7 0 6.5
+Rl1 r7 r6 1k
+Rl2 r6 r5 1k
+Rl3 r5 r4 1k
+Rl4 r4 r3 1k
+Rl5 r3 r2 1k
+Rl6 r2 r1 1k
+Rl7 r1 0 0.5k
+Bn n 0 V=V(c1)+V(c2)+V(c3)+V(c4)+V(c5)+V(c6)+V(c7)
+Bb2 b2 0 V=V(c4)
+Bb1 b1 0 V=V(c6)+V(c2)*(1-V(c4))
+Bb0 b0 0 V=V(c1)-V(c2)+V(c3)-V(c4)+V(c5)-V(c6)+V(c7)
+.tran 0 8u 0 1n
+.meas TRAN n1 FIND V(n) AT 1.2u
+.meas TRAN n4 FIND V(n) AT 4.2u
+.meas TRAN n7 FIND V(n) AT 7.8u
+.meas TRAN tr1 WHEN V(c1)=0.5 RISE=1
+.meas TRAN tr7 WHEN V(c7)=0.5 RISE=1
+.meas TRAN b2 FIND V(b2) AT 5.2u
+.meas TRAN b1 FIND V(b1) AT 5.2u
+.meas TRAN b0 FIND V(b0) AT 5.2u
+.end

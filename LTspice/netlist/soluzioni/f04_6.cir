@@ -1,0 +1,7 @@
+* Soluzione 4.6 - accensione di un circuito RL
+V1 a 0 PULSE(0 12 1m 1u 1u 1 2)
+L1 a 0 10m Rser=2
+.tran 0 30m 0 5u
+.meas TRAN i1 FIND I(L1) AT 6m
+.meas TRAN ireg FIND I(L1) AT 30m
+.end

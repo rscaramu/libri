@@ -1,0 +1,14 @@
+* Esercizio 23.3 - polarizzazione piu stabile
+Vcc vcc 0 12
+R1 vcc b 22k
+R2 b 0 12k
+Q1 c b e 2N3904
+Rc vcc c 1.5k
+Re e 0 1.2k
+.lib standard.bjt
+.dc temp -40 125 1
+.meas DC ia FIND Ic(Q1) AT -40
+.meas DC i27 FIND Ic(Q1) AT 27
+.meas DC ib FIND Ic(Q1) AT 125
+.meas DC var PARAM (ib-ia)/i27
+.end

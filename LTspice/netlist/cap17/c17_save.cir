@@ -1,0 +1,13 @@
+* Nodi interni e nodi globali
+V1 vdd 0 5
+.global vdd
+X1 out stadio
+X2 out2 stadio
+.subckt stadio o
+R1 vdd m 1k
+R2 m 0 1k
+R3 m o 1k
+.ends
+.save V(*) V(x1:*)
+.op
+.end

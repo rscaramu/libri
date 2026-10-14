@@ -1,0 +1,9 @@
+* Corrente di drain del JFET 2N3819
+Vds d 0 10
+Vgs g 0 0
+J1 d g 0 2N3819
+.lib standard.jft
+.dc Vgs -3 0 0.01
+.meas DC idss FIND Id(J1) AT 0
+.meas DC id1 FIND Id(J1) AT -1
+.end

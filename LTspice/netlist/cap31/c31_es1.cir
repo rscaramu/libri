@@ -1,0 +1,15 @@
+* Esercizio 31.1 - trasformatore con nucleo saturabile
+.param ph=0 n=230/12
+B1 a 0 V=if(time>10m,325*sin(2*pi*50*(time-10m)+ph*pi/180),0)
+R1 a p 2
+L1 p 0 Hc=40 Bs=1.6 Br=1.0 A=1e-3 Lm=0.2 Lg=0 N=1000
+E2 s 0 p 0 {1/n}
+Vs s s2 0
+RL s2 0 10
+F1 p 0 Vs {1/n}
+.step param ph list 0 90
+.tran 0 200m 0 20u
+.meas TRAN ipk MAX abs(I(R1)) FROM 0 TO 60m
+.meas TRAN v2 RMS V(s2) FROM 160m TO 200m
+.meas TRAN i1 RMS I(R1) FROM 160m TO 200m
+.end

@@ -1,0 +1,14 @@
+* Esercizio 33.2 - adattatore a quarto d'onda
+.param z0=50
+V1 g 0 AC 2
+Rs g in 50
+T1 in 0 out 0 Z0={z0} F=100Meg NL=0.25
+RL out 0 12.5
+.step param z0 list 25 50
+.ac lin 201 50Meg 150Meg
+.meas AC zin FIND mag(V(in)/I(Rs)) AT 100Meg
+.meas AC pl FIND mag(V(out))**2/12.5/2 AT 100Meg
+.meas AC gmax MAX mag((V(in)/I(Rs)-50)/(V(in)/I(Rs)+50))
++ FROM 90Meg TO 110Meg
+.options meascplxfmt=cartesian
+.end

@@ -1,0 +1,19 @@
+* Esercizio 34.1 - filtro di Bessel e di Butterworth
+.param b=0
+.param c1={if(b,144.5n,220n)} c2={if(b,108.3n,110n)}
+Vcc vcc 0 15
+Vee vee 0 -15
+Vcm cm 0 2.5
+Vd p1 cm PULSE(0 10m 1m 1u 1u 1 2)
+Rsp p1 p 175
+Rsn cm n 175
+X1 p n out vcc vee catena cs1={c1} cs2={c2}
+.include catena.sub
+.lib LTC.lib
+.step param b list 0 1
+.tran 0 30m 0 10u
+.meas TRAN vf FIND V(out) AT 30m
+.meas TRAN vmax MAX V(out)
+.meas TRAN ov PARAM 100*(vmax-vf)/vf
+.meas TRAN ts WHEN abs(V(out)-vf)=0.01*vf FALL=LAST
+.end

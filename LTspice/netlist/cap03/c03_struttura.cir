@@ -1,0 +1,10 @@
+* Ponte di Wheatstone
+* alimentato a 10 V, bilanciato per Rx = 1 kohm
+Valim top 0 10          ; alimentazione del ponte
+R1 top a 1k
+R2 top b 1k
+R3 a 0 1k
+Rx b 0
++ 1.02k                 ; resistore da misurare
+.op
+.end

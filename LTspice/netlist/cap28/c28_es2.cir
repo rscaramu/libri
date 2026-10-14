@@ -1,0 +1,18 @@
+* Esercizio 28.2 - anello con tre poli chiuso
+.param k=100
+Vin in 0 PULSE(0 1m 0 1n 1n 1 2)
+E1 a 0 in out {k}
+R1 a b 1k
+C1 b 0 {1/(2*pi*1k*1k)}
+E2 c 0 b 0 1
+R2 c d 1k
+C2 d 0 {1/(2*pi*10k*1k)}
+E3 e 0 d 0 1
+R3 e out 1k
+C3 out 0 {1/(2*pi*100k*1k)}
+.step param k list 100 120 130
+.tran 0 2m 0 0.1u
+.meas TRAN pp1 PP V(out) FROM 0.5m TO 1m
+.meas TRAN pp2 PP V(out) FROM 1.5m TO 2m
+.meas TRAN rap PARAM pp2/pp1
+.end

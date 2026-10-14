@@ -1,0 +1,11 @@
+* Esercizio 10.1 - inseguitore di emettitore
+Vcc vcc 0 12
+Vs s 0 6
+Rs s b 10k
+R1 vcc b 47k
+R2 b 0 47k
+Q1 vcc b e 2N3904
+Re e 0 1k
+.lib standard.bjt
+.tf V(e) Vs
+.end

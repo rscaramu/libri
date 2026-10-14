@@ -1,0 +1,10 @@
+* Soluzione 9.6 - passa-banda con fattore di merito piu' alto
+V1 in 0 0 AC 1
+L1 in a 10m Rser=0
+C1 a out 253.3n
+R1 out 0 5
+.ac dec 2000 1k 10k
+.meas AC gmax MAX mag(V(out))
+.meas AC banda TRIG mag(V(out))=gmax/sqrt(2) RISE=1
++ TARG mag(V(out))=gmax/sqrt(2) FALL=1
+.end

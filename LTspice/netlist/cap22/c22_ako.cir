@@ -1,0 +1,11 @@
+* Tolleranza del guadagno con un modello ako
+.model QX ako:2N3904 NPN(BF={mc(300,0.5)})
+Vcc vcc 0 12
+Rb vcc b 1Meg
+Q1 c b 0 QX
+Rc vcc c 1k
+.lib standard.bjt
+.step param run 1 4 1
+.tran 1u
+.meas TRAN ic FIND Ic(Q1) AT 0
+.end

@@ -1,0 +1,12 @@
+* Soluzione 33.6 - rimbalzi su una linea aperta
+V1 g 0 PULSE(0 2 1n 0.1n 0.1n 1u 2u)
+Rs g in 10
+T1 in 0 out 0 Z0=50 Td=5n
+RL out 0 1Meg
+.tran 0 150n 0 10p
+.meas TRAN v1 FIND V(out) AT 8n
+.meas TRAN v2 FIND V(out) AT 18n
+.meas TRAN v3 FIND V(out) AT 28n
+.meas TRAN vi1 FIND V(in) AT 3n
+.meas TRAN ts WHEN V(out)=2.04 FALL=LAST
+.end

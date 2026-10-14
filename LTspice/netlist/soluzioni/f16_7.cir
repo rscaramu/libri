@@ -1,0 +1,19 @@
+* Soluzione 16.7 - raddrizzatore di precisione
+Vcc vcc 0 15
+Vee vee 0 -15
+Vin in 0 SINE(0 0.2 1k)
+R1 in n 10k
+R2 out n 10k
+D1 a out 1N4148
+D2 n a 1N4148
+XU1 0 n vcc vee a LT1001
+RL out 0 10k
+D3 in k 1N4148
+R3 k 0 10k
+.lib LTC.lib
+.lib standard.dio
+.tran 0 5m 0 1u
+.meas TRAN vp MAX V(out) FROM 3m TO 5m
+.meas TRAN vn MIN V(out) FROM 3m TO 5m
+.meas TRAN vk MAX V(k) FROM 3m TO 5m
+.end

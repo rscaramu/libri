@@ -1,0 +1,13 @@
+* Esercizio 25.2 - LED comportamentale e modello D
+.param vt=0.025852 n=2 is=1m*exp(-1.8/(n*vt))
+I1 0 a 1m
+B1 a k I=is*(exp(V(a,k)/(n*vt))-1) Rpar=1G
+Rs k m 5
+D2 m 0 DLED
+.model DLED D(Is={is} N=2 Rs=5)
+.dc I1 0.1m 20m 0.1m
+.meas DC vb1 FIND V(a,m) AT 1m
+.meas DC vd1 FIND V(m) AT 1m
+.meas DC vb20 FIND V(a,m) AT 20m
+.meas DC vd20 FIND V(m) AT 20m
+.end

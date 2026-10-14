@@ -1,0 +1,13 @@
+* Soluzione 20.6 - VAF e resistenza d'uscita dello specchio
+Vcc vcc 0 12
+Rref vcc a 11.3k
+Q1 a a 0 2N3904
+Q2 out a 0 2N3904
+Vout vcc out 0
+.lib standard.bjt
+.step NPN 2N3904(VAF) list 20 50 100 200
+.dc Vout 0 6 0.1
+.meas DC i6 FIND Ic(Q2) AT 6
+.meas DC i11 FIND Ic(Q2) AT 1
+.meas DC rout PARAM 5/(i11-i6)
+.end

@@ -1,0 +1,10 @@
+* Esercizio 1.2 - effetto di carico del voltmetro
+V1 a 0 5
+R1 a b 1k
+R2 b 0 10k
+V2 c 0 5
+R3 c d 1k
+R4 d 0 10k
+Rvolt d 0 100k
+.op
+.end

@@ -1,0 +1,7 @@
+* Soluzione 7.6 - caratteristiche d'ingresso del 2N3904
+Vbe b 0 0.6
+Vce c 0 5
+Q1 c b 0 2N3904
+.lib standard.bjt
+.dc Vbe 0 0.8 0.005 Vce list 0.2 1 5
+.end

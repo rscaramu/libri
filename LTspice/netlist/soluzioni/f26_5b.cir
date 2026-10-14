@@ -1,0 +1,11 @@
+* Soluzione 26.5 - Chebyshev: risposta in frequenza
+.param w1=2*pi*9932.3 q1=3.5590 w2=2*pi*5285.8 q2=0.78455
+V1 in 0 0 AC 1
+E1 a 0 in 0 Laplace=0.89125/(1+s/(w1*q1)+(s/w1)**2)
++ /(1+s/(w2*q2)+(s/w2)**2)
+.ac dec 500 100 100k
+.meas AC gmax MAX mag(V(a))
+.meas AC gmin MIN mag(V(a)) FROM 100 TO 9.9k
+.meas AC g10k FIND mag(V(a)) AT 10k
+.options meascplxfmt=cartesian
+.end

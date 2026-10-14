@@ -1,0 +1,19 @@
+* Esercizio 34.1 - risposta in frequenza dei due filtri
+.param b=0
+.param c1={if(b,144.5n,220n)} c2={if(b,108.3n,110n)}
+Vcc vcc 0 15
+Vee vee 0 -15
+Vcm cm 0 2.5
+Vd p1 cm 0 AC 1
+Rsp p1 p 175
+Rsn cm n 175
+X1 p n out vcc vee catena cs1={c1} cs2={c2}
+.include catena.sub
+.lib LTC.lib
+.step param b list 0 1
+.ac dec 50 0.1 10k
+.meas AC g1 FIND mag(V(out)) AT 1
+.meas AC f3 WHEN mag(V(out))=g1/sqrt(2)
+.meas AC a1k FIND -20*log10(mag(V(out))/g1) AT 1k
+.options meascplxfmt=cartesian
+.end

@@ -1,0 +1,25 @@
+* Soluzione 33.5 - oscillatore con margine ridotto
+.param r=10k c=15.9n
+Vcc vcc 0 15
+Vee vee 0 -15
+R1 out a {r}
+C1 a p {c}
+R2 p 0 {r}
+C2 p 0 {c}
+Rg n 0 10k
+Rf1 out m 12k
+Rf2 m n 10k
+D1 m n 1N4148
+D2 n m 1N4148
+XU1 p n vcc vee out level2 Avol=1Meg GBW=10Meg Slew=10Meg
+.lib UniversalOpAmp2.lib
+.lib standard.dio
+.ic V(p)=10m
+.tran 0 200m 0 2u
+.meas TRAN t1 WHEN V(out)=0 RISE=150
+.meas TRAN t2 WHEN V(out)=0 RISE=170
+.meas TRAN f PARAM 20/(t2-t1)
+.meas TRAN vpk MAX V(out) FROM 180m TO 200m
+.four 996.74 5 10 V(out)
+.meas TRAN ton WHEN V(out)=1.4 RISE=1
+.end

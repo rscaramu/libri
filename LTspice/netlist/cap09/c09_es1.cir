@@ -1,0 +1,9 @@
+* Esercizio 9.1 - filtro passa-alto
+V1 in 0 0 AC 1
+C1 in out 159.15n
+R1 out 0 10k
+.options meascplxfmt=cartesian
+.ac dec 50 1 10k
+.meas AC fc WHEN mag(V(out))=1/sqrt(2)
+.meas AC fase FIND ph(V(out)) AT 100
+.end

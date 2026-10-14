@@ -1,0 +1,11 @@
+* Soluzione 10.5 - legge kT/C
+V1 in 0 0 AC 1
+R1 in a 1k
+R2 a 0 1k
+C1 a 0 10n
+R3 in b 1k
+R4 b 0 1k
+C2 b 0 100p
+.noise V(a) V1 dec 20 1 10G
+.meas NOISE va INTEG V(onoise)
+.end

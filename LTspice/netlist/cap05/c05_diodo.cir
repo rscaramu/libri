@@ -1,0 +1,7 @@
+* Diodo polarizzato
+V1 a 0 5
+R1 a k 1k
+D1 k 0 1N4148
+.lib standard.dio
+.op
+.end

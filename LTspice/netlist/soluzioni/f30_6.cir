@@ -1,0 +1,12 @@
+* Soluzione 30.6 - resistenza d'uscita di una porta
+.param ro=1
+Vin in 0 PULSE(0 5 1u 1n 1n 50u 100u)
+A1 in 0 0 0 0 0 o 0 BUF Vhigh=5 Rout={ro}
+R1 o c 100
+C1 c 0 100n
+.step param ro list 1 25 100
+.tran 0 40u 0 10n
+.meas TRAN t63 WHEN V(c)=3.16 RISE=1
+.meas TRAN tau PARAM t63-1u
+.meas TRAN vo FIND V(o) AT 1.1u
+.end

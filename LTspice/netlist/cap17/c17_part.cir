@@ -1,0 +1,10 @@
+* Sottocircuito parametrico
+V1 in 0 10
+X1 in out 0 partitore
+X2 in out2 0 partitore alto=1k basso=3k
+.subckt partitore a b c alto=9k basso=1k
+R1 a b {alto}
+R2 b c {basso}
+.ends partitore
+.op
+.end

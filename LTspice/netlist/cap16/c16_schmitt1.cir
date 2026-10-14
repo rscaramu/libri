@@ -1,0 +1,11 @@
+* Trigger di Schmitt: ingresso crescente
+Vcc vcc 0 15
+Vee vee 0 -15
+Vin in 0 0
+XU1 p in vcc vee out LT1001
+R1 out p 100k
+R2 p 0 10k
+.lib LTC.lib
+.dc Vin -3 3 1m
+.meas DC vsup WHEN V(out)=0 FALL=1
+.end

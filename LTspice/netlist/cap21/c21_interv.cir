@@ -1,0 +1,16 @@
+* Misure su un intervallo: raddrizzatore a semionda
+V1 a 0 SINE(0 10 1k)
+D1 a b 1N4148
+R1 b 0 1k
+.lib standard.dio
+.tran 0 5m 0 1u
+.meas TRAN vavg AVG V(b) FROM 1m TO 5m
+.meas TRAN vrms RMS V(b) FROM 1m TO 5m
+.meas TRAN vmx MAX V(b)
+.meas TRAN vmn MIN V(b)
+.meas TRAN vpp PP V(a)
+.meas TRAN en INTEG V(b)*I(R1) FROM 1m TO 2m
+.meas TRAN pmed AVG V(b)*I(R1) FROM 1m TO 2m
+.meas TRAN vmx2 MAX V(b) TRIG V(a) VAL=0 RISE=2
++ TARG V(a) VAL=0 RISE=3
+.end

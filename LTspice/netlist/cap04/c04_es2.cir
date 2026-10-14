@@ -1,0 +1,8 @@
+* Esercizio 4.2 - impulsi triangolari di corrente
+I1 0 c PWL REPEAT FOR 3 (0 0 0.5m 2m 1m 0 2m 0) ENDREPEAT
+C1 c 0 1u
+R1 c 0 1G
+.tran 0 7m 0 1u uic
+.meas TRAN vfin FIND V(c) AT 7m
+.meas TRAN carica INTEG I(C1) FROM 0 TO 7m
+.end

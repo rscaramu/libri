@@ -1,0 +1,24 @@
+* Esercizio 14.3 - accelerare lo spegnimento
+Vin in 0 PULSE(0 5 1u 10n 10n 4u 10u)
+Vcc vcc 0 10
+Rb1 in b1 4.7k
+Q1 c1 b1 0 2N3904
+Rc1 vcc c1 1k
+Rb2 in b2 4.7k
+Cs b2 in 1n
+Q2 c2 b2 0 2N3904
+Rc2 vcc c2 1k
+Rb3 in b3 4.7k
+D3 b3 c3 BAT54
+Q3 c3 b3 0 2N3904
+Rc3 vcc c3 1k
+.lib standard.bjt
+.lib standard.dio
+.tran 0 10u 0 1n
+.meas TRAN t1 TRIG V(in) VAL=2.5 FALL=1
++ TARG V(c1) VAL=5 RISE=1
+.meas TRAN t2 TRIG V(in) VAL=2.5 FALL=1
++ TARG V(c2) VAL=5 RISE=1
+.meas TRAN t3 TRIG V(in) VAL=2.5 FALL=1
++ TARG V(c3) VAL=5 RISE=1
+.end

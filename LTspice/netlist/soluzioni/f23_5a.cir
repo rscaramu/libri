@@ -1,0 +1,20 @@
+* Soluzione 23.5 - bandgap con LT1001
+.param r2=11k
+Vcc vcc 0 5
+Vee vee 0 -5
+XU1 a b vcc vee out LT1001
+R1 out a {r2}
+Q1 a a 0 2N3904
+R2 out b {r2}
+R3 b e 1k
+Q2 e e 0 2N3904 8
+.lib LTC.lib
+.lib standard.bjt
+.nodeset V(out)=1.2
+.step param r2 10.7k 11.1k 0.1k
+.dc temp -40 125 1
+.meas DC v27 FIND V(out) AT 27
+.meas DC vmax MAX V(out)
+.meas DC vmin MIN V(out)
+.meas DC var PARAM vmax-vmin
+.end

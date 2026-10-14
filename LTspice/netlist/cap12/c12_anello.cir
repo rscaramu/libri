@@ -1,0 +1,7 @@
+* Anello di generatori di tensione
+V1 a 0 5
+V2 a b 2
+V3 b 0 3
+R1 a 0 1k
+.op
+.end

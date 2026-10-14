@@ -1,0 +1,13 @@
+* Esercizio 30.1 - porte XOR a due e tre ingressi
+Va a 0 PULSE(0 1 100n 1n 1n 99n 200n)
+Vb b 0 PULSE(0 1 200n 1n 1n 199n 400n)
+Vc c 0 PULSE(0 1 400n 1n 1n 399n 800n)
+A1 a b 0 0 0 0 y2 0 XOR
+A2 a b c 0 0 0 y3 0 XOR
+.tran 0 800n 0 1n
+.meas TRAN y2_11 FIND V(y2) AT 350n
+.meas TRAN y2_10 FIND V(y2) AT 150n
+.meas TRAN y3_100 FIND V(y3) AT 150n
+.meas TRAN y3_110 FIND V(y3) AT 350n
+.meas TRAN y3_111 FIND V(y3) AT 750n
+.end

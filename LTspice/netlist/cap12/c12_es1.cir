@@ -1,0 +1,9 @@
+* Esercizio 12.1 - carica attraverso un diodo
+I1 0 a PWL(0 0 1u 1m)
+D1 a c 1N4148
+C1 c 0 1u
+Rleak c 0 100Meg
+.lib standard.dio
+.tran 0 10m 0 10u
+.meas TRAN vc FIND V(c) AT 10m
+.end

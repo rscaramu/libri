@@ -1,0 +1,14 @@
+* Guadagno d'anello di un inseguitore con carico capacitivo
+.param cl=10n
+Vcc vcc 0 15
+Vee vee 0 -15
+XU1 0 x vcc vee y LT1001
+Vi x y 0 AC 1
+CL y 0 {cl}
+.lib LTC.lib
+.step param cl list 1p 10n 100n
+.ac dec 100 1k 10Meg
+.meas AC fc WHEN mag(V(y)/V(x))=1
+.meas AC pm FIND 180+ph(-V(y)/V(x)) WHEN mag(V(y)/V(x))=1
+.options meascplxfmt=cartesian
+.end

@@ -1,0 +1,19 @@
+* Controllo dei limiti: rele con diodo di ricircolo
+Vcc vcc 0 12
+Vg g 0 PULSE(0 5 1m 1u 1u 5m 20m)
+Rb g b 1k
+Q1 c b 0 2N3904
+Lr vcc x 100m
+Rr x c 200
+D1 c vcc 1N4148
+.lib standard.bjt
+.lib standard.dio
+.tran 0 10m 0 1u
+.meas TRAN vcemax MAX V(c)
+.meas TRAN icmax MAX Ic(Q1)
+.meas TRAN pmax MAX V(c)*Ic(Q1)+V(b)*Ib(Q1)
+.meas TRAN okv PARAM vcemax<40
+.meas TRAN oki PARAM icmax<0.2
+.meas TRAN ok PARAM okv&oki
+.meas TRAN tviol WHEN V(c)=40
+.end

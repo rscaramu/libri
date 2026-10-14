@@ -1,0 +1,14 @@
+* Soluzione 29.8 - robustezza del PID al caso peggiore
+.param run=0 kp=2 ti=2.5 td=0.5 n=10
+.func bit(n,i) {floor(n/pow(2,i))-2*floor(n/pow(2,i+1))}
+.func wc(nom,tol,i)
++ {if(run==0,nom,if(bit(run-1,i),nom*(1+tol),nom*(1-tol)))}
+.param t1=wc(1,0.3,0) t2=wc(1,0.3,1) t3=wc(1,0.3,2)
+V1 in 0 0 AC 1
+E1 t 0 in 0 Laplace=kp*(1+1/(ti*s)+td*s/(1+td*s/n))
++ /((1+t1*s)*(1+t2*s)*(1+t3*s))
+.step param run 0 8 1
+.ac dec 200 0.01 100
+.meas AC pm FIND 180+ph(V(t)) WHEN mag(V(t))=1
+.options meascplxfmt=cartesian
+.end
