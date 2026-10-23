@@ -1,0 +1,21 @@
+Scrivimi un kernel CUDA 12 per l'istogramma a 1024 classi di
+100 milioni di unsigned short, con dati molto concentrati.
+Usa la privatizzazione in memoria condivisa e l'aggregazione
+nel warp con __match_any_sync. Spiega quanta memoria
+condivisa serve, quanti blocchi lanciare su una GPU con 46
+SM e come cambierebbe il progetto con 65536 classi.
+
+Mostrami il radix sort a 1 bit sull'array di 8 valori a 3 bit
+[5, 3, 6, 1, 4, 7, 2, 0]: per ciascuno dei tre passi (bit 0,
+1, 2) scrivi i flag "bit a zero", il loro scan esclusivo, il
+numero di zeri, la posizione di destinazione di ogni
+elemento e l'array dopo il passo. Verifica che ogni passo
+sia stabile e che il risultato finale sia ordinato.
+
+Devo ordinare 50000 sequenze indipendenti di 512 float
+ciascuna, in un unico array contiguo. Confronta tre
+strategie: thrust::sort con chiave composta (indice di
+sequenza, valore), cub::DeviceSegmentedSort, e un bitonic
+sort in memoria condivisa con un blocco per sequenza. Per
+ciascuna stima i passaggi in memoria globale e indica quale
+sceglieresti e perche'.

@@ -1,0 +1,21 @@
+Traduci in Thrust (CUDA 12, Thrust 2.x) questo ciclo C++:
+dato un vettore di struct {float x; float y; int tipo;},
+calcola per ciascun tipo (valori 0..9) la media di
+sqrt(x*x + y*y). Usa una struttura di array (tre vettori
+separati), zip_iterator, sort_by_key e reduce_by_key, senza
+kernel scritti a mano. Righe entro 62 caratteri, commenti
+senza accenti.
+
+Questo programma chiama thrust::sort su un device_vector di
+100.000 float dentro un ciclo di 10.000 iterazioni e impiega
+2,5 secondi; un singolo sort impiega 0,1 ms. Spiega da dove
+viene il tempo e proponi due rimedi, uno restando in Thrust
+e uno passando a cub::DeviceRadixSort.
+[incollare qui il ciclo]
+
+Rivedi questo functor Thrust per thrust::transform: deve
+essere corretto su device, non catturare memoria host e
+trattare i NaN restituendo 0. Segnala ogni problema con
+__host__ __device__, const, cattura di puntatori e
+precisione.
+[incollare qui il functor]

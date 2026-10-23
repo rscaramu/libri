@@ -1,0 +1,24 @@
+Questo programma CUDA non controlla gli errori. Aggiungi una
+macro CUDA_CHECK che stampi file, riga e cudaGetErrorString
+e termini il programma, e avvolgi ogni chiamata all'API
+runtime. Dopo ogni lancio di kernel aggiungi il controllo di
+cudaGetLastError e, sotto #ifdef CUDA_DEBUG_SYNC, anche
+cudaDeviceSynchronize. Non cambiare la logica del programma.
+Ecco il codice:
+[incollare il codice]
+
+Il mio programma CUDA stampa "Errore CUDA main.cu:84:
+an illegal memory access was encountered" ma la riga 84 e'
+una cudaMemcpy DeviceToHost. Spiegami perche' l'errore viene
+attribuito a quella riga, quali sono le cause piu' probabili
+e come individuare il kernel responsabile. Ecco il kernel
+lanciato prima della riga 84:
+[incollare il kernel e il suo lancio]
+
+Scrivi in C++17 una classe template DeviceBuffer<T> che
+alloca n elementi con cudaMalloc nel costruttore, libera nel
+distruttore, vieta la copia, supporta lo spostamento (move)
+e offre i metodi copia_da_host(const T*) e
+copia_su_host(T*) basati su cudaMemcpy. Usa una macro
+CUDA_CHECK per gli errori, tranne nel distruttore. Includi
+un main di prova che scala un vettore con un kernel.

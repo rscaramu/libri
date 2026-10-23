@@ -1,0 +1,32 @@
+Ho questo kernel CUDA 12 che calcola il massimo di ogni
+riga di una matrice float di larghezza 32 usando un array
+__shared__ e __syncthreads. Riscrivilo usando solo
+__shfl_xor_sync con maschera 0xffffffff, un warp per
+riga, senza memoria condivisa. Il kernel deve restare
+corretto quando il numero di righe non e' multiplo del
+numero di warp per blocco. Mostra il codice completo con
+main e controllo errori.
+[incollare qui il kernel]
+
+Questo kernel CUDA elabora elementi con uno switch a sei
+casi sul valore di tipo[i]; il profiler riporta il 20%
+di lane attive in media. Proponi due strategie per
+ridurre la divergenza: una che riordina i dati sul
+device prima del kernel e una che rimappa i thread
+senza riordinare. Per ciascuna indica il costo aggiunto
+e in quali condizioni conviene. Non cambiare la logica
+dei sei casi.
+[incollare qui il kernel]
+
+Spiega riga per riga perche' il seguente kernel CUDA puo'
+bloccarsi o dare risultati sbagliati su GPU Volta o
+successive, e correggilo mantenendo la stessa semantica:
+__global__ void k(int* d, int n) {
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
+    if (i >= n) return;
+    int v = d[i];
+    if (v > 0) {
+        v += __shfl_down_sync(0xffffffff, v, 1);
+    }
+    d[i] = v;
+}

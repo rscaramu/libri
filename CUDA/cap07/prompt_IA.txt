@@ -1,0 +1,26 @@
+Ecco un kernel CUDA. Per ogni variabile e array usato nel
+kernel indica in quale livello della gerarchia di memoria
+della GPU si trova (registri, memoria locale, condivisa,
+costante, globale) e spiega perche'. Segnala in particolare
+gli array locali che potrebbero finire in memoria locale a
+causa di indici dinamici e proponi come evitarlo. Il kernel
+e compilato con nvcc 12.6 per compute capability 8.9.
+[incollare qui il kernel]
+
+Questo e l'output di nvcc --ptxas-options=-v per il mio
+kernel. Spiegami riga per riga cosa significano registri,
+stack frame, spill stores e spill loads, e dimmi se questi
+valori limitano il numero di blocchi residenti per SM su una
+GPU con 65536 registri e 100 KB di memoria condivisa per SM.
+Il blocco ha 256 thread.
+[incollare qui l'output]
+
+Per il kernel seguente calcola quanti byte vengono letti e
+scritti in memoria globale per ogni elemento di output e
+quante operazioni in virgola mobile vengono eseguite. Ricava
+l'intensita aritmetica in FLOP/byte e dimmi se su una GPU con
+504 GB/s e 29 TFLOPS in singola precisione il kernel e
+limitato dalla memoria o dal calcolo. Indica quale livello
+della gerarchia di memoria userei per ridurre il traffico
+verso la memoria globale.
+[incollare qui il kernel]

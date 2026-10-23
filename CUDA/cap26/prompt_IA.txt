@@ -1,0 +1,27 @@
+Questo kernel CUDA usa memoria condivisa [incollare il
+kernel]. Per ogni accesso a __shared__ calcola il banco
+toccato dai 32 thread di un warp (banchi da 4 byte, 32
+banchi) in funzione di threadIdx.x e threadIdx.y e dimmi
+se ci sono conflitti e di quante vie. Se ci sono, proponi
+un padding o uno swizzle XOR che li elimini senza
+cambiare la dimensione del blocco, e mostra la formula
+dell'indice modificato.
+
+Il programma seguente copia un array di N float sul
+device, lancia un kernel e copia il risultato indietro,
+tutto in modo sincrono [incollare]. Riscrivilo con
+memoria host pinned, 4 stream e chunk da N/16 elementi,
+in modo che copie e calcolo si sovrappongano. Conserva
+il controllo errori CUDA_CHECK, gestisci l'ultimo chunk
+se N non e' divisibile e non allocare memoria dentro il
+ciclo. Spiega in due righe perche' la memoria pinned e'
+necessaria.
+
+Ho un kernel che legge in modo casuale una tabella di
+20 MB di float mentre scorre un array di 2 GB. La GPU e'
+una RTX 4070 (L2 da 36 MB, CC 8.9). Scrivi il codice host
+CUDA 12 per rendere persistente in L2 la tabella su uno
+stream: cudaDeviceSetLimit, cudaStreamSetAttribute con
+accessPolicyWindow, scelta di hitRatio in base a
+persistingL2CacheMaxSize, e il rilascio finale. Spiega
+cosa succede se hitRatio e' troppo alto.

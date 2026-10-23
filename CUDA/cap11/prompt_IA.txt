@@ -1,0 +1,28 @@
+Il programma CUDA seguente alloca i buffer host con
+malloc, copia tutto sulla GPU con cudaMemcpy, lancia un
+kernel e ricopia i risultati: [codice]. Trasformalo in
+una pipeline a 4 blocchi con memoria pinned
+(cudaMallocHost), cudaMemcpyAsync e uno stream per
+blocco, in modo che copie e calcolo si sovrappongano.
+Mantieni la macro CUDA_CHECK su ogni chiamata, assicurati
+che nessun buffer host venga riusato prima del
+completamento della copia, e spiega dove inserire le
+sincronizzazioni.
+
+Uso cudaMallocManaged per tre array di 500 MB ciascuno,
+elaborati da una sequenza di 5 kernel sulla GPU, con
+l'host che legge solo il terzo array alla fine. Il
+profilo di nsys mostra circa 300 ms di page fault
+prima del primo kernel. Suggerisci dove inserire
+cudaMemPrefetchAsync e quali cudaMemAdvise applicare,
+spiegando per ciascuno l'effetto atteso, e indica come
+verificare nella timeline che i fault siano spariti.
+
+Ho un kernel che legge un array di 2 GB di float una
+sola volta, in modo coalescente, e produce un
+risultato di 8 byte. Devo elaborare 100 array simili
+in sequenza. Confronta tre strategie: cudaMemcpy
+esplicita da memoria pinned, accesso zero-copy a
+memoria mappata, memoria unificata con prefetch.
+Per ciascuna stima il tempo per array su un bus
+PCIe 4.0 x16 e indica la piu' adatta, con i motivi.

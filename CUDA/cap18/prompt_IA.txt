@@ -1,0 +1,25 @@
+Ho un ciclo host che lancia 5000 volte lo stesso kernel
+CUDA di aggiornamento su una griglia 2D, scambiando due
+buffer a ogni passo. Riscrivilo come un singolo kernel
+cooperativo con cooperative groups e grid.sync(), lanciato
+con cudaLaunchCooperativeKernel, con la griglia
+dimensionata a tempo di esecuzione tramite
+cudaOccupancyMaxActiveBlocksPerMultiprocessor e un
+grid-stride loop. Target CUDA 12.6. [incollare kernel e
+ciclo host]
+
+Questo kernel CUDA usa il parallelismo dinamico e chiama
+cudaDeviceSynchronize() dal device per attendere i figli,
+cosa non piu' consentita in CUDA 12. Riscrivilo con la
+semantica CDP2: figli lanciati in cudaStreamFireAndForget o
+cudaStreamTailLaunch, e il lavoro che dipendeva dai figli
+spostato in un kernel di coda. Indica le opzioni di
+compilazione necessarie. [incollare il kernel]
+
+Trasforma questa funzione host, che esegue in sequenza tre
+kernel CUDA e una cudaMemcpyAsync su uno stream, in una
+funzione che cattura la sequenza in un cudaGraph alla prima
+chiamata e rilancia il graph istanziato nelle chiamate
+successive. I puntatori ai buffer non cambiano fra le
+chiamate. Gestisci gli errori con una macro CUDA_CHECK e
+distruggi il graph alla fine. [incollare la funzione]

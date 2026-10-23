@@ -1,0 +1,27 @@
+Analizza questo kernel CUDA destinato al calcolo in
+float [incollare]. Elenca ogni espressione in cui una
+costante o una funzione provoca una promozione a double
+(costanti senza suffisso f, pow/exp/sqrt chiamate con
+un argomento double, divisioni con 1.0) e riscrivi il kernel
+senza promozioni. Indica poi quali istruzioni SASS a 64
+bit (DFMA, DMUL, F2F.F64) mi aspetto di non vedere piu'
+in cuobjdump -sass.
+
+Scrivi un kernel CUDA 12 con l'API WMMA di mma.h che
+calcola C = A*B + C con A (MxK) in __nv_bfloat16
+row-major, B (KxN) in __nv_bfloat16 column-major e C
+(MxN) in float row-major, tile 16x16x16, un warp per
+tile di C e 8 warp per blocco disposti 2x4. M, N, K sono
+multipli di 16. Usa load_matrix_sync direttamente dalla
+memoria globale, indica il flag -arch necessario e i
+vincoli di allineamento sui puntatori e sugli stride.
+
+Questo kernel e' compute-bound secondo Nsight Compute
+[incollare kernel e la sezione Instruction Statistics].
+Per ogni funzione matematica usata indica il numero
+approssimativo di istruzioni della versione precisa e
+di quella intrinsic (__sinf, __expf, __fdividef, ...),
+l'intervallo di argomenti in cui l'intrinsic ha errore
+accettabile e se, dati i valori che il kernel usa,
+la sostituzione e' sicura. Proponi la versione con solo
+le sostituzioni sicure.

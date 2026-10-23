@@ -1,0 +1,27 @@
+Analizza il kernel CUDA seguente e individua ogni
+scrittura su memoria globale o condivisa che piu'
+thread possano eseguire sulla stessa cella nello stesso
+lancio: [codice]. Per ciascuna indica se e' una corsa
+critica, quale atomica la correggerebbe e se una
+ristrutturazione (riduzione, scan, privatizzazione)
+eviterebbe del tutto l'atomica. Non modificare il
+codice: elenca solo le righe e le proposte.
+
+Scrivi un programma CUDA 12 completo che calcola
+l'istogramma a 1024 celle di 100 milioni di interi
+a 16 bit in tre versioni: atomiche dirette in memoria
+globale; privatizzazione in memoria condivisa con una
+copia per blocco; privatizzazione con una copia per
+warp sommate alla fine. Misura le tre versioni con
+cudaEvent su dati uniformi e su dati in cui il 90%
+dei valori cade in 10 celle. Usa CUDA_CHECK ovunque
+e verifica che i tre istogrammi coincidano.
+
+Il kernel seguente accumula con atomicAdd su float i
+contributi di 10 milioni di particelle in 1000 celle:
+[codice]. I risultati differiscono fra esecuzioni
+nell'ultima cifra. Proponi una versione riproducibile
+bit a bit senza atomiche in virgola mobile, spiegando
+il costo in memoria e tempo. Considera l'ordinamento
+per cella con riduzione segmentata e l'accumulo in
+interi a 64 bit con fattore di scala.

@@ -1,0 +1,25 @@
+Ho profilato un kernel CUDA con "ncu --set full" su una
+RTX 4070 (CC 8.9). Incollo le sezioni Speed Of Light,
+Memory Workload Analysis e Warp State Statistics.
+Dimmi se il kernel e' memory-bound, compute-bound o
+latency-bound, quali metriche lo dimostrano e quali sono
+le due modifiche piu' promettenti da provare per prime.
+Non proporre modifiche che non siano giustificate da una
+metrica specifica del rapporto.
+[incollare il rapporto]
+
+Voglio misurare con Nsight Compute 2024 solo questi
+aspetti del kernel "stencil3d" lanciato 200 volte nel mio
+programma ./sim: durata, byte letti e scritti dalla DRAM,
+percentuale del picco di banda DRAM, settori per richiesta
+in lettura dalla memoria globale. Scrivi il comando ncu
+completo che profila solo il decimo lancio del kernel,
+con i nomi esatti delle metriche di CUDA 12.x.
+
+Ecco un kernel CUDA [incollare il codice]. Calcola la sua
+intensita' aritmetica in FLOP/byte contando solo i
+trasferimenti con la DRAM (assumi che gli accessi
+ripetuti allo stesso dato siano serviti dalla cache) e
+dimmi se su una GPU con 504 GB/s e 29 TFLOP/s in FP32 e'
+limitato dalla banda o dal calcolo. Mostra il conteggio
+di FLOP e byte per elemento, non solo il risultato.

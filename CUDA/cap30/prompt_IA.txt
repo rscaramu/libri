@@ -1,0 +1,25 @@
+Questa funzione Python usa NumPy con cicli espliciti su
+un array 2D (codice allegato) ed e' lenta. Riscrivila in
+tre versioni: 1) NumPy vettorizzato, 2) CuPy con le
+stesse operazioni, 3) un cp.RawKernel in CUDA C++ che fa
+tutto in un passaggio. Indica i tipi degli scalari da
+passare e aggiungi uno script che confronta i risultati
+con np.allclose e misura i tempi con
+cupyx.profiler.benchmark.
+
+Ho una libreria CUDA con questa intestazione C (allegata,
+funzioni extern "C" che restituiscono int come codice di
+errore). Genera una classe Python che la carichi con
+ctypes, dichiari argtypes e restype per ogni funzione,
+converta i codici di errore in eccezioni con il messaggio
+di cudaGetErrorString, e gestisca le allocazioni device
+con un context manager che chiami free in uscita anche in
+caso di eccezione.
+
+Traduci questo kernel CUDA C++ (allegato: usa memoria
+condivisa, __syncthreads e __shfl_down_sync) in un kernel
+Numba con @cuda.jit per Numba 0.60. Indica le differenze
+di sintassi punto per punto, spiega cosa non e'
+traducibile direttamente, e scrivi un test che confronti
+il risultato con l'originale eseguito via cp.RawKernel
+sugli stessi dati.

@@ -1,0 +1,25 @@
+Questo programma CUDA esegue uno stencil 2D a 5 punti su
+una griglia W x H su una sola GPU (codice allegato).
+Riscrivilo per N GPU sullo stesso nodo con decomposizione
+in strisce orizzontali, halo di una riga, scambio degli
+halo con cudaMemcpyPeerAsync su uno stream dedicato e
+calcolo dell'interno sovrapposto allo scambio. Un solo
+thread host; peer access in entrambe le direzioni dove
+disponibile, copia via host altrove. Includi un controllo
+finale contro la versione a singola GPU.
+
+Spiega, con uno schema passo per passo per 4 GPU e un
+buffer di 8 elementi, l'algoritmo ad anello di all-reduce
+usato da NCCL (fasi reduce-scatter e all-gather). Calcola
+quanti byte attraversano ogni collegamento e deduci
+perche' la banda di bus di nccl-tests e' la banda
+algoritmica per 2(k-1)/k. Poi scrivi un programma CUDA
+che misura la banda di ncclAllReduce da 1 KiB a 1 GiB.
+
+Il mio programma NCCL a singolo processo con 4 GPU si
+blocca sulla prima ncclAllReduce senza messaggi. Allego il
+codice e l'output con NCCL_DEBUG=INFO. Elenca le cause
+possibili in ordine di probabilita' (chiamate non
+raggruppate, stream del device sbagliato, dimensioni
+diverse fra rank) e per ciascuna indica la riga del log
+che la conferma o la esclude.

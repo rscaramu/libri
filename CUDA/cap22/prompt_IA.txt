@@ -1,0 +1,22 @@
+Ho un kernel CUDA di moltiplicazione di matrici con tile
+64x64, BK=16, 256 thread e micro-tile 4x4 per thread. Il
+caricamento dei tile in memoria condivisa avviene un float
+alla volta. Riscrivi la fase di caricamento usando float4
+per leggere dalla memoria globale, mantenendo As[BM][BK]
+e Bs[BK][BN] row-major, e spiega come cambia il numero di
+istruzioni di load per thread. Righe di codice entro 62
+caratteri.
+
+Questo kernel CUDA di moltiplicazione di matrici con tiling
+32x32 in memoria condivisa raggiunge 3500 GFLOPS su una
+RTX 4070, contro 18000 di cublasSgemm. Spiega, in ordine di
+importanza, i tre motivi principali del divario e per
+ciascuno indica la modifica al kernel che lo risolve.
+[incollare qui il kernel matmul_tiled]
+
+Nel mio codice C++ uso Eigen per calcolare C = A * B^T con
+A di dimensione M x K e B di dimensione N x K, entrambe
+row-major in float. Mostra come ottenere lo stesso risultato
+con cublasSgemm, spiegando la scelta dei parametri transa,
+transb, m, n, k e dei leading dimension, dato che cuBLAS e'
+column-major.

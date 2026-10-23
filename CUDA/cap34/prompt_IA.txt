@@ -1,0 +1,23 @@
+Traduci il seguente kernel CUDA e il relativo codice host
+in HIP per ROCm 6.x. Oltre alla sostituzione dei prefissi,
+elenca ogni punto in cui il codice assume warp da 32 lane,
+usa primitive __*_sync con maschera o funzioni senza
+equivalente HIP, e proponi per ciascuno una riscrittura
+che funzioni sia su CDNA (wavefront 64) sia su NVIDIA.
+Non usare hipLaunchKernelGGL se la sintassi <<<>>> basta.
+[incollare qui il codice]
+
+Devo distribuire un eseguibile CUDA 12.6 che deve girare
+su GPU Ampere (A100, RTX 3090), Ada (RTX 4090) e Hopper
+(H100), e idealmente su hardware futuro. Proponi la riga
+di comando nvcc con le opzioni -gencode minime necessarie,
+spiega per ogni voce se produce SASS o PTX e stima
+l'impatto sulla dimensione del binario. Indica anche come
+verificare il contenuto con cuobjdump.
+
+Scrivi un Dockerfile multi-stage per un'applicazione CUDA
+12.6 che usa cuBLAS e cuFFT, con fase di build su immagine
+devel e fase finale su immagine runtime Ubuntu 22.04.
+Spiega quali librerie devono essere presenti nell'immagine
+finale, quale versione minima del driver serve sull'host e
+come controllare con ldd che non manchino librerie.

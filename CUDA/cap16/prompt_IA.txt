@@ -1,0 +1,21 @@
+Ecco una funzione C++ che misura il tempo di un kernel CUDA
+con std::chrono. Dimmi se la misura e corretta rispetto alla
+natura asincrona dei lanci, indica le righe da cambiare e
+riscrivila usando cudaEvent_t con riscaldamento, 20
+ripetizioni e mediana. Non aggiungere librerie esterne.
+[incollare il codice]
+
+Devo eseguire su GPU questo grafo: il kernel A produce un
+buffer; B e C lo leggono e possono girare in parallelo; D
+legge l'output di B e C. Scrivi il codice host CUDA 12 che
+usa tre stream e cudaStreamWaitEvent, senza sincronizzare
+l'host fra le fasi, con eventi creati con
+cudaEventDisableTiming. Spiega perche' ogni cudaEventRecord
+e nel punto in cui si trova.
+
+Misuro un kernel CUDA con cudaEventElapsedTime e ottengo
+0.004 ms, ma il kernel elabora 64 milioni di float e la
+banda della GPU e 500 GB/s. Elenca le cause possibili di
+una misura cosi' bassa, in ordine di probabilita', e per
+ciascuna dimmi come verificarla con una modifica minima al
+codice.

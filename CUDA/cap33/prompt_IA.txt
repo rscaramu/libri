@@ -1,0 +1,25 @@
+Ho un MLP 784-128-10 in CUDA C++ con cuBLAS, layout
+column-major con i campioni sulle colonne, pesi W1 di
+128x784 e W2 di 10x128 (incollo train_step). Aggiungi un
+secondo strato nascosto di 64 neuroni con ReLU. Per ogni
+cublasSgemm nuova o modificata scrivi, in un commento,
+le dimensioni m, n, k e quale operando e trasposto, e
+spiega perche'.
+
+Scrivi una funzione host C++ che verifichi il gradiente
+di questo MLP CUDA (incollo train_step e la struttura
+Net) con le differenze finite: per 20 pesi scelti a caso
+in W1 e W2, perturba il peso di +h e -h con h = 1e-3,
+calcola la perdita media sul minibatch con il solo passo
+in avanti, e confronta (L(+h) - L(-h)) / 2h con il
+gradiente analitico copiato dal device. Usa un minibatch
+di 8 campioni e stampa l'errore relativo massimo.
+
+Il mio passo di addestramento CUDA per un MLP 784-128-10
+con minibatch 128 esegue 11 chiamate cuBLAS, 3 kernel
+propri e un memset; costa 150 microsecondi su una RTX
+4070, di cui Nsight Systems attribuisce 100 a intervalli
+vuoti fra i lanci. Proponi come catturare l'intero passo
+in un CUDA graph, tenendo conto che il puntatore al
+minibatch cambia a ogni passo, e mostra il codice di
+cattura e di replay.

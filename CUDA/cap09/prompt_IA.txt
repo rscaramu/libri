@@ -1,0 +1,26 @@
+Nel kernel CUDA seguente la memoria condivisa viene scritta
+e letta piu' volte. Elenca ogni coppia di accessi (scrittura
+seguita da lettura, o lettura seguita da scrittura della
+stessa posizione da parte di thread diversi) e indica se fra
+i due c'e una __syncthreads. Segnala ogni barriera mancante
+e ogni barriera dentro un ramo condizionale, e proponi la
+correzione minima.
+[incollare qui il kernel]
+
+Il kernel CUDA seguente usa un array in memoria condivisa di
+float. Per ogni accesso all'array calcola, per i 32 thread di
+un warp, in quali bank cadono gli indirizzi (bank = indice
+di word modulo 32) e quante vie di conflitto ne risultano.
+Se ci sono conflitti, proponi un padding o una modifica
+degli indici che li elimini, e mostra il calcolo dei bank
+dopo la modifica.
+[incollare qui il kernel]
+
+Il kernel CUDA seguente legge ogni elemento di input piu'
+volte da thread diversi dello stesso blocco. Riscrivilo
+caricando i dati necessari al blocco in un tile in memoria
+condivisa statica, con gestione dei bordi dell'array,
+barriere corrette e un commento che spiega quante letture
+dalla memoria globale vengono risparmiate per elemento.
+Mantieni identici la firma del kernel e il risultato.
+[incollare qui il kernel]

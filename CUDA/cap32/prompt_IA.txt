@@ -1,0 +1,24 @@
+Ho una pipeline CUDA per immagini PGM a 8 bit con blur
+gaussiano separabile ed equalizzazione, eseguita su piu'
+stream (incollo process_async e i kernel). Aggiungi un
+kernel per il filtro di Sobel che calcoli il modulo del
+gradiente con tile in memoria condivisa 16x16 con alone
+di 1 pixel e clamp ai bordi, e inseriscilo in
+process_async dopo l'equalizzazione. Righe sotto i 62
+caratteri, solo ASCII nei commenti.
+
+Questo kernel CUDA costruisce la lookup table per
+l'equalizzazione con uno scan Hillis-Steele su 256
+elementi in memoria condivisa (incollo build_lut). Su
+alcune immagini la LUT non e monotona crescente. Elenca
+le possibili corse critiche e, per ciascuna, come la
+riprodurrei con compute-sanitizer --tool racecheck.
+
+La mia pipeline CUDA elabora immagini 2048x2048 su 3
+stream con memoria pinned: copia H2D, blur separabile,
+istogramma, LUT, copia D2H. Nsight Systems mostra che le
+copie si sovrappongono ai kernel ma ogni immagine
+costa 1,9 ms, di cui 1,2 ms di lettura del file PGM
+sulla CPU. Proponi come ristrutturare il programma per
+sovrapporre l'I/O su disco al lavoro della GPU, con il
+codice del ciclo principale.

@@ -1,0 +1,21 @@
+Devo elaborare 50000 serie temporali, ciascuna di 8192
+campioni in float, applicando a ognuna lo stesso filtro FIR
+a 64 coefficienti. Oggi il codice C++ sequenziale impiega
+4 secondi su CPU. Valuta se conviene portarlo su GPU con
+CUDA: stima il parallelismo disponibile, il volume di dati
+da trasferire via PCIe e l'intensita' aritmetica, e indica
+quali condizioni renderebbero il porting svantaggioso.
+
+Ecco l'output di un programma che interroga la mia GPU con
+cudaGetDeviceProperties: [incollare l'output di devquery].
+Spiegami campo per campo che cosa significa ciascun valore,
+calcola la banda teorica della memoria in GB/s e il numero
+massimo di thread residenti sull'intera GPU, e dimmi quali di
+questi limiti incontrero' per primi scrivendo kernel semplici.
+
+Conosco bene il C++ e il multithreading con std::thread,
+ma non ho mai programmato una GPU. Spiegami il modello SIMT
+di CUDA confrontandolo con cio' che conosco: in che senso
+un thread CUDA e' diverso da uno std::thread, perche' i
+thread sono raggruppati in warp da 32, e quali abitudini
+del multithreading su CPU diventano dannose sulla GPU.

@@ -1,0 +1,23 @@
+Ho eseguito compute-sanitizer --tool memcheck sul programma
+CUDA allegato (compilato con -lineinfo) e riporto il
+rapporto completo. Spiega cosa significa ogni riga,
+individua l'istruzione del sorgente responsabile e proponi
+una correzione minima. Se il rapporto e' compatibile con
+piu' cause, elencale in ordine di probabilita' con un
+esperimento che confermi o escluda ciascuna.
+
+Questo kernel CUDA usa memoria condivisa. Elenca ogni
+coppia di accessi alla stessa posizione di shared memory
+da thread diversi e verifica se esiste un __syncthreads()
+fra i due. Segnala le coppie senza barriera, spiega quale
+ordinamento dei warp darebbe un risultato sbagliato, e
+proponi la correzione con il minor numero di barriere.
+
+Il kernel CUDA allegato produce un risultato diverso dalla
+versione CPU di riferimento (anch'essa allegata) solo per
+alcuni elementi, di cui riporto indici e valori attesi e
+ottenuti. Il sanitizer non segnala nulla. Analizza la
+mappatura fra indici di thread e indici dei dati, i casi
+di bordo e le conversioni di tipo, indica dove i due
+programmi possono divergere e proponi un breakpoint
+condizionale per cuda-gdb sul primo elemento sbagliato.

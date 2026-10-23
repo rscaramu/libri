@@ -1,0 +1,22 @@
+Nel mio codice C++ row-major chiamo cblas_sgemm con
+CblasRowMajor, CblasNoTrans, CblasTrans, M, N, K, alpha, A,
+K, B, K, beta, C, N per calcolare C = A * B^T. Scrivi la
+chiamata cublasSgemm equivalente, spiegando perche' i
+fattori vanno scambiati e quali sono i leading dimension,
+e un test con A 2x3 e B 4x3 che confronta i risultati.
+
+Scrivi con la generic API di cuSPARSE (CUDA 12.x) il
+prodotto matrice sparsa per matrice densa C = A * B, con A
+in formato CSR (float, indici int) di dimensione m x k e B
+densa k x n row-major. Usa cusparseSpMM con lo schema
+bufferSize/alloc/exec, controlla ogni codice di ritorno e
+indica l'ordine (row o col) nei descrittori di B e C. Righe
+entro 62 caratteri.
+
+Rivedi questo kernel Monte Carlo che usa curand_init e
+curand_uniform: verifica che i thread ricevano sequenze
+indipendenti, che curand_init non venga chiamata a ogni
+iterazione, che il generatore scelto sia adatto e che il
+risultato sia riproducibile a parita' di seme. Proponi le
+correzioni con righe entro 62 caratteri.
+[incollare qui il kernel]

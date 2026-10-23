@@ -1,0 +1,23 @@
+Questo kernel CUDA calcola le accelerazioni N-body con
+tiling in memoria condivisa (incollo il codice). Riscrivilo
+in modo che ogni thread elabori due corpi (i e i + n/2)
+riutilizzando lo stesso tile, per aumentare il
+parallelismo a livello di istruzione. Mantieni il doppio
+__syncthreads e la gestione dei thread oltre n. Spiega
+quanti registri in piu' ti aspetti e perche'.
+
+Su una RTX 4070 (46 SM, sm_89) il mio kernel N-body tiled
+con blocchi da 256 thread e tile da 256 float4 raggiunge
+8,8 TFLOPS su n = 16384, contro un picco teorico di 29
+TFLOPS fp32. Ecco il kernel e l'output di ncu per le
+metriche sm__throughput, l1tex__throughput e achieved
+occupancy (incollo). Quali sono i due colli di bottiglia
+piu' probabili e quale esperimento farei per primo?
+
+Ecco il mio integratore per una simulazione N-body (incollo
+integrate e il ciclo in run_steps). Uso Eulero
+semi-implicito con dt = 0.001 e softening eps2 = 0.01.
+Verifica che l'ordine delle operazioni sia corretto per
+uno schema simplettico e scrivi un kernel che calcoli
+l'energia totale (cinetica piu' potenziale con lo stesso
+softening) per controllare la conservazione nel tempo.

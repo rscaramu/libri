@@ -1,0 +1,25 @@
+Ho compilato il kernel seguente con nvcc -arch=sm_89
+-Xptxas -v e ho ottenuto questo rapporto: [incollare
+le righe ptxas]. Il kernel viene lanciato con blocchi
+di 256 thread. Spiegami cosa significano le voci
+registri, stack frame e spill, se questo uso dei
+registri limita i blocchi residenti per SM su Ada
+e quali modifiche al codice ridurrebbero i registri
+senza introdurre spilling. Ecco il kernel: [codice].
+
+Il kernel seguente legge una tabella di 32 float dalla
+memoria globale: [codice]. Riscrivilo usando la memoria
+costante con __constant__ e cudaMemcpyToSymbol. Prima di
+farlo, analizza se l'indice di accesso alla tabella e'
+uniforme fra i thread di un warp; se non lo e', spiegami
+perche' la memoria costante sarebbe controproducente e
+proponi la memoria condivisa come alternativa.
+
+Scrivi un programma CUDA 12 completo che carica
+un'immagine in scala di grigi float di 512x512 pixel
+in un cudaArray, crea un cudaTextureObject_t con filtro
+lineare, coordinate normalizzate e modo Wrap, e lancia
+un kernel che produce un'immagine ridimensionata a
+256x256 campionando la texture. Usa la macro CUDA_CHECK
+per ogni chiamata e distruggi tutte le risorse alla
+fine. Niente API a riferimenti (texture<...>).

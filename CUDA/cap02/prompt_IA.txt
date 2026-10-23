@@ -1,0 +1,21 @@
+Su Ubuntu 24.04 ho installato il Toolkit CUDA 12.6 ma il mio
+programma termina con "CUDA driver version is insufficient
+for CUDA runtime version". Ecco l'output di nvidia-smi:
+[incollare]. Ecco l'output di nvcc --version: [incollare].
+Ecco il contenuto delle variabili PATH e LD_LIBRARY_PATH:
+[incollare]. Spiegami quale componente e' in conflitto e
+quali comandi usare per verificarlo prima di modificare
+qualcosa.
+
+Ho compilato un kernel CUDA con nvcc -Xptxas -v e ho ottenuto
+questo: [incollare l'output]. Spiegami riga per riga che cosa
+significano "stack frame", "spill stores", "spill loads",
+"registers" e "cmem", e dimmi quali di questi valori
+dovrebbero preoccuparmi in un kernel semplice e perche'.
+
+Devo distribuire un eseguibile CUDA che giri su RTX 3060
+(Ampere), RTX 4090 (Ada) e H100 (Hopper), e che non si rompa
+su schede future. Scrivimi la riga di nvcc con le opzioni
+-gencode corrette, spiegami perche' serve includere anche un
+PTX, e dimmi quanto cresce approssimativamente il binario
+per ogni architettura aggiunta.

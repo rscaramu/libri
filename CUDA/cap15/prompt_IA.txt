@@ -1,0 +1,27 @@
+Questo programma CUDA 12 copia un array di float sul
+device con cudaMemcpy, lancia un kernel e copia indietro
+il risultato. Riscrivilo come pipeline con 4 stream non
+bloccanti e N chunk (N parametro), con memoria host
+pinned, cudaMemcpyAsync e una sola sincronizzazione
+finale per stream. Mantieni il kernel invariato. Non
+usare nessuna chiamata che vada nello stream legacy.
+Aggiungi una verifica del risultato contro la versione
+sequenziale.
+[incollare qui il programma]
+
+Ho profilato con nsys una pipeline CUDA a 4 stream e la
+timeline mostra che le copie H2D dei vari chunk sono
+tutte contigue all'inizio, i kernel sono contigui dopo,
+e le copie D2H tutte alla fine: nessuna sovrapposizione.
+Il buffer host e' allocato con new float[n]. Elenca le
+cause possibili in ordine di probabilita' e per ciascuna
+dimmi come verificarla e come correggerla.
+
+In un servizio CUDA 12 un thread host esegue inferenze
+brevi a bassa latenza mentre un altro thread esegue un
+lavoro batch lungo. Scrivi un esempio completo in cui i
+due thread (std::thread) usano stream propri con
+priorita' diverse, mostra come misurare la latenza del
+lavoro breve con e senza priorita', e spiega perche' la
+priorita' non garantisce un limite superiore alla
+latenza.

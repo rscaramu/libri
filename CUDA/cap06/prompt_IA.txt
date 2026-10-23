@@ -1,0 +1,27 @@
+Questa classe C++17 deve essere usata sia sull'host sia
+dentro kernel CUDA. Aggiungi __host__ __device__ ai metodi
+che possono funzionare sul device, segnala quelli che non
+possono (eccezioni, allocazione, std::string, funzioni
+virtuali, contenitori STL) e proponi per ciascuno
+un'alternativa compatibile con il device. Non cambiare
+l'interfaccia pubblica se non e' indispensabile.
+Ecco la classe:
+[incollare la classe]
+
+Scrivi un CMakeLists.txt (CMake >= 3.18) per un progetto
+CUDA con questi file: main.cu, kernels.cu, kernels.cuh,
+util.cpp, util.hpp. Richiedo C++17 sia per CXX sia per
+CUDA, architetture 86 e 89, compilazione separata del
+codice device, flag --extended-lambda solo per i file CUDA,
+e un target di test che linka la stessa libreria dei
+kernel. Spiega ogni riga in un commento.
+
+nvcc 12.6 mi da' questo errore compilando un file .cu con
+una lambda passata a un kernel template. Spiega la causa,
+dimmi quale flag o quale modifica al codice risolve, e
+mostra come riscrivere la lambda come functor se il flag
+non e' utilizzabile nel mio contesto.
+Errore:
+[incollare il messaggio di errore]
+Codice:
+[incollare il frammento]

@@ -1,0 +1,23 @@
+Ho compilato un kernel CUDA con -arch=sm_89 -Xptxas -v e ho
+ottenuto: "Used 96 registers, 8192 bytes smem, 0 bytes spill".
+Per una GPU con compute capability 8.9 (1536 thread e 65536
+registri per SM, 24 blocchi per SM, 100 KB di shared)
+calcola i blocchi residenti e l'occupancy per blocchi da 64,
+128, 256 e 512 thread, mostrando i passaggi e indicando in
+ogni caso la risorsa limitante.
+
+Questo kernel CUDA usa 110 registri per thread e ottiene
+occupancy del 25%. Proponi tre modifiche al codice, in
+ordine di impatto previsto, per ridurre i registri senza
+usare __launch_bounds__ ne -maxrregcount: per esempio
+ridurre i valori vivi, spezzare il kernel, spostare dati in
+memoria condivisa. Per ciascuna indica il rischio di
+rallentamento. [incollare il kernel]
+
+Il mio kernel CUDA e limitato dalla memoria (Nsight Compute
+riporta banda DRAM al 55% e stall "Long Scoreboard" al
+70%), occupancy teorica 50%, ottenuta 45%. Spiega se
+conviene aumentare l'occupancy o il parallelismo a livello
+di istruzione, e scrivi una versione del kernel che elabora
+4 elementi per thread con accessi float4. [incollare il
+kernel]

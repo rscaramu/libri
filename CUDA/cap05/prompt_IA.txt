@@ -1,0 +1,24 @@
+Converti questa funzione C++ che elabora una matrice h x w
+in row-major in un kernel CUDA con griglia 2D (x sulle
+colonne, y sulle righe), blocchi 16x16, guardia su entrambe
+le dimensioni e indice lineare riga * w + col. Scrivi anche
+il codice host per il lancio con griglia calcolata per
+eccesso e il controllo degli errori con CUDA_CHECK.
+Ecco la funzione:
+[incollare la funzione]
+
+Questo kernel CUDA produce risultati sbagliati solo
+nell'ultima riga e nell'ultima colonna di una matrice
+1000 x 700. Analizza il calcolo degli indici, la guardia e
+il calcolo della griglia nel codice host, individua l'errore
+e spiegalo. Non riscrivere tutto: indica solo le righe da
+cambiare.
+[incollare kernel e lancio]
+
+Riscrivi questo kernel CUDA 1D con un grid-stride loop, in
+modo che funzioni per qualunque n di tipo size_t
+indipendentemente dalla dimensione della griglia, e mostra
+come scegliere la griglia in base al numero di SM letto con
+cudaDeviceGetAttribute. Spiega perche' la coalescenza degli
+accessi viene preservata.
+[incollare il kernel]

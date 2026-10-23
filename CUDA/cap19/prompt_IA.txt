@@ -1,0 +1,24 @@
+Devo aggiornare una griglia 2D di 4096x4096 float in cui ogni
+cella diventa la media pesata di se stessa (peso 0.5) e dei
+suoi 8 vicini (peso 0.0625 ciascuno), per 1000 passi, con i
+bordi fissi. A quale pattern parallelo corrisponde? Scrivimi
+un kernel CUDA 12 compilabile con nvcc -std=c++17 che usi la
+memoria condivisa con halo, blocchi 16x16, e un main che
+esegua i 1000 passi scambiando i buffer.
+
+Ecco come calcolo le coordinate sorgente nel mio kernel di
+convoluzione 2D con politica clamp:
+[incolla le righe che calcolano sx, sy]
+Scrivimi tre funzioni __device__ alternative per le politiche
+mirror (senza ripetere il pixel di bordo), wrap (periodica) e
+zero (il chiamante deve poter distinguere "fuori immagine").
+Per ciascuna, mostra in una tabella quali indici restituisce
+per le coordinate da -3 a 7 su una riga di larghezza 5.
+
+Questo kernel stencil 3D a sette punti usa un blocco cubico
+8x8x8 con halo in memoria condivisa:
+[incolla il kernel]
+Su RTX 4070 con un volume 512^3 impiega 9.8 ms per passo,
+mentre la banda di memoria suggerirebbe circa 2.4 ms. Elenca
+le cause probabili in ordine di impatto e riscrivilo con la
+tecnica del piano scorrevole senza cambiarne l'interfaccia.

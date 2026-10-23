@@ -1,0 +1,26 @@
+Traduci in un kernel CUDA questa funzione C++:
+void saxpy(int n, float a, const float* x, float* y) {
+    for (int i = 0; i < n; i++) y[i] = a * x[i] + y[i];
+}
+Scrivi il kernel con la guardia sull'indice, il codice host
+completo con allocazione, copie, lancio con 256 thread per
+blocco, controllo degli errori dopo il lancio e verifica
+del risultato sull'host. Usa una macro CUDA_CHECK per ogni
+chiamata alla runtime API.
+
+Il mio programma CUDA stampa "Errore CUDA main.cu:42:
+invalid configuration argument" subito dopo il lancio
+kernel<<<griglia, blocco>>>(...) con dim3 griglia(100, 100)
+e dim3 blocco(32, 32, 2). Spiegami quale limite ho superato,
+elencami tutti i limiti sulla configurazione del lancio per
+compute capability 8.x e proponi una configurazione corretta
+che mantenga lo stesso numero totale di thread.
+
+Ho un kernel CUDA elementare che legge due array e ne scrive
+un terzo, un elemento per thread, su un array di 16 milioni
+di float. Ho misurato lo stesso tempo con blocchi da 128,
+256 e 512 thread, ma un tempo del 40% superiore con blocchi
+da 32. Spiegami perche', facendo riferimento al limite di
+blocchi residenti per SM e al numero di warp, e dimmi se la
+dimensione del blocco conterebbe di piu' in un kernel che
+usa memoria condivisa.

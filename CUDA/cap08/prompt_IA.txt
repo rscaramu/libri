@@ -1,0 +1,25 @@
+Analizza gli accessi alla memoria globale del kernel CUDA
+seguente. Per ogni lettura e scrittura indica se i 32 thread
+di un warp accedono a indirizzi contigui, quanti segmenti da
+32 byte toccano per istruzione e quale frazione dei byte
+trasferiti e utile. Proponi una riscrittura degli indici o
+del layout dei dati che renda ogni accesso coalescente,
+mantenendo identico il risultato.
+[incollare qui il kernel]
+
+Ho questa struct C++ e un array di n elementi di questo tipo
+allocato con cudaMalloc. Convertila in un layout structure
+of arrays per CUDA: definisci la struct di puntatori, scrivi
+le funzioni host che allocano e liberano gli array, scrivi
+una funzione che converte un array host AoS nel layout SoA
+sul device, e riscrivi il kernel seguente per il nuovo
+layout. Usa la macro CUDA_CHECK per ogni chiamata runtime.
+[incollare qui la struct e il kernel]
+
+Il mio kernel CUDA legge 256 MB e scrive 256 MB in 2.9 ms su
+una GPU con banda teorica di 504 GB/s. Calcola la banda
+effettiva e la percentuale della teorica; poi, dato il
+kernel seguente, elenca le cause piu' probabili del divario
+in ordine di verosimiglianza e per ciascuna indica un
+esperimento che la confermi o la escluda.
+[incollare qui il kernel]

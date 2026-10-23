@@ -1,0 +1,24 @@
+Ho una GPU con compute capability 8.9 (1536 thread max
+per SM, 65536 registri per SM, 100 KB di shared per SM,
+24 blocchi max per SM). Il mio kernel usa 56 registri per
+thread e 12 KB di memoria condivisa statica per blocco.
+Calcola passo per passo quanti blocchi da 256 thread
+possono risiedere su un SM e quale risorsa limita per
+prima. Indica anche cosa cambierebbe con blocchi da 128.
+
+Ho misurato un kernel di sole letture dipendenti dalla
+memoria globale su una RTX 4070 variando i warp residenti
+per SM. Con 2 warp/SM ogni passo della catena costa 500 ns
+(250 ns per lettura per SM), con 16 warp/SM 590 ns (37 ns
+per SM), con 48 warp/SM 1100 ns (23 ns per SM). Spiega
+la forma della curva in termini di latency hiding e
+legge di Little, e stima quante richieste in volo per SM
+il sottosistema di memoria sta sostenendo nell'ultimo
+caso.
+
+Scrivi una funzione host C++17 per CUDA 12 che, data la
+cudaDeviceProp della GPU corrente, restituisca una
+dimensione di blocco (multiplo di 32, fra 128 e 1024) che
+divida esattamente maxThreadsPerMultiProcessor, preferendo
+il valore piu' grande. Includi un main che la stampi e
+gestisci il caso in cui nessun valore divida esattamente.
