@@ -1,0 +1,4 @@
+> lookup({ a = 1 }, "z", 0)
+0
+> try({ a = 1 }.z, "manca")
+"manca"

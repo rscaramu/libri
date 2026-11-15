@@ -1,0 +1,10 @@
+> regex("(\\w+)@(\\w+)", "anna@scuola")
+[
+  "anna",
+  "scuola",
+]
+> regex("(?P<utente>\\w+)@(?P<dominio>\\w+)", "anna@scuola")
+{
+  "dominio" = "scuola"
+  "utente" = "anna"
+}

@@ -1,0 +1,4 @@
+$ export TF_VAR_scuola=Panella TF_VAR_aule=20
+$ tofu apply -auto-approve
+...
+etichetta = "Panella-20"

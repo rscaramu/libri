@@ -1,0 +1,6 @@
+> local.effettive
+{
+  "cpu" = 2
+  "disco" = 20
+  "ram" = 8
+}

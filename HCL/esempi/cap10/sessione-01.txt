@@ -1,0 +1,6 @@
+> upper("hcl")
+"HCL"
+> max(3, 7, 5)
+7
+> upper(substr("infrastruttura", 0, 5))
+"INFRA"

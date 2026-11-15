@@ -1,0 +1,3 @@
+> "tre" + 1
+Error: Invalid operand
+Unsuitable value for left operand: a number is required.

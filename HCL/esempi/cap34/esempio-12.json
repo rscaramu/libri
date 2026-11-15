@@ -1,0 +1,8 @@
+{
+  "variable": {
+    "posti": { "type": "number", "default": 24 }
+  },
+  "output": {
+    "doppio": { "value": "${var.posti * 2}" }
+  }
+}

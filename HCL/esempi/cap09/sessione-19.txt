@@ -1,0 +1,5 @@
+> [for nome, voto in var.voti : upper(nome) if voto < 6]
+[
+  "BRUNO",
+  "DARIO",
+]

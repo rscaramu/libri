@@ -1,0 +1,11 @@
+Set<Integer> a = new Set<Integer>{ 1, 2, 3, 4 };
+Set<Integer> b = new Set<Integer>{ 3, 4, 5 };
+Set<Integer> unione = a.clone();
+unione.addAll(b);
+Set<Integer> comuni = a.clone();
+comuni.retainAll(b);
+Set<Integer> soloA = a.clone();
+soloA.removeAll(b);
+System.debug(unione.size());
+System.debug(comuni);
+System.debug(soloA);

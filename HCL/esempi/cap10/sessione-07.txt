@@ -1,0 +1,4 @@
+> replace("aula 1 piano 1", "1", "2")
+"aula 2 piano 2"
+> replace("nome con spazi", " ", "_")
+"nome_con_spazi"

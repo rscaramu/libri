@@ -1,0 +1,19 @@
+$ tofu plan
+...
+  # local_file.scheda must be replaced
+-/+ resource "local_file" "scheda" {
+      ~ content         = <<-EOT # forces replacement
+            Server: artistic-catfish
+        EOT -> (known after apply) # forces replacement
+      ~ id              = "40da7b86..." -> (known after apply)
+        # (3 unchanged attributes hidden)
+    }
+
+  # random_pet.server must be replaced
+-/+ resource "random_pet" "server" {
+      ~ id        = "artistic-catfish" -> (known after apply)
+      ~ length    = 2 -> 3 # forces replacement
+        # (1 unchanged attribute hidden)
+    }
+
+Plan: 2 to add, 0 to change, 2 to destroy.

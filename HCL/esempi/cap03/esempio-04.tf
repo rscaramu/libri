@@ -1,0 +1,1 @@
+variable "ambiente" { default = "sviluppo" }

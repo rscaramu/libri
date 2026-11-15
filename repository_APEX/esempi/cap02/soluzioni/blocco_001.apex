@@ -1,0 +1,10 @@
+Integer pezzi = 12;
+Long abitanti = 8100000000L;
+Decimal prezzo = 19.90;
+Double misura = 2.5;
+Boolean attivo = true;
+System.debug(pezzi);
+System.debug(abitanti);
+System.debug(prezzo);
+System.debug(misura);
+System.debug(attivo);

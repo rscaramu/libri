@@ -1,0 +1,8 @@
+$ tofu destroy
+
+Error: Instance cannot be destroyed
+
+Resource local_file.dati has lifecycle.prevent_destroy set, but the plan
+calls for this resource to be destroyed. To avoid this error and continue
+with the plan, either disable lifecycle.prevent_destroy or reduce the scope
+of the plan using the -target flag.

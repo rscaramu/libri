@@ -1,0 +1,10 @@
+> type([for n in var.ambienti : upper(n)])
+tuple([
+    string,
+    string,
+])
+> type({ for n in var.ambienti : n => 1 })
+object({
+    dev: number,
+    prod: number,
+})

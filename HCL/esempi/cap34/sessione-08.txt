@@ -1,0 +1,4 @@
+$ go run .
+Scuola: Vallauri
+a1   posti=24 piano=0
+lab  posti=24 piano=1 ELETTRONICA

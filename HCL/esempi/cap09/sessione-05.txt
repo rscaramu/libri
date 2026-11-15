@@ -1,0 +1,6 @@
+> [for x in var.voti : x]
+[
+  8,
+  5,
+  7,
+]

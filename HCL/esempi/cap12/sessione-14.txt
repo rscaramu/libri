@@ -1,0 +1,8 @@
+> local.sottoreti
+{
+  "elettronica" = "10.20.0.0/24"
+  "sistemi" = "10.20.1.0/24"
+  "tpsee" = "10.20.2.0/24"
+}
+> cidrhost(local.sottoreti["sistemi"], 1)
+"10.20.1.1"

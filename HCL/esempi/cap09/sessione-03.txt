@@ -1,0 +1,6 @@
+> [for i, n in var.nomi : "${i + 1}. ${n}"]
+[
+  "1. anna",
+  "2. bruno",
+  "3. carla",
+]

@@ -1,0 +1,2 @@
+$ tofu init -reconfigure -backend-config=produzione.backend.hcl
+$ tofu plan -var-file=produzione.tfvars

@@ -1,0 +1,3 @@
+$ vault kv put secret/registro/collaudo/db password=abc123
+$ vault kv put secret/registro/produzione/db password=xyz789
+$ vault token create -policy=lettura-registro -field=token

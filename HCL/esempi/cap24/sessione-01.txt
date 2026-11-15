@@ -1,0 +1,13 @@
+$ tofu workspace list
+* default
+
+$ tofu workspace new collaudo
+Created and switched to workspace "collaudo"!
+
+You're now on a new, empty workspace. Workspaces isolate their state,
+...
+$ tofu workspace new produzione
+$ tofu workspace list
+  default
+  collaudo
+* produzione

@@ -1,0 +1,9 @@
+$ tofu plan -var posti=45
+
+Error: Invalid value for variable
+
+  on main.tf line 6:
+   6: variable "posti" {
+    var.posti is 45
+
+I posti devono essere fra 1 e 30.

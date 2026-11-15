@@ -1,0 +1,8 @@
+> fileexists("nota.txt")
+true
+> jsondecode(file("dati.json")).a
+1
+> fileset(".", "*.txt")
+toset([
+  "nota.txt",
+])

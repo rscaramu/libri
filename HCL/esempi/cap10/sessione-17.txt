@@ -1,0 +1,4 @@
+> split(".", "relazione_finale.PDF")[0]
+"relazione_finale"
+> lower(split(".", "relazione_finale.PDF")[1])
+"pdf"

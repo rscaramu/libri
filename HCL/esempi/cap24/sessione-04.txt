@@ -1,0 +1,10 @@
+$ tofu workspace select collaudo
+$ tofu apply -auto-approve
+...
+ambiente = "collaudo"
+cpu = 2
+$ tofu workspace select produzione
+$ tofu apply -auto-approve
+...
+ambiente = "produzione"
+cpu = 4

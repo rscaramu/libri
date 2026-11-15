@@ -1,0 +1,4 @@
+$ vault token capabilities secret/data/registro/collaudo/db
+read
+$ vault token capabilities secret/data/registro/produzione/db
+deny

@@ -1,0 +1,2 @@
+$ tofu validate
+Success! The configuration is valid.

@@ -1,0 +1,7 @@
+> 3 <= 3
+true
+> "web" != "db"
+true
+> 1 < 2 < 3
+Error: Invalid operand
+Unsuitable value for left operand: number required, but have bool.

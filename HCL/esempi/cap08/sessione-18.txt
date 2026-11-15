@@ -1,0 +1,2 @@
+> jsonencode({ nome = "web", porte = [80, 443] })
+"{\"nome\":\"web\",\"porte\":[80,443]}"

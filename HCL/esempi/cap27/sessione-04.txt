@@ -1,0 +1,4 @@
+$ head -c 120 terraform.tfstate
+{"serial":1,"lineage":"aa1ce7e4-...","meta":{"key_provider.pbkdf2.chiave":"eyJzYWx0Ijoi...
+$ grep -c '"result"' terraform.tfstate
+0

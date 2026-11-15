@@ -1,0 +1,3 @@
+$ tofu destroy
+...
+Destroy complete! Resources: 1 destroyed.

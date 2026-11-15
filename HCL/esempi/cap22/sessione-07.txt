@@ -1,0 +1,2 @@
+$ tofu init -backend-config="bucket=scuola-stato" -backend-config="region=eu-south-1"
+$ tofu init -backend-config=produzione.backend.hcl

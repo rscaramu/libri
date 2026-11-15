@@ -1,0 +1,6 @@
+> base64encode("ciao")
+"Y2lhbw=="
+> base64decode("Y2lhbw==")
+"ciao"
+> urlencode("aula 3 & lab")
+"aula+3+%26+lab"

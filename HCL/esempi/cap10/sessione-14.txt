@@ -1,0 +1,10 @@
+> formatlist("srv-%s", ["a", "b"])
+tolist([
+  "srv-a",
+  "srv-b",
+])
+> formatlist("%s=%d", ["cpu", "ram"], [2, 8])
+tolist([
+  "cpu=2",
+  "ram=8",
+])

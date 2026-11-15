@@ -1,0 +1,2 @@
+$ tofu state list
+module.a1.local_file.scheda

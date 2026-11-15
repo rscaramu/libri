@@ -1,0 +1,11 @@
+$ tofu apply
+
+Error: Error acquiring the state lock
+
+Error message: resource temporarily unavailable
+Lock Info:
+  ID:        8f3c1e0a-5b7d-4c2e-9a41-2d6f0b7e9c11
+  Path:      registro/produzione/terraform.tfstate
+  Operation: OperationTypeApply
+  Who:       anna@pc-lab-03
+  Created:   2026-11-15 08:30:12 +0000 UTC

@@ -1,0 +1,5 @@
+> toset(["a"])[0]
+Error: Invalid index
+Elements of a set are identified only by their value and don't have any
+separate index or key to select with, so it's only possible to perform
+operations across all elements of the set.

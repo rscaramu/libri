@@ -1,0 +1,4 @@
+> "modo: %{if var.debug}verboso%{else}normale%{endif}"
+"modo: verboso"
+> "nome%{if var.debug} (debug)%{endif}"
+"nome (debug)"

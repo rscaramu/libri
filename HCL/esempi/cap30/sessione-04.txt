@@ -1,0 +1,2 @@
+$ tofu plan -out=p.tfplan
+$ tofu show -json p.tfplan | jq '.resource_changes[] | {address, actions: .change.actions}'

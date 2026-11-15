@@ -1,0 +1,6 @@
+$ tofu plan
+...
+  # random_pet.via will be removed from the OpenTofu state but will not be
+  # destroyed
+
+Plan: 0 to add, 0 to change, 0 to destroy, 1 to forget.

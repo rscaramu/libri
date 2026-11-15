@@ -1,0 +1,4 @@
+> toset(["b", "a"]) == toset(["a", "b"])
+true
+> tolist(["b", "a"]) == tolist(["a", "b"])
+false

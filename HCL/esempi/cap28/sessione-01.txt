@@ -1,0 +1,3 @@
+$ tofu plan -input=false -detailed-exitcode
+$ echo $?
+2

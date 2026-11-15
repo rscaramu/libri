@@ -1,0 +1,6 @@
+> "1" == 1
+false
+> tostring(1) == "1"
+true
+> true == "true"
+false

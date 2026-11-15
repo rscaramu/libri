@@ -1,0 +1,3 @@
+$ tofu apply -replace=random_pet.server
+...
+  # random_pet.server will be replaced, as requested

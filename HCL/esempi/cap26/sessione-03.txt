@@ -1,0 +1,5 @@
+$ tofu test
+tests/aula.tftest.hcl... pass
+  run "etichetta_corretta"... pass
+
+Success! 1 passed, 0 failed.

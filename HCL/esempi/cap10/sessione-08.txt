@@ -1,0 +1,4 @@
+> replace("abc123def", "/[0-9]+/", "-")
+"abc-def"
+> replace("anna rossi", "/(\\w+) (\\w+)/", "$2 $1")
+"rossi anna"

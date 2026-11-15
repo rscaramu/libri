@@ -1,0 +1,3 @@
+$ brew install opentofu                      # macOS
+$ sudo snap install --classic opentofu       # Linux
+$ winget install --exact --id=OpenTofu.Tofu  # Windows

@@ -1,0 +1,4 @@
+> "%{for p in var.porte}[${p}]%{endfor}"
+"[80][443]"
+> "%{for i, p in var.porte}${i}=${p} %{endfor}"
+"0=80 1=443 "

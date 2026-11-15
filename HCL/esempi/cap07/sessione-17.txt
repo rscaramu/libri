@@ -1,0 +1,2 @@
+> local.locale
+"aula magna"

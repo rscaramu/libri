@@ -1,0 +1,5 @@
+$ tofu apply -auto-approve -var scuola=Panella
+...
+Outputs:
+
+etichetta = "Panella-12"

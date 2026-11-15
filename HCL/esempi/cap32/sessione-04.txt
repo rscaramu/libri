@@ -1,0 +1,10 @@
+$ nomad job validate saluto.nomad.hcl
+Job validation successful
+$ nomad job plan saluto.nomad.hcl
++ Job: "saluto"
++ Task Group: "lavoro" (2 create)
+  + Task: "eco" (forces create)
+
+Scheduler dry-run:
+- All tasks successfully allocated.
+...

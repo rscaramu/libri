@@ -1,0 +1,4 @@
+> 10 - 2 * 3 > 3 || false
+true
+> !(1 == 1) && true
+false

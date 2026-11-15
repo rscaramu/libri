@@ -1,0 +1,7 @@
+> { nome = "web", porta = 80 }.porta
+80
+> type({ nome = "web", porta = 80 })
+object({
+    nome: string,
+    porta: number,
+})

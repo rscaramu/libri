@@ -1,0 +1,12 @@
+<template>
+  <lightning-card title="Aziende italiane">
+    <template lwc:if={aziende.data}>
+      <template for:each={aziende.data} for:item="a">
+        <p key={a.Id}>{a.Name} - {a.BillingCity}</p>
+      </template>
+    </template>
+    <template lwc:elseif={aziende.error}>
+      <p>Impossibile caricare le aziende.</p>
+    </template>
+  </lightning-card>
+</template>

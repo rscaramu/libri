@@ -1,0 +1,10 @@
+> title("istituto tecnico")
+"Istituto Tecnico"
+> trimspace("  testo  ")
+"testo"
+> trimprefix("srv-web", "srv-")
+"web"
+> trimsuffix("main.tf", ".tf")
+"main"
+> trim("--valore--", "-")
+"valore"

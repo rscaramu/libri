@@ -1,0 +1,4 @@
+resource "local_file" "benvenuto" {
+  filename = "benvenuto.txt"
+  content  = "Primo file creato con HCL.\n"
+}

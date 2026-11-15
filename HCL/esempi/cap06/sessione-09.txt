@@ -1,0 +1,8 @@
+> var.server.porta
+8080
+> var.server
+{
+  "nome" = "web"
+  "porta" = 8080
+  "tag" = tomap({})
+}

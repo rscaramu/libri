@@ -1,0 +1,7 @@
+> { for n, v in var.voti : n => v >= 6 ? "si" : "no" }
+{
+  "anna" = "si"
+  "bruno" = "no"
+  "carla" = "si"
+  "dario" = "no"
+}

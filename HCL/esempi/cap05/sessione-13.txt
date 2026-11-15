@@ -1,0 +1,9 @@
+> tomap({ a = 1, b = "x" })
+tomap({
+  "a" = "1"
+  "b" = "x"
+})
+> tomap({ a = 1, b = [1] })
+Error: Invalid function argument
+Invalid value for "v" parameter: cannot convert object to map of any single
+type.

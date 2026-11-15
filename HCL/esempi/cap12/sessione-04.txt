@@ -1,0 +1,11 @@
+> yamldecode("paese: no")
+{
+  "paese" = false
+}
+> yamldecode("risposte: [x, y]")
+{
+  "risposte" = [
+    "x",
+    true,
+  ]
+}

@@ -1,0 +1,15 @@
+$ nomad job status saluto
+ID            = saluto
+Type          = batch
+Status        = dead
+...
+Summary
+Task Group  Queued  Starting  Running  Failed  Complete  Lost  Unknown
+lavoro      0       0         0        0       2         0     0
+
+Allocations
+ID        Node ID   Task Group  Version  Desired  Status    Created  Modified
+3d19e9d5  648ccfe8  lavoro      0        run      complete  4s ago   3s ago
+51687c8d  648ccfe8  lavoro      0        run      complete  4s ago   3s ago
+$ nomad alloc logs 51687c8d
+Ciao da 1

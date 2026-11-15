@@ -1,0 +1,4 @@
+$ nomad job plan -var repliche=4 saluto.nomad.hcl
++/- Job: "saluto"
++/- Task Group: "lavoro" (4 create, 5 ignore)
+  +/- Count: "3" => "4" (forces create)

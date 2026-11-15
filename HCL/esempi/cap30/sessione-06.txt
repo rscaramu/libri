@@ -1,0 +1,4 @@
+$ TF_LOG=DEBUG tofu validate
+2026-11-15T13:39:56.224+0100 [INFO]  OpenTofu version: 1.11.0
+2026-11-15T13:39:56.224+0100 [DEBUG] using github.com/zclconf/go-cty v1.17.0
+...

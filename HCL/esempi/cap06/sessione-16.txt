@@ -1,0 +1,3 @@
+$ tofu apply -auto-approve -var nome=Reggio
+...
+saluto = "Ciao, Reggio!"

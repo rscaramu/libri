@@ -1,0 +1,4 @@
+> basename("/etc/ssh/sshd_config")
+"sshd_config"
+> dirname("/etc/ssh/sshd_config")
+"/etc/ssh"

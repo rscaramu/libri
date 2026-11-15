@@ -1,0 +1,4 @@
+Error: Output does not allow ephemeral value
+
+The value that was generated for the output is ephemeral, but it is not
+configured to allow one.

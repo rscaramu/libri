@@ -1,0 +1,12 @@
+$ tofu apply -auto-approve
+...
+random_pet.server: Creating...
+random_pet.server: Creation complete after 0s [id=artistic-catfish]
+local_file.scheda: Creating...
+local_file.scheda: Creation complete after 0s [id=40da7b86...]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+nome = "artistic-catfish"

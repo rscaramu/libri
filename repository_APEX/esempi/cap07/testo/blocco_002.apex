@@ -1,0 +1,10 @@
+Prodotto vite = new Prodotto();
+vite.codice = 'V-10';
+vite.prezzo = 0.12;
+vite.scorta = 500;
+Prodotto dado = new Prodotto();
+dado.codice = 'D-08';
+dado.prezzo = 0.05;
+System.debug(vite.valoreScorta());
+System.debug(dado.valoreScorta());
+System.debug(vite);

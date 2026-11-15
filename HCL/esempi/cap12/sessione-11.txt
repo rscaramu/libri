@@ -1,0 +1,8 @@
+> formatdate("DD/MM/YYYY hh:mm", "2026-11-15T08:30:00Z")
+"15/11/2026 08:30"
+> formatdate("EEEE D MMMM YYYY", "2026-11-15T08:30:00Z")
+"Sunday 15 November 2026"
+> timeadd("2026-11-15T08:30:00Z", "36h")
+"2026-11-16T20:30:00Z"
+> timecmp("2026-01-01T00:00:00Z", "2026-06-01T00:00:00Z")
+-1

@@ -1,0 +1,19 @@
+> setproduct(["dev", "prod"], ["web", "db"])
+tolist([
+  [
+    "dev",
+    "web",
+  ],
+  [
+    "dev",
+    "db",
+  ],
+  [
+    "prod",
+    "web",
+  ],
+  [
+    "prod",
+    "db",
+  ],
+])

@@ -1,0 +1,6 @@
+Error: Unsupported argument
+
+  on orario.hcl line 5, in aula "a1":
+   5:   colore = "blu"
+
+An argument named "colore" is not expected here.

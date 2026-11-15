@@ -1,0 +1,6 @@
+$ tofu apply -auto-approve
+...
+Outputs:
+
+doppio = 10
+saluto = "Ciao, mondo!"

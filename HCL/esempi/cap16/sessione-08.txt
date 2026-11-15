@@ -1,0 +1,6 @@
+$ tofu plan -var 'aule=["a2","b1"]'
+...
+  # local_file.aula["a1"] will be destroyed
+  # (because key ["a1"] is not in for_each map)
+
+Plan: 0 to add, 0 to change, 1 to destroy.

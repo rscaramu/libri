@@ -1,0 +1,9 @@
+> "5" + 3
+8
+> "5" * "4"
+20
+> true && "false"
+false
+> "tre" + 1
+Error: Invalid operand
+Unsuitable value for left operand: a number is required.

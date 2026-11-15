@@ -1,0 +1,2 @@
+> length(toset(["pc03", "pc01", "pc02", "pc01"]))
+3

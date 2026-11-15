@@ -1,0 +1,4 @@
+> "porte: ${var.porte}"
+Error: Invalid template interpolation value
+Cannot include the given value in a string template: string required, but
+have list of number.

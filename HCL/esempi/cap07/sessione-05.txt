@@ -1,0 +1,4 @@
+> false && tobool("non valido")
+false
+> null != null && length(null) > 0
+false

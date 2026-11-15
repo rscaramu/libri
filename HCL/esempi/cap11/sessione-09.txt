@@ -1,0 +1,19 @@
+> { for c in setproduct(["dev", "prod"], ["web", "db"]) : "${c[0]}-${c[1]}" => c }
+{
+  "dev-db" = [
+    "dev",
+    "db",
+  ]
+  "dev-web" = [
+    "dev",
+    "web",
+  ]
+  "prod-db" = [
+    "prod",
+    "db",
+  ]
+  "prod-web" = [
+    "prod",
+    "web",
+  ]
+}

@@ -1,0 +1,12 @@
+$ tofu output
+etichetta = "Vallauri-12"
+$ tofu output -raw etichetta
+Vallauri-12
+$ tofu output -json
+{
+  "etichetta": {
+    "sensitive": false,
+    "type": "string",
+    "value": "Vallauri-12"
+  }
+}

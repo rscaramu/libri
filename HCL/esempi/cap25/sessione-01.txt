@@ -1,0 +1,9 @@
+$ tofu fmt -check -diff -recursive
+brutto.tf
+--- old/brutto.tf
++++ new/brutto.tf
+@@ -1,3 +1,3 @@
+ locals {
+- a=1
++  a = 1
+ }

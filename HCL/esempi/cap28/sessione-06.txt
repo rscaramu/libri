@@ -1,0 +1,4 @@
+$ tofu init -input=false -lockfile=readonly
+$ tofu validate
+$ tofu plan -input=false -no-color -out=piano.tfplan
+$ tofu apply -input=false -no-color piano.tfplan

@@ -1,0 +1,8 @@
+$ tofu destroy -auto-approve
+...
+local_file.server: Destroying... [id=b66d6d92...]
+local_file.server: Destruction complete after 0s
+local_file.rete: Destroying... [id=838bb51d...]
+local_file.rete: Destruction complete after 0s
+random_pet.rete: Destroying... [id=factual-escargot]
+random_pet.rete: Destruction complete after 0s

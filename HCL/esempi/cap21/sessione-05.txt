@@ -1,0 +1,2 @@
+$ tofu state mv local_file.vecchio local_file.nuovo
+$ tofu plan

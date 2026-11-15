@@ -1,0 +1,17 @@
+> { for n in var.nomi : n => length(n) }
+{
+  "anna" = 4
+  "bruno" = 5
+  "carla" = 5
+}
+> { for nome, voto in var.voti : nome => voto >= 6 }
+{
+  "anna" = true
+  "bruno" = false
+  "carla" = true
+}
+> { for n, v in var.voti : upper(n) => v if v >= 6 }
+{
+  "ANNA" = 8
+  "CARLA" = 7
+}

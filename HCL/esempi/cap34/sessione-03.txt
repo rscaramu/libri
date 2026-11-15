@@ -1,0 +1,11 @@
+$ tofu metadata functions -json | jq '.function_signatures.upper'
+{
+  "description": "`upper` converts all cased letters in the given string to uppercase.",
+  "return_type": "string",
+  "parameters": [
+    {
+      "name": "str",
+      "type": "string"
+    }
+  ]
+}

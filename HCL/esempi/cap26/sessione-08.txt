@@ -1,0 +1,16 @@
+$ tofu test
+tests/aula.tftest.hcl... fail
+  run "etichetta_corretta"... fail
+
+Error: Test assertion failed
+
+  on tests/aula.tftest.hcl line 9, in run "etichetta_corretta":
+   9:     condition     = output.etichetta == "aula-a1"
+    output.etichetta is "sala-a1"
+
+L'etichetta non ha il prefisso atteso.
+  run "contenuto_con_posti"... pass
+  run "nome_non_valido"... pass
+  run "crea_davvero"... pass
+
+Failure! 3 passed, 1 failed.

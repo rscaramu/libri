@@ -1,0 +1,12 @@
+$ tofu plan
+random_pet.nome: Refreshing state... [id=fresh-hamster]
+local_file.scheda: Refreshing state... [id=17232741...]
+
+Note: Objects have changed outside of OpenTofu
+
+OpenTofu detected the following changes made outside of OpenTofu since the
+last "tofu apply" which may have affected this plan:
+
+  # local_file.scheda has been deleted
+...
+Plan: 1 to add, 0 to change, 0 to destroy.

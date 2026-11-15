@@ -1,0 +1,8 @@
+$ tofu plan -var 'aule=["a2","b1"]'
+...
+  # local_file.aula[0] must be replaced
+  # local_file.aula[1] must be replaced
+  # local_file.aula[2] will be destroyed
+  # (because index [2] is out of range for count)
+
+Plan: 2 to add, 0 to change, 3 to destroy.

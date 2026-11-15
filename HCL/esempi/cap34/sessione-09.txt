@@ -1,0 +1,7 @@
+$ go run .
+Error: Unsuitable value type
+
+  on orario.hcl line 4, in aula "a1":
+   4:   posti = "tanti"
+
+Unsuitable value: a number is required

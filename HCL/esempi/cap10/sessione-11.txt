@@ -1,0 +1,4 @@
+> regex("[0-9]+", "nessun numero")
+Error: Error in function call
+Call to function "regex" failed: pattern did not match any part of the given
+string.

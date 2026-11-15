@@ -1,0 +1,7 @@
+{
+  "nome": "Officine Riva",
+  "citta": "Bari",
+  "ordini": 3,
+  "attivo": true,
+  "contatti": ["Anna", "Luca"]
+}

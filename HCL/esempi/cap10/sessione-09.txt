@@ -1,0 +1,7 @@
+> regex("[0-9]+", "aula 12 piano 3")
+"12"
+> regexall("[0-9]+", "aula 12 piano 3")
+tolist([
+  "12",
+  "3",
+])

@@ -1,0 +1,10 @@
+$ vault kv get -field=password secret/registro/collaudo/db
+abc123
+$ vault kv get secret/registro/produzione/db
+Code: 403. Errors:
+
+* permission denied
+$ vault kv put secret/registro/collaudo/db password=nuova
+Code: 403. Errors:
+
+* permission denied

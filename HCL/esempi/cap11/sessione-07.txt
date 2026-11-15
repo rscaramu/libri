@@ -1,0 +1,15 @@
+> setunion(["a", "b"], ["b", "c"])
+toset([
+  "a",
+  "b",
+  "c",
+])
+> setintersection(["a", "b"], ["b", "c"])
+toset([
+  "b",
+])
+> setsubtract(["a", "b", "c"], ["b"])
+toset([
+  "a",
+  "c",
+])

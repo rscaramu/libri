@@ -1,0 +1,7 @@
+> module.a1
+{
+  "file" = "./a1.txt"
+  "posti" = 24
+}
+> module.a1.file
+"./a1.txt"

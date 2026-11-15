@@ -1,0 +1,5 @@
+$ packer console .
+> upper(var.scuola)
+VALLAURI
+> local.nome
+vallauri-lab-1.0.0

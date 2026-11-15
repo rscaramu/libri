@@ -1,0 +1,13 @@
+infrastruttura/
+  modules/
+    rete/
+    server/
+  ambienti/
+    collaudo/
+      main.tf
+      backend.tf
+      terraform.tfvars
+    produzione/
+      main.tf
+      backend.tf
+      terraform.tfvars

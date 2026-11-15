@@ -1,0 +1,7 @@
+> local.etichette
+{
+  "ambiente" = "collaudo"
+  "classe" = "5A"
+  "gestito" = "opentofu"
+  "progetto" = "registro"
+}

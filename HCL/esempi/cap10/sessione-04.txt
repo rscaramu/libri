@@ -1,0 +1,10 @@
+> substr("infrastruttura", 0, 5)
+"infra"
+> substr("infrastruttura", 5, -1)
+"struttura"
+> substr("ciao", -2, 2)
+"ao"
+> startswith("prod-web", "prod")
+true
+> strcontains("registro", "gis")
+true

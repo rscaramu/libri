@@ -1,0 +1,6 @@
+> try(tonumber("12"), 0)
+12
+> try(tonumber("dodici"), 0)
+0
+> try({ a = { b = 1 } }.a.c, "assente")
+"assente"

@@ -1,0 +1,6 @@
+$ tofu plan -var aule=venti
+
+Error: Invalid value for input variable
+
+Unsuitable value for var.aule set using -var="aule=...": a number is
+required.

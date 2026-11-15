@@ -1,0 +1,12 @@
+> keys({ web = 80, db = 5432 })
+[
+  "db",
+  "web",
+]
+> values({ web = 80, db = 5432 })
+[
+  5432,
+  80,
+]
+> lookup({ web = 80, db = 5432 }, "posta", 25)
+25

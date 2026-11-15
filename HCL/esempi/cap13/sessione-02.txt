@@ -1,0 +1,5 @@
+Error: Unsupported OpenTofu Core version
+
+This configuration does not support OpenTofu version 1.11.0. To proceed,
+either choose another supported OpenTofu version or update this version
+constraint.

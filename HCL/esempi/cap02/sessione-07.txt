@@ -1,0 +1,12 @@
+$ tofu apply
+...
+Do you want to perform these actions?
+  OpenTofu will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+local_file.benvenuto: Creating...
+local_file.benvenuto: Creation complete after 0s [id=883d61f7...]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.

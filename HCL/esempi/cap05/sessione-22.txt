@@ -1,0 +1,12 @@
+> type({ a = 1, b = 2 })
+object({
+    a: number,
+    b: number,
+})
+> type(tomap({ a = 1, b = 2 }))
+map(number)
+> type([1, "due"])
+tuple([
+    number,
+    string,
+])

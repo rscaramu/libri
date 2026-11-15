@@ -1,0 +1,10 @@
+String codice = 'ORD-2026-00417';
+System.debug(codice.contains('2026'));
+System.debug(codice.startsWith('ORD'));
+System.debug(codice.endsWith('7'));
+System.debug(codice.indexOf('-'));
+System.debug(codice.lastIndexOf('-'));
+System.debug(codice.substring(4, 8));
+System.debug(codice.substring(9));
+System.debug(codice.left(3));
+System.debug(codice.right(5));

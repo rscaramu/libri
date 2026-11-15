@@ -1,0 +1,6 @@
+> merge({ rete = { nome = "lab", dns = "10.0.0.2" } }, { rete = { nome = "aula" } })
+{
+  "rete" = {
+    "nome" = "aula"
+  }
+}

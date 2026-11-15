@@ -1,0 +1,2 @@
+> uuidv5("dns", "scuola.example")
+"39de3799-fef9-547b-ab2c-b90290b40d87"

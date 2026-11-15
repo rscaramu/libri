@@ -1,0 +1,6 @@
+$ tofu apply -auto-approve
+...
+Outputs:
+
+anno = 2026
+cartella_presente = true

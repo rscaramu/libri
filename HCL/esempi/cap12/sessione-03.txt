@@ -1,0 +1,16 @@
+> yamlencode({ nome = "web", porte = [80, 443] })
+<<EOT
+"nome": "web"
+"porte":
+- 80
+- 443
+
+EOT
+> yamldecode("nome: web\nporte: [80, 443]")
+{
+  "nome" = "web"
+  "porte" = [
+    80,
+    443,
+  ]
+}

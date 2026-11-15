@@ -1,0 +1,6 @@
+> coalesce(null, "", "predefinito")
+"predefinito"
+> coalescelist([], ["a"])
+[
+  "a",
+]

@@ -1,0 +1,6 @@
+> type("ciao")
+string
+> type(42)
+number
+> type(true)
+bool

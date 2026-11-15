@@ -1,0 +1,6 @@
+> can(tonumber("12"))
+true
+> can(cidrhost("10.0.0.0/24", 1))
+true
+> can(cidrhost("non un cidr", 1))
+false

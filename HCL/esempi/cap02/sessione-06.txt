@@ -1,0 +1,17 @@
+$ tofu plan
+
+OpenTofu will perform the following actions:
+
+  # local_file.benvenuto will be created
+  + resource "local_file" "benvenuto" {
+      + content              = <<-EOT
+            Primo file creato con HCL.
+        EOT
+      + content_md5          = (known after apply)
+      + directory_permission = "0777"
+      + file_permission      = "0777"
+      + filename             = "./benvenuto.txt"
+      + id                   = (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.

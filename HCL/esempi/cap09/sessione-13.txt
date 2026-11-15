@@ -1,0 +1,18 @@
+> local.annidata
+[
+  [
+    "dev-web",
+    "dev-db",
+  ],
+  [
+    "prod-web",
+    "prod-db",
+  ],
+]
+> local.piatta
+[
+  "dev-web",
+  "dev-db",
+  "prod-web",
+  "prod-db",
+]

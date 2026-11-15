@@ -1,0 +1,9 @@
+> tostring(42)
+"42"
+> tonumber("12.50")
+12.5
+> tobool("true")
+true
+> tobool(1)
+Error: Invalid function argument
+Invalid value for "v" parameter: cannot convert number to bool.

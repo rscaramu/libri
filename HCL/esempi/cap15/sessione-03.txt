@@ -1,0 +1,7 @@
+$ tofu graph
+digraph {
+  ...
+  "[root] local_file.rete (expand)" -> "[root] random_pet.rete (expand)"
+  "[root] local_file.server (expand)" -> "[root] local_file.rete (expand)"
+  ...
+}

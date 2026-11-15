@@ -1,0 +1,8 @@
+$ tofu plan -input=false -out=piano.tfplan
+...
+Saved the plan to: piano.tfplan
+
+To perform exactly these actions, run the following command to apply:
+    tofu apply "piano.tfplan"
+$ tofu show piano.tfplan
+$ tofu apply -input=false piano.tfplan

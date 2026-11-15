@@ -1,0 +1,4 @@
+> "porte: ${join(", ", var.porte)}"
+"porte: 80, 443"
+> "porte: ${jsonencode(var.porte)}"
+"porte: [80,443]"

@@ -1,0 +1,6 @@
+$ tofu state mv random_pet.nome random_pet.codice
+Move "random_pet.nome" to "random_pet.codice"
+Successfully moved 1 object(s).
+$ tofu state rm local_file.scheda
+Removed local_file.scheda
+Successfully removed 1 resource instance(s).

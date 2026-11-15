@@ -1,0 +1,4 @@
+> tomap({ nord = "Milano", sud = "Reggio" })["sud"]
+"Reggio"
+> tomap({ nord = "Milano", sud = "Reggio" }).nord
+"Milano"

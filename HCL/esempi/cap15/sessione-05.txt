@@ -1,0 +1,3 @@
+$ tofu validate
+
+Error: Cycle: terraform_data.b, terraform_data.a

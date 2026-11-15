@@ -1,0 +1,8 @@
+locals {
+  script = <<-EOT
+    #!/bin/sh
+    if [ -f /etc/motd ]; then
+      cat /etc/motd
+    fi
+  EOT
+}

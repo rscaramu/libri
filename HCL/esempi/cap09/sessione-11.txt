@@ -1,0 +1,10 @@
+> { for s in var.server : s.ruolo => s.nome... }
+{
+  "db" = [
+    "srv3",
+  ]
+  "web" = [
+    "srv1",
+    "srv2",
+  ]
+}

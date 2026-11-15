@@ -1,0 +1,14 @@
+<apex:page controller="PaginaAziende">
+  <apex:form>
+    <apex:pageBlock title="Aziende italiane">
+      <apex:pageMessages />
+      <apex:pageBlockTable value="{!aziende}" var="a">
+        <apex:column value="{!a.Name}" />
+        <apex:column value="{!a.BillingCity}" />
+      </apex:pageBlockTable>
+      <apex:inputText value="{!filtro}" />
+      <apex:commandButton value="Cerca"
+          action="{!cerca}" />
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

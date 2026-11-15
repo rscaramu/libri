@@ -1,0 +1,5 @@
+> "abc" == "ABC"
+false
+> "b" > "a"
+Error: Invalid operand
+Unsuitable value for left operand: a number is required.

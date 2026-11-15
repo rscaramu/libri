@@ -1,0 +1,8 @@
+> true ? "a" : 1
+"a"
+> false ? "a" : 1
+"1"
+> true ? [1] : "x"
+Error: Inconsistent conditional result types
+The true and false result expressions must have consistent types. The 'true'
+value is tuple, but the 'false' value is string.

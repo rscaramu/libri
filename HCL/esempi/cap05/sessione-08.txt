@@ -1,0 +1,6 @@
+> { "chiave con spazi" = 1 }["chiave con spazi"]
+1
+> { 1 = "uno" }
+{
+  "1" = "uno"
+}

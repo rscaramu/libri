@@ -1,0 +1,6 @@
+> "export HOME=$${HOME}"
+"export HOME=${HOME}"
+> "sconto del 10%"
+"sconto del 10%"
+> "costo: 5$"
+"costo: 5$"

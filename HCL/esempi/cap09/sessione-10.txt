@@ -1,0 +1,5 @@
+> { for s in var.server : s.ruolo => s.nome }
+Error: Duplicate object key
+Two different items produced the key "web" in this 'for' expression. If
+duplicates are expected, use the ellipsis (...) after the value expression to
+enable grouping by key.

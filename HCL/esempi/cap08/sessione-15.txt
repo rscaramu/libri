@@ -1,0 +1,17 @@
+> local.senza_tilde
+<<EOT
+Utenti:
+
+- anna
+
+- bruno
+
+
+EOT
+> local.con_tilde
+<<EOT
+Utenti:
+- anna
+- bruno
+
+EOT

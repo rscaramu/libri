@@ -1,0 +1,7 @@
+> local.hosts
+<<EOT
+10.0.0.2 db
+10.0.0.3 posta
+10.0.0.1 web
+
+EOT

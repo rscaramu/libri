@@ -1,0 +1,8 @@
+$ vault policy fmt lettura-registro.hcl
+Success! Formatted policy: lettura-registro.hcl
+$ vault policy write lettura-registro lettura-registro.hcl
+Success! Uploaded policy: lettura-registro
+$ vault policy list
+default
+lettura-registro
+root

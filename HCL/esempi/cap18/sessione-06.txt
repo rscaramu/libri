@@ -1,0 +1,6 @@
+$ tofu plan -var versione_config=2
+...
+  # local_file.cfg will be replaced due to changes in replace_triggered_by
+  # terraform_data.versione will be updated in-place
+
+Plan: 1 to add, 1 to change, 1 to destroy.

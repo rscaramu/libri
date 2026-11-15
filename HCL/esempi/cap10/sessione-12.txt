@@ -1,0 +1,4 @@
+> can(regex("^[a-z][a-z0-9-]*$", "lab-01"))
+true
+> can(regex("^[a-z][a-z0-9-]*$", "Lab_01"))
+false

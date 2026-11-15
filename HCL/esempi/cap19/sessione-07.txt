@@ -1,0 +1,7 @@
+$ tofu apply -auto-approve
+...
+totale_posti = 62
+$ tofu state list
+module.a1.local_file.scheda
+module.lab["elettronica"].local_file.scheda
+module.lab["sistemi"].local_file.scheda

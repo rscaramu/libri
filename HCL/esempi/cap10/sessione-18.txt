@@ -1,0 +1,6 @@
+> formatlist("pc-%02d", [1, 2, 3])
+tolist([
+  "pc-01",
+  "pc-02",
+  "pc-03",
+])

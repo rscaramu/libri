@@ -1,0 +1,6 @@
+$ tofu providers
+
+Providers required by configuration:
+.
++-- provider[registry.opentofu.org/hashicorp/local] ~> 2.5
++-- provider[registry.opentofu.org/hashicorp/random] >= 3.6.0, < 4.0.0

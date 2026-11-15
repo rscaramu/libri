@@ -1,0 +1,4 @@
+Benvenuti su ${nome}.
+%{ for s in servizi ~}
+- ${s}
+%{ endfor ~}

@@ -1,0 +1,6 @@
+SELECT ApexClass.Name, CreatedDate, ExtendedStatus
+FROM AsyncApexJob
+WHERE JobType = 'Queueable'
+    AND Status = 'Failed'
+    AND CreatedDate = LAST_N_DAYS:7
+ORDER BY CreatedDate DESC

@@ -1,0 +1,2 @@
+> length("Percorso: C:\\dati\\\"nuovi\"")
+25

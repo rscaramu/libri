@@ -1,0 +1,3 @@
+  # data.local_file.letta will be read during apply
+  # (depends on a resource or a module with changes pending)
+ <= data "local_file" "letta" {

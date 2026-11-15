@@ -1,0 +1,15 @@
+> zipmap(["web", "db"], [80, 5432])
+{
+  "db" = 5432
+  "web" = 80
+}
+> transpose({ anna = ["admin", "dev"], bruno = ["dev"] })
+tomap({
+  "admin" = tolist([
+    "anna",
+  ])
+  "dev" = tolist([
+    "anna",
+    "bruno",
+  ])
+})

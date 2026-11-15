@@ -1,0 +1,10 @@
+> { for a in var.aule : a.piano => a.nome... }
+{
+  "0" = [
+    "A1",
+    "A2",
+  ]
+  "1" = [
+    "B1",
+  ]
+}

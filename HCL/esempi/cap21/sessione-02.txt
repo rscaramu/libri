@@ -1,0 +1,10 @@
+$ tofu state list
+local_file.scheda
+random_pet.nome
+$ tofu state show random_pet.nome
+# random_pet.nome:
+resource "random_pet" "nome" {
+    id        = "fresh-hamster"
+    length    = 2
+    separator = "-"
+}

@@ -1,0 +1,3 @@
+$ packer build -var versione=2.0.0 -only='laboratorio.file.motd' .
+...
+--> laboratorio.file.motd: Stored file: uscita/motd-vallauri-lab-2.0.0.txt

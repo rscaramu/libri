@@ -1,0 +1,8 @@
+> "server-${var.nome}"
+"server-web"
+> "porta ${var.porte[0]}"
+"porta 80"
+> "vale ${var.debug}"
+"vale true"
+> "somma: ${1 + 2}"
+"somma: 3"

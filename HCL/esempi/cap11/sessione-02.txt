@@ -1,0 +1,23 @@
+> sort(["pera", "mela", "uva"])
+tolist([
+  "mela",
+  "pera",
+  "uva",
+])
+> reverse(["a", "b", "c"])
+[
+  "c",
+  "b",
+  "a",
+]
+> distinct(["b", "a", "b", "c", "a"])
+tolist([
+  "b",
+  "a",
+  "c",
+])
+> compact(["a", "", "b", null])
+tolist([
+  "a",
+  "b",
+])

@@ -1,0 +1,4 @@
+> local.sottoreti
+> var.server[*].nome
+> type(local.per_nome)
+> { for k, v in local.per_nome : k => v.ruolo }

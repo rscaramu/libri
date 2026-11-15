@@ -1,0 +1,4 @@
+$ tofu state list
+local_file.postazione[0]
+local_file.postazione[1]
+local_file.postazione[2]

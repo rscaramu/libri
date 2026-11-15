@@ -1,0 +1,18 @@
+> [for n in var.nomi : upper(n)]
+[
+  "ANNA",
+  "BRUNO",
+  "CARLA",
+]
+> [for n in var.nomi : length(n)]
+[
+  4,
+  5,
+  5,
+]
+> [for n in var.nomi : "utente-${n}"]
+[
+  "utente-anna",
+  "utente-bruno",
+  "utente-carla",
+]

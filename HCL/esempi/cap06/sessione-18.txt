@@ -1,0 +1,6 @@
+> var.laboratorio
+{
+  "nome" = "Elettronica"
+  "posti" = 24
+  "proiettore" = false
+}

@@ -1,0 +1,7 @@
+> type(["a", "b"])
+tuple([
+    string,
+    string,
+])
+> type(tolist(["a", "b"]))
+list(string)

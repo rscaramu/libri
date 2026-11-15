@@ -1,0 +1,24 @@
+{
+  "version": 4,
+  "terraform_version": "1.11.0",
+  "serial": 1,
+  "lineage": "c33cdde3-df40-5c82-e553-b43405697aae",
+  "outputs": { "nome": { "value": "fresh-hamster" } },
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "random_pet",
+      "name": "nome",
+      "provider": "provider[\"registry.opentofu.org/...\"]",
+      "instances": [
+        {
+          "attributes": {
+            "id": "fresh-hamster",
+            "length": 2,
+            "separator": "-"
+          }
+        }
+      ]
+    }
+  ]
+}

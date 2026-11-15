@@ -1,0 +1,10 @@
+$ tofu apply
+...
+Warning: Check block assertion failed
+
+  on main.tf line 53, in check "file_presente":
+  53:     condition     = fileexists("${path.module}/licenza.txt")
+
+Il file licenza.txt non esiste.
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.

@@ -1,0 +1,2 @@
+> "modo: ${var.debug ? "verboso" : "normale"}"
+"modo: verboso"

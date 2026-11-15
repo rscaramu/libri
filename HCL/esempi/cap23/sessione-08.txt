@@ -1,0 +1,5 @@
+$ tofu plan
+...
+  # random_uuid.importato will be imported
+
+Plan: 1 to import, 0 to add, 0 to change, 0 to destroy.

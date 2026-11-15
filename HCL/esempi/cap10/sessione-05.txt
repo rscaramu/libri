@@ -1,0 +1,10 @@
+> split(",", "web,db,posta")
+tolist([
+  "web",
+  "db",
+  "posta",
+])
+> join("-", ["scuola", "lab", "01"])
+"scuola-lab-01"
+> join(".", reverse(split(".", "www.scuola.example")))
+"example.scuola.www"

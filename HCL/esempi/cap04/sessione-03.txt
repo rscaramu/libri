@@ -1,0 +1,6 @@
+> "dice \"ciao\""
+"dice \"ciao\""
+> "tab\tqui"
+"tab\tqui"
+> "\u0041"
+"A"

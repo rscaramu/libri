@@ -1,0 +1,6 @@
+> alltrue([true, true, false])
+false
+> anytrue([true, false, false])
+true
+> alltrue([for p in [80, 443] : p > 0])
+true

@@ -1,0 +1,5 @@
+SELECT Name, BillingCity, AnnualRevenue
+FROM Account
+WHERE BillingCountry = 'Italia'
+ORDER BY Name
+LIMIT 10

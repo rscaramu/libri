@@ -1,0 +1,6 @@
+Error: Output refers to sensitive values
+
+To reduce the risk of accidentally exporting sensitive data that was
+intended to be only internal, OpenTofu requires that any root module
+output containing sensitive data be explicitly marked as sensitive, to
+confirm your intent.

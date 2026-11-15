@@ -1,0 +1,6 @@
+> md5("ciao")
+"6e6bc4e49dd477ebc98ef4046c067b5f"
+> sha256("ciao")
+"b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2"
+> substr(sha1("ciao"), 0, 8)
+"1e4e888a"

@@ -1,0 +1,5 @@
+$ tofu plan
+...
+  # random_pet.vecchio has moved to random_pet.nuovo
+
+Plan: 0 to add, 0 to change, 0 to destroy.

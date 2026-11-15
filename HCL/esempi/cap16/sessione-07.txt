@@ -1,0 +1,4 @@
+$ tofu state list
+local_file.aula["a1"]
+local_file.aula["a2"]
+local_file.aula["b1"]

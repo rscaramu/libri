@@ -1,0 +1,4 @@
+> ["rosso", "verde", "blu"][0]
+"rosso"
+> length(["rosso", "verde", "blu"])
+3

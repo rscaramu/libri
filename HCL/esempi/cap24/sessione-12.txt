@@ -1,0 +1,5 @@
+$ tofu workspace new prova
+$ tofu apply
+$ tofu destroy
+$ tofu workspace select default
+$ tofu workspace delete prova

@@ -1,0 +1,9 @@
+Error: Invalid for_each argument
+
+The "for_each" set includes values derived from resource attributes that
+cannot be determined until apply, and so OpenTofu cannot determine the full
+set of keys that will identify the instances of this resource.
+
+When working with unknown values in for_each, it's better to use a map
+value where the keys are defined statically in your configuration and
+where only the values contain apply-time results.

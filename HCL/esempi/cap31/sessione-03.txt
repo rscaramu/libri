@@ -1,0 +1,9 @@
+$ packer build .
+...
+==> laboratorio.null.controllo: Preparazione di vallauri-lab-1.0.0
+==> laboratorio.null.controllo: Running post-processor:  (type manifest)
+Build 'laboratorio.null.controllo' finished after 23 milliseconds.
+
+==> Builds finished. The artifacts of successful builds are:
+--> laboratorio.file.motd: Stored file: uscita/motd-vallauri-lab-1.0.0.txt
+--> laboratorio.null.controllo: Did not export anything. This is the null builder

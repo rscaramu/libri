@@ -1,0 +1,8 @@
+$ tofu test
+tests/aula.tftest.hcl... pass
+  run "etichetta_corretta"... pass
+  run "contenuto_con_posti"... pass
+  run "nome_non_valido"... pass
+  run "crea_davvero"... pass
+
+Success! 4 passed, 0 failed.

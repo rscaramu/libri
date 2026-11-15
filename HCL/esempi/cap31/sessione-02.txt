@@ -1,0 +1,14 @@
+$ packer validate .
+The configuration is valid.
+$ packer inspect .
+Packer Inspect: HCL2 mode
+
+> input-variables:
+
+var.scuola: "vallauri"
+var.versione: "1.0.0"
+
+> local-variables:
+
+local.nome: "vallauri-lab-1.0.0"
+...

@@ -1,0 +1,6 @@
+> coalesce(null, "localhost")
+"localhost"
+> coalesce("", "localhost")
+"localhost"
+> coalesce("server1", "localhost")
+"server1"

@@ -1,0 +1,5 @@
+> "riga1\nriga2"
+<<EOT
+riga1
+riga2
+EOT

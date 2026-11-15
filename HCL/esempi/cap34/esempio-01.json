@@ -1,0 +1,13 @@
+{
+  "variable": {
+    "nome": { "type": "string", "default": "mondo" }
+  },
+  "locals": {
+    "saluto": "Ciao, ${var.nome}!",
+    "doppio": "${length(var.nome) * 2}"
+  },
+  "output": {
+    "saluto": { "value": "${local.saluto}" },
+    "doppio": { "value": "${local.doppio}" }
+  }
+}

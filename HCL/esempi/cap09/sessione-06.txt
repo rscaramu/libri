@@ -1,0 +1,15 @@
+> [for nome, voto in var.voti : nome if voto >= 6]
+[
+  "anna",
+  "carla",
+]
+> [for n in var.nomi : n if length(n) > 4]
+[
+  "bruno",
+  "carla",
+]
+> [for n in var.nomi : upper(n) if n != "bruno"]
+[
+  "ANNA",
+  "CARLA",
+]

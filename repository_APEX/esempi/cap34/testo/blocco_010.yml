@@ -1,0 +1,22 @@
+name: Convalida
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  convalida:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Installa la CLI
+        run: npm install --global @salesforce/cli
+      - name: Accede alla sandbox
+        run: |
+          echo "${{ secrets.SFDX_AUTH_URL }}" > auth.txt
+          sf org login sfdx-url \
+            --sfdx-url-file auth.txt --alias ci
+      - name: Convalida con i test
+        run: |
+          sf project deploy validate \
+            --source-dir force-app \
+            --target-org ci \
+            --test-level RunLocalTests --wait 60

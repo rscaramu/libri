@@ -1,0 +1,3 @@
+$ nomad node status
+ID        Node Pool  DC   Name  Class   Drain  Eligibility  Status
+648ccfe8  default    dc1  vm    <none>  false  eligible     ready

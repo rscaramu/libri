@@ -1,0 +1,4 @@
+$ tofu plan
+local_file.benvenuto: Refreshing state... [id=883d61f7...]
+
+No changes. Your infrastructure matches the configuration.

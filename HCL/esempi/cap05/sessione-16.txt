@@ -1,0 +1,6 @@
+> [1, 2] == [1, 2]
+true
+> [1, 2] == tolist([1, 2])
+false
+> tolist([1, 2]) == tolist([1, 2])
+true

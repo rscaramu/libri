@@ -1,0 +1,13 @@
+> random_pet.server
+{
+  "id" = "artistic-catfish"
+  "keepers" = tomap(null) /* of string */
+  "length" = 2
+  "prefix" = tostring(null)
+  "separator" = "-"
+}
+> local_file.scheda.content
+<<EOT
+Server: artistic-catfish
+
+EOT

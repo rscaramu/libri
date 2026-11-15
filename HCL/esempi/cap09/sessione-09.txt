@@ -1,0 +1,8 @@
+> local.per_nome["srv3"].cpu
+8
+> keys(local.per_nome)
+[
+  "srv1",
+  "srv2",
+  "srv3",
+]

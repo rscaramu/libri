@@ -1,0 +1,5 @@
+$ tofu plan
+
+Error: Backend initialization required: please run "tofu init"
+
+Reason: Backend configuration block has changed

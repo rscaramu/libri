@@ -1,0 +1,16 @@
+> csvdecode("nome,posti\nA1,24\nB2,30")
+tolist([
+  {
+    "nome" = "A1"
+    "posti" = "24"
+  },
+  {
+    "nome" = "B2"
+    "posti" = "30"
+  },
+])
+> [for r in csvdecode("nome,posti\nA1,24\nB2,30") : tonumber(r.posti)]
+[
+  24,
+  30,
+]

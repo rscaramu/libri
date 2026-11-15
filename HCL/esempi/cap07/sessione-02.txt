@@ -1,0 +1,5 @@
+> [1] + [2]
+Error: Invalid operand
+Unsuitable value for left operand: number required, but have tuple.
+Error: Invalid operand
+Unsuitable value for right operand: number required, but have tuple.

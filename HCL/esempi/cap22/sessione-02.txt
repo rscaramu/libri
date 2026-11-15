@@ -1,0 +1,6 @@
+$ tofu init
+
+Initializing the backend...
+
+Successfully configured the backend "local"! OpenTofu will automatically
+use this backend unless the backend configuration changes.

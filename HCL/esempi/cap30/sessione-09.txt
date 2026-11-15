@@ -1,0 +1,7 @@
+Error: Reference to undeclared resource
+
+  on main.tf line 14, in output "contenuto":
+  14:   value = local_file.letta.content
+
+A managed resource "local_file" "letta" has not been declared in the root
+module.

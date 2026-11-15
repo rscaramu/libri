@@ -1,0 +1,16 @@
+> tolist(toset(["b", "a", "b"]))
+tolist([
+  "a",
+  "b",
+])
+> sort(distinct(concat(["b", "a"], ["c", "a"])))
+tolist([
+  "a",
+  "b",
+  "c",
+])
+> toset(keys({ web = 80, db = 5432 }))
+toset([
+  "db",
+  "web",
+])

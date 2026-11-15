@@ -1,0 +1,4 @@
+> length(local.server.dischi)
+2
+> sum(local.server.dischi[*].gb)
+250

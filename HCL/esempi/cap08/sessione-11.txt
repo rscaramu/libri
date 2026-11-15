@@ -1,0 +1,8 @@
+> local.avviso
+<<EOT
+Server: web
+Stato: attivo
+
+EOT
+> length(local.avviso)
+26

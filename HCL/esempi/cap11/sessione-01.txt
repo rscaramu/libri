@@ -1,0 +1,12 @@
+> length(["a", "b", "c"])
+3
+> contains(["dev", "prod"], "prod")
+true
+> index(["a", "b", "c"], "b")
+1
+> element(["a", "b", "c"], 5)
+"c"
+> one(["solo"])
+"solo"
+> one([])
+null

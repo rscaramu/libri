@@ -1,0 +1,14 @@
+> var.server[*].nome
+tolist([
+  "srv1",
+  "srv2",
+  "srv3",
+])
+> [for s in var.server : s.nome]
+[
+  "srv1",
+  "srv2",
+  "srv3",
+]
+> sum(var.server[*].cpu)
+14
