@@ -1,0 +1,36 @@
+Capitolo 22 – Programmazione dinamica: i principi
+
+algoritmo MODI_MEMO(n, tabella)
+    se n ≤ 1 allora
+        ritorna 1
+    se n è in tabella allora
+        ritorna tabella[n]
+    tabella[n] <- MODI_MEMO(n-1, tabella)
+                  + MODI_MEMO(n-2, tabella)
+    ritorna tabella[n]
+
+algoritmo MODI_TABELLA(n)
+    T <- sequenza di n+1 posti
+    T[0] <- 1
+    T[1] <- 1
+    per i da 2 a n
+        T[i] <- T[i-1] + T[i-2]
+    ritorna T[n]
+
+algoritmo RESTO_MINIMO(importo, tagli)
+    M <- sequenza di importo+1 valori ∞
+    ultima <- sequenza di importo+1 valori nulli
+    M[0] <- 0
+    per v da 1 a importo
+        per ogni t in tagli
+            se t ≤ v e M[v - t] + 1 < M[v] allora
+                M[v] <- M[v - t] + 1
+                ultima[v] <- t
+    se M[importo] = ∞ allora
+        ritorna nullo
+    monete <- sequenza vuota
+    v <- importo
+    finché v > 0
+        aggiungi ultima[v] a monete
+        v <- v - ultima[v]
+    ritorna monete

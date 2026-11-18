@@ -1,0 +1,51 @@
+Capitolo 23 – Programmazione dinamica: problemi classici
+
+algoritmo ZAINO(pesi, valori, C)
+    V <- tabella (n+1) × (C+1) di zeri
+    per i da 1 a n
+        per c da 0 a C
+            V[i][c] <- V[i-1][c]
+            se pesi[i-1] ≤ c allora
+                con <- valori[i-1] + V[i-1][c - pesi[i-1]]
+                se con > V[i][c] allora
+                    V[i][c] <- con
+    // ricostruzione
+    scelti <- sequenza vuota
+    c <- C
+    per i da n giù fino a 1
+        se V[i][c] ≠ V[i-1][c] allora
+            aggiungi i-1 a scelti
+            c <- c - pesi[i-1]
+    ritorna (V[n][C], scelti)
+
+algoritmo ZAINO_COMPATTO(pesi, valori, C)
+    V <- sequenza di C+1 zeri
+    per i da 0 a n-1
+        per c da C giù fino a pesi[i]
+            V[c] <- max(V[c], valori[i] + V[c - pesi[i]])
+    ritorna V[C]
+
+algoritmo LUNGHEZZA_SCP(A)
+    code <- sequenza vuota
+    per ogni x in A
+        k <- LIMITE_INFERIORE(code, x)
+        se k = lunghezza(code) allora
+            aggiungi x a code
+        altrimenti
+            code[k] <- x
+    ritorna lunghezza(code)
+
+algoritmo CATENA_DI_MATRICI(d)
+    // la matrice i ha dimensioni d[i] × d[i+1], i da 0 a n-1
+    M <- tabella n × n di zeri
+    per lunghezza da 2 a n
+        per i da 0 a n - lunghezza
+            j <- i + lunghezza - 1
+            M[i][j] <- ∞
+            per k da i a j-1
+                costo <- M[i][k] + M[k+1][j]
+                         + d[i] * d[k+1] * d[j+1]
+                se costo < M[i][j] allora
+                    M[i][j] <- costo
+                    taglio[i][j] <- k
+    ritorna M[0][n-1]

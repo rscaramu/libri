@@ -1,0 +1,48 @@
+Capitolo 16 – Quicksort
+
+algoritmo QUICKSORT(A, basso, alto)
+    se basso < alto allora
+        p <- PARTIZIONA(A, basso, alto)
+        QUICKSORT(A, basso, p - 1)
+        QUICKSORT(A, p + 1, alto)
+
+algoritmo PARTIZIONA(A, basso, alto)
+    perno <- A[alto]
+    i <- basso
+    per j da basso a alto - 1
+        // invariante: A[basso..i-1] ≤ perno < A[i..j-1]
+        se A[j] ≤ perno allora
+            scambia A[i] e A[j]
+            i <- i + 1
+    scambia A[i] e A[alto]
+    ritorna i
+
+algoritmo PARTIZIONA_HOARE(A, basso, alto)
+    perno <- A[basso + (alto - basso) div 2]
+    i <- basso - 1
+    j <- alto + 1
+    ripeti
+        ripeti i <- i + 1 finché A[i] < perno
+        ripeti j <- j - 1 finché A[j] > perno
+        se i ≥ j allora
+            ritorna j
+        scambia A[i] e A[j]
+    // poi si ordinano A[basso..j] e A[j+1..alto]
+
+algoritmo PARTIZIONA_TRE_VIE(A, basso, alto)
+    perno <- A[basso]
+    min <- basso            // A[basso..min-1] < perno
+    i <- basso              // A[min..i-1] = perno
+    mag <- alto             // A[mag+1..alto] > perno
+    finché i ≤ mag
+        se A[i] < perno allora
+            scambia A[min] e A[i]
+            min <- min + 1
+            i <- i + 1
+        altrimenti se A[i] > perno allora
+            scambia A[i] e A[mag]
+            mag <- mag - 1
+        altrimenti
+            i <- i + 1
+    ritorna (min, mag)
+    // poi si ordinano A[basso..min-1] e A[mag+1..alto]

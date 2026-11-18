@@ -1,0 +1,9 @@
+Capitolo 2 – Pseudocodice e Python: le convenzioni del libro
+
+algoritmo ROVESCIA(A)
+    i <- 0
+    j <- n - 1
+    finché i < j
+        scambia A[i] e A[j]
+        i <- i + 1
+        j <- j - 1

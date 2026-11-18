@@ -1,0 +1,60 @@
+Capitolo 13 – Insiemi disgiunti, trie e alberi di Fenwick
+
+algoritmo TROVA(x)
+    radice <- x
+    finché genitore[radice] ≠ radice
+        radice <- genitore[radice]
+    finché genitore[x] ≠ radice         // compressione
+        prossimo <- genitore[x]
+        genitore[x] <- radice
+        x <- prossimo
+    ritorna radice
+
+algoritmo UNISCI(x, y)
+    rx <- TROVA(x)
+    ry <- TROVA(y)
+    se rx = ry allora
+        ritorna falso                   // già insieme
+    se grandezza[rx] < grandezza[ry] allora
+        scambia rx e ry
+    genitore[ry] <- rx
+    grandezza[rx] <- grandezza[rx] + grandezza[ry]
+    ritorna vero
+
+algoritmo INSERISCI_TRIE(radice, parola)
+    nodo <- radice
+    per ogni carattere c in parola
+        se nodo non ha un figlio per c allora
+            crea un nuovo figlio di nodo per c
+        nodo <- figlio di nodo per c
+    nodo.fine <- vero
+
+algoritmo SCENDI_TRIE(radice, s)
+    // restituisce il nodo raggiunto leggendo s, o nullo
+    nodo <- radice
+    per ogni carattere c in s
+        se nodo non ha un figlio per c allora
+            ritorna nullo
+        nodo <- figlio di nodo per c
+    ritorna nodo
+
+algoritmo SOMME_PREFISSE(A)
+    P <- sequenza di n+1 zeri
+    per i da 0 a n-1
+        P[i+1] <- P[i] + A[i]
+    ritorna P
+    // somma di A[a..b] = P[b+1] - P[a]
+
+algoritmo AGGIUNGI(F, i, delta)
+    // aumenta di delta l'elemento di posizione i (da 1 a n)
+    finché i ≤ n
+        F[i] <- F[i] + delta
+        i <- i + (i & -i)
+
+algoritmo PREFISSO(F, i)
+    // somma degli elementi di posizione da 1 a i
+    s <- 0
+    finché i > 0
+        s <- s + F[i]
+        i <- i - (i & -i)
+    ritorna s

@@ -1,0 +1,63 @@
+Capitolo 15 – Merge sort e il paradigma divide et impera
+
+algoritmo FONDI(S, D)
+    R <- sequenza vuota
+    i <- 0
+    j <- 0
+    finché i < lunghezza(S) e j < lunghezza(D)
+        se S[i] ≤ D[j] allora
+            aggiungi S[i] a R
+            i <- i + 1
+        altrimenti
+            aggiungi D[j] a R
+            j <- j + 1
+    aggiungi a R gli elementi rimasti di S
+    aggiungi a R gli elementi rimasti di D
+    ritorna R
+
+algoritmo MERGE_SORT(A, basso, alto)
+    // ordina il tratto A[basso..alto]
+    se basso ≥ alto allora
+        ritorna
+    medio <- basso + (alto - basso) div 2
+    MERGE_SORT(A, basso, medio)
+    MERGE_SORT(A, medio + 1, alto)
+    FONDI_TRATTI(A, basso, medio, alto)
+
+algoritmo FONDI_TRATTI(A, basso, medio, alto)
+    // fonde A[basso..medio] e A[medio+1..alto], ordinati
+    // B: array ausiliario lungo quanto A
+    B[basso..alto] <- A[basso..alto]
+    i <- basso                    // indice a sinistra
+    j <- medio + 1                // indice a destra
+    per k da basso a alto
+        se j > alto allora        // destra esaurita
+            A[k] <- B[i];  i <- i + 1
+        altrimenti se i > medio allora
+            A[k] <- B[j];  j <- j + 1
+        altrimenti se B[i] ≤ B[j] allora
+            A[k] <- B[i];  i <- i + 1
+        altrimenti
+            A[k] <- B[j];  j <- j + 1
+
+algoritmo MERGE_SORT_DAL_BASSO(A)
+    ampiezza <- 1
+    finché ampiezza < n
+        basso <- 0
+        finché basso + ampiezza < n
+            medio <- basso + ampiezza - 1
+            alto <- min(basso + 2*ampiezza - 1, n - 1)
+            FONDI_TRATTI(A, basso, medio, alto)
+            basso <- basso + 2*ampiezza
+        ampiezza <- 2 * ampiezza
+
+algoritmo CONTA_INVERSIONI(A)
+    // restituisce (A ordinata, numero di inversioni)
+    se n ≤ 1 allora
+        ritorna (A, 0)
+    (S, a) <- CONTA_INVERSIONI(prima metà di A)
+    (D, b) <- CONTA_INVERSIONI(seconda metà di A)
+    fondi S e D in R; ogni volta che si prende un
+        elemento di D, aggiungi a c il numero di
+        elementi di S non ancora presi
+    ritorna (R, a + b + c)

@@ -1,0 +1,63 @@
+Capitolo 7 – Array, liste concatenate e array dinamici
+
+algoritmo INSERISCI_IN(A, n, p, x)
+    // A ha capacità maggiore di n; inserisce x all'indice p
+    per i da n-1 giù fino a p
+        A[i+1] <- A[i]
+    A[p] <- x
+    ritorna n + 1
+
+algoritmo ELIMINA_DA(A, n, p)
+    per i da p a n-2
+        A[i] <- A[i+1]
+    ritorna n - 1
+
+algoritmo INSERISCI_IN_TESTA(L, x)
+    nodo <- nuovo nodo con chiave x
+    nodo.succ <- L.testa
+    L.testa <- nodo
+
+algoritmo CERCA(L, x)
+    nodo <- L.testa
+    finché nodo ≠ nullo e nodo.chiave ≠ x
+        nodo <- nodo.succ
+    ritorna nodo
+
+algoritmo ELIMINA(L, x)
+    // toglie il primo nodo con chiave x, se esiste
+    prec <- nullo
+    nodo <- L.testa
+    finché nodo ≠ nullo e nodo.chiave ≠ x
+        prec <- nodo
+        nodo <- nodo.succ
+    se nodo = nullo allora
+        ritorna falso
+    se prec = nullo allora
+        L.testa <- nodo.succ
+    altrimenti
+        prec.succ <- nodo.succ
+    ritorna vero
+
+algoritmo ROVESCIA_LISTA(L)
+    prec <- nullo
+    nodo <- L.testa
+    finché nodo ≠ nullo
+        // invariante: i nodi prima di nodo sono già
+        // rovesciati e prec ne è la testa
+        prossimo <- nodo.succ
+        nodo.succ <- prec
+        prec <- nodo
+        nodo <- prossimo
+    L.testa <- prec
+
+algoritmo INSERISCI_DOPO(p, x)
+    // lista doppia con sentinella; p: nodo dopo cui inserire
+    nodo <- nuovo nodo con chiave x
+    nodo.prec <- p
+    nodo.succ <- p.succ
+    p.succ.prec <- nodo
+    p.succ <- nodo
+
+algoritmo STACCA(nodo)
+    nodo.prec.succ <- nodo.succ
+    nodo.succ.prec <- nodo.prec

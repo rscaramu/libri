@@ -1,0 +1,57 @@
+Capitolo 53 – Euristiche e metaeuristiche
+
+algoritmo VICINO_PIU_VICINO(città, partenza)
+    giro <- [partenza]
+    finché restano città non visitate
+        c <- città non visitata più vicina all'ultima del giro
+        aggiungi c a giro
+    ritorna giro
+
+algoritmo RICERCA_LOCALE(soluzione)
+    ripeti
+        migliorato <- falso
+        per ogni vicino v di soluzione
+            se costo(v) < costo(soluzione) allora
+                soluzione <- v
+                migliorato <- vero
+                esci dal ciclo interno
+    finché migliorato
+    ritorna soluzione
+
+algoritmo DUE_OPT(giro, d)
+    ripeti
+        migliorato <- falso
+        per i da 0 a n-2
+            per j da i+2 a n-1
+                a <- giro[i];      b <- giro[i+1]
+                c <- giro[j];      e <- giro[(j+1) mod n]
+                delta <- d[a][c] + d[b][e] - d[a][b] - d[c][e]
+                se delta < 0 allora
+                    rovescia giro[i+1..j]
+                    migliorato <- vero
+    finché migliorato
+    ritorna giro
+
+algoritmo RICOTTURA(soluzione, T, raffreddamento, passi)
+    migliore <- soluzione
+    ripeti passi volte
+        v <- vicino casuale di soluzione
+        delta <- costo(v) - costo(soluzione)
+        se delta < 0 oppure casuale() < e^(-delta / T) allora
+            soluzione <- v
+            se costo(soluzione) < costo(migliore) allora
+                migliore <- soluzione
+        T <- T * raffreddamento
+    ritorna migliore
+
+algoritmo GENETICO(popolazione, generazioni)
+    ripeti generazioni volte
+        nuova <- i migliori individui di popolazione
+        finché nuova ha meno individui di popolazione
+            p1 <- TORNEO(popolazione)
+            p2 <- TORNEO(popolazione)
+            figlio <- INCROCIO(p1, p2)
+            con piccola probabilità: MUTA(figlio)
+            aggiungi figlio a nuova
+        popolazione <- nuova
+    ritorna il migliore individuo di popolazione

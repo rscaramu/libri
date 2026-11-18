@@ -1,0 +1,73 @@
+Capitolo 41 – Ricerca nelle stringhe
+
+algoritmo CERCA_DIRETTO(T, P)
+    posizioni <- sequenza vuota
+    per i da 0 a n - m
+        j <- 0
+        finché j < m e T[i + j] = P[j]
+            j <- j + 1
+        se j = m allora
+            aggiungi i a posizioni
+    ritorna posizioni
+
+algoritmo FUNZIONE_PREFISSO(P)
+    pi <- sequenza di m zeri
+    k <- 0
+    per j da 1 a m-1
+        finché k > 0 e P[j] ≠ P[k]
+            k <- pi[k - 1]
+        se P[j] = P[k] allora
+            k <- k + 1
+        pi[j] <- k
+    ritorna pi
+
+algoritmo CERCA_KMP(T, P)
+    pi <- FUNZIONE_PREFISSO(P)
+    posizioni <- sequenza vuota
+    k <- 0                // caratteri del motivo già trovati
+    per i da 0 a n-1
+        finché k > 0 e T[i] ≠ P[k]
+            k <- pi[k - 1]
+        se T[i] = P[k] allora
+            k <- k + 1
+        se k = m allora
+            aggiungi i - m + 1 a posizioni
+            k <- pi[k - 1]
+    ritorna posizioni
+
+algoritmo FUNZIONE_Z(S)
+    Z <- sequenza di n zeri
+    s <- 0;  d <- 0
+    per i da 1 a n-1
+        se i < d allora
+            Z[i] <- min(d - i, Z[i - s])
+        finché i + Z[i] < n e S[Z[i]] = S[i + Z[i]]
+            Z[i] <- Z[i] + 1
+        se i + Z[i] > d allora
+            s <- i;  d <- i + Z[i]
+    ritorna Z
+
+algoritmo CERCA_RABIN_KARP(T, P)
+    b <- 256;  q <- un numero primo grande
+    alto <- b^(m-1) mod q
+    hp <- hash di P;  ht <- hash di T[0..m-1]
+    per i da 0 a n - m
+        se hp = ht e T[i..i+m-1] = P allora
+            aggiungi i alle posizioni
+        se i < n - m allora
+            ht <- (ht - codice(T[i]) * alto) mod q
+            ht <- (ht * b + codice(T[i + m])) mod q
+
+algoritmo CERCA_HORSPOOL(T, P)
+    per ogni carattere c dell'alfabeto
+        salto[c] <- m
+    per j da 0 a m-2
+        salto[P[j]] <- m - 1 - j
+    i <- 0
+    finché i ≤ n - m
+        j <- m - 1
+        finché j ≥ 0 e T[i + j] = P[j]
+            j <- j - 1
+        se j < 0 allora
+            aggiungi i alle posizioni
+        i <- i + salto[T[i + m - 1]]

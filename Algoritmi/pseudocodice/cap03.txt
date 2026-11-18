@@ -1,0 +1,40 @@
+Capitolo 3 – Correttezza: invarianti e induzione
+
+algoritmo MASSIMO(A)
+    m <- A[0]
+    per i da 1 a n-1
+        // invariante: m è il massimo di A[0..i-1]
+        se A[i] > m allora
+            m <- A[i]
+    ritorna m
+
+algoritmo MCD(a, b)
+    finché b ≠ 0
+        // invariante: mcd(a, b) è quello dei valori iniziali
+        // variante: b, intero non negativo che diminuisce
+        r <- a mod b
+        a <- b
+        b <- r
+    ritorna a
+
+algoritmo POTENZA(b, e)
+    // e: intero non negativo; restituisce b elevato a e
+    se e = 0 allora
+        ritorna 1
+    ritorna b * POTENZA(b, e - 1)
+
+algoritmo RICERCA_BINARIA(A, x)
+    // A: sequenza ordinata in senso non decrescente
+    basso <- 0
+    alto <- n - 1
+    finché basso ≤ alto
+        // invariante: se x è in A, è in A[basso..alto]
+        // variante: alto - basso + 1
+        medio <- basso + (alto - basso) div 2
+        se A[medio] = x allora
+            ritorna medio
+        se A[medio] < x allora
+            basso <- medio + 1
+        altrimenti
+            alto <- medio - 1
+    ritorna -1

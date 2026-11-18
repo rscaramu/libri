@@ -1,0 +1,38 @@
+Capitolo 46 – Manipolazione di bit
+
+algoritmo ACCENDI(x, i)
+    ritorna x OR (1 << i)
+
+algoritmo SPEGNI(x, i)
+    ritorna x AND NOT (1 << i)
+
+algoritmo INVERTI(x, i)
+    ritorna x XOR (1 << i)
+
+algoritmo LEGGI(x, i)
+    ritorna (x >> i) AND 1
+
+algoritmo SOTTOINSIEMI_DI(m)
+    s <- m
+    ripeti
+        tratta s
+        se s = 0 allora
+            esci
+        s <- (s - 1) AND m
+
+algoritmo CONTA_BIT(x)
+    n <- 0
+    finché x ≠ 0
+        x <- x AND (x - 1)
+        n <- n + 1
+    ritorna n
+
+algoritmo BINARIO_IN_GRAY(n)
+    ritorna n XOR (n >> 1)
+
+algoritmo GRAY_IN_BINARIO(g)
+    n <- 0
+    finché g ≠ 0
+        n <- n XOR g
+        g <- g >> 1
+    ritorna n

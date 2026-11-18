@@ -1,0 +1,30 @@
+Capitolo 25 – Algoritmi probabilistici
+
+algoritmo TROVA_LAS_VEGAS(A)
+    ripeti
+        i <- intero casuale fra 0 e n-1
+        se A[i] è buono allora
+            ritorna i
+
+algoritmo TROVA_MONTE_CARLO(A, k)
+    ripeti k volte
+        i <- intero casuale fra 0 e n-1
+        se A[i] è buono allora
+            ritorna i
+    ritorna "non trovato"
+
+algoritmo FREIVALDS(A, B, C, k)
+    ripeti k volte
+        r <- vettore di n valori casuali in {0, 1}
+        se A * (B * r) ≠ C * r allora
+            ritorna falso              // certamente diverso
+    ritorna vero                       // probabilmente uguale
+
+algoritmo STIMA_PI(N)
+    dentro <- 0
+    ripeti N volte
+        x <- numero casuale in [0, 1)
+        y <- numero casuale in [0, 1)
+        se x*x + y*y < 1 allora
+            dentro <- dentro + 1
+    ritorna 4 * dentro / N

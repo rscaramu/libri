@@ -1,0 +1,31 @@
+Capitolo 30 – Flusso massimo e accoppiamenti
+
+algoritmo FLUSSO_MASSIMO(G, s, t)
+    residuo <- copia delle capacità; 0 per gli archi inversi
+    flusso <- 0
+    finché esiste un cammino P da s a t nel grafo residuo
+        collo <- minima capacità residua lungo P
+        per ogni arco (u, v) di P
+            residuo[u][v] <- residuo[u][v] - collo
+            residuo[v][u] <- residuo[v][u] + collo
+        flusso <- flusso + collo
+    ritorna flusso
+
+algoritmo ACCOPPIAMENTO(idoneita, numero_posti)
+    occupante <- sequenza di numero_posti valori nulli
+    assunti <- 0
+    per ogni candidato c
+        visti <- insieme vuoto
+        se SISTEMA(c, visti) allora
+            assunti <- assunti + 1
+    ritorna assunti
+
+algoritmo SISTEMA(c, visti)
+    per ogni posto p in idoneita[c]
+        se p non è in visti allora
+            aggiungi p a visti
+            se occupante[p] = nullo
+                    oppure SISTEMA(occupante[p], visti) allora
+                occupante[p] <- c
+                ritorna vero
+    ritorna falso

@@ -1,0 +1,74 @@
+Capitolo 33 – Numeri primi e fattorizzazione
+
+algoritmo PRIMO_PER_DIVISIONI(n)
+    se n < 2 allora
+        ritorna falso
+    se n < 4 allora
+        ritorna vero                  // 2 e 3
+    se n è pari allora
+        ritorna falso
+    d <- 3
+    finché d * d ≤ n
+        se n mod d = 0 allora
+            ritorna falso
+        d <- d + 2
+    ritorna vero
+
+algoritmo CRIVELLO(n)
+    primo <- sequenza di n+1 valori vero
+    primo[0] <- falso
+    primo[1] <- falso
+    p <- 2
+    finché p * p ≤ n
+        se primo[p] allora
+            per m da p*p a n con passo p
+                primo[m] <- falso
+        p <- p + 1
+    ritorna gli indici i con primo[i] vero
+
+algoritmo FATTORIZZA(n)
+    fattori <- sequenza vuota
+    d <- 2
+    finché d * d ≤ n
+        finché n mod d = 0
+            aggiungi d a fattori
+            n <- n div d
+        d <- d + 1                    // oppure 3, 5, 7, ...
+    se n > 1 allora
+        aggiungi n a fattori
+    ritorna fattori
+
+algoritmo TESTIMONE_COMPOSTO(a, d, s, n)
+    // vero se a dimostra che n è composto
+    x <- a^d mod n
+    se x = 1 oppure x = n - 1 allora
+        ritorna falso
+    ripeti s - 1 volte
+        x <- x * x mod n
+        se x = n - 1 allora
+            ritorna falso
+    ritorna vero
+
+algoritmo MILLER_RABIN(n, k)
+    tratta a parte n < 2, i primi piccoli e i loro multipli
+    scrivi n - 1 = 2^s * d con d dispari
+    ripeti k volte
+        a <- intero casuale fra 2 e n - 2
+        se TESTIMONE_COMPOSTO(a, d, s, n) allora
+            ritorna falso              // certamente composto
+    ritorna vero                       // probabilmente primo
+
+algoritmo POLLARD_RHO(n)
+    // n composto e dispari; restituisce un fattore proprio
+    ripeti
+        c <- intero casuale fra 1 e n - 1
+        x <- intero casuale fra 0 e n - 1
+        y <- x
+        d <- 1
+        finché d = 1
+            x <- (x*x + c) mod n              // tartaruga
+            y <- (y*y + c) mod n
+            y <- (y*y + c) mod n              // lepre
+            d <- mcd(|x - y|, n)
+        se d ≠ n allora
+            ritorna d

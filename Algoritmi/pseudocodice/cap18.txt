@@ -1,0 +1,35 @@
+Capitolo 18 – Ordinamenti in tempo lineare: counting, radix, bucket
+
+algoritmo ORDINA_PER_CONTEGGIO(A, k)
+    // le chiavi di A sono interi fra 0 e k-1
+    conta <- sequenza di k zeri
+    per ogni x in A
+        conta[chiave(x)] <- conta[chiave(x)] + 1
+    // trasforma i conteggi in posizioni di partenza
+    totale <- 0
+    per c da 0 a k-1
+        quanti <- conta[c]
+        conta[c] <- totale
+        totale <- totale + quanti
+    // colloca ogni elemento nella sua posizione
+    B <- sequenza di n posti
+    per ogni x in A, nell'ordine
+        B[conta[chiave(x)]] <- x
+        conta[chiave(x)] <- conta[chiave(x)] + 1
+    ritorna B
+
+algoritmo ORDINA_PER_CIFRE(A, d, base)
+    per posto da 0 a d-1
+        // posto 0: cifra meno significativa
+        A <- ordina A in modo stabile secondo
+             la cifra di posto «posto» in base «base»
+    ritorna A
+
+algoritmo ORDINA_A_SECCHI(A)
+    // elementi di A reali nell'intervallo [0, 1)
+    secchi <- n sequenze vuote
+    per ogni x in A
+        aggiungi x a secchi[⌊n * x⌋]
+    per ogni S in secchi
+        ordina S per inserimento
+    ritorna la concatenazione dei secchi, nell'ordine

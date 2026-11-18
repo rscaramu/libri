@@ -1,0 +1,40 @@
+Capitolo 38 – Derivazione e integrazione numerica
+
+algoritmo DERIVATA_CENTRATA(f, x, h)
+    ritorna (f(x + h) - f(x - h)) / (2 * h)
+
+algoritmo TRAPEZI(f, a, b, n)
+    h <- (b - a) / n
+    s <- (f(a) + f(b)) / 2
+    per i da 1 a n-1
+        s <- s + f(a + i * h)
+    ritorna s * h
+
+algoritmo SIMPSON(f, a, b, n)
+    // n pari
+    h <- (b - a) / n
+    s <- f(a) + f(b)
+    per i da 1 a n-1
+        se i è dispari allora
+            s <- s + 4 * f(a + i * h)
+        altrimenti
+            s <- s + 2 * f(a + i * h)
+    ritorna s * h / 3
+
+algoritmo SIMPSON_ADATTIVO(f, a, m, b, tolleranza)
+    // m: punto medio; i valori f(a), f(m), f(b) sono noti
+    intero <- (b - a) / 6 * (f(a) + 4*f(m) + f(b))
+    s <- (a + m) / 2
+    d <- (m + b) / 2
+    meta <- (m - a) / 6 * (f(a) + 4*f(s) + f(m))
+          + (b - m) / 6 * (f(m) + 4*f(d) + f(b))
+    se |meta - intero| ≤ 15 * tolleranza allora
+        ritorna meta + (meta - intero) / 15
+    ritorna SIMPSON_ADATTIVO(f, a, s, m, tolleranza / 2)
+         + SIMPSON_ADATTIVO(f, m, d, b, tolleranza / 2)
+
+algoritmo INTEGRA_CAMPIONI(t, y)
+    s <- 0
+    per i da 1 a n-1
+        s <- s + (y[i] + y[i-1]) / 2 * (t[i] - t[i-1])
+    ritorna s

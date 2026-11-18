@@ -1,0 +1,78 @@
+Capitolo 24 – Backtracking e branch and bound
+
+algoritmo ESPLORA(parziale)
+    se parziale è una soluzione completa allora
+        registra parziale
+        ritorna
+    per ogni scelta possibile per il prossimo passo
+        se la scelta è compatibile con parziale allora
+            aggiungi la scelta a parziale        // fai
+            ESPLORA(parziale)
+            togli la scelta da parziale          // disfa
+
+algoritmo SOTTOINSIEMI(A, i, corrente)
+    se i = n allora
+        registra una copia di corrente
+        ritorna
+    SOTTOINSIEMI(A, i + 1, corrente)          // senza A[i]
+    aggiungi A[i] a corrente
+    SOTTOINSIEMI(A, i + 1, corrente)          // con A[i]
+    togli l'ultimo elemento di corrente
+
+algoritmo PERMUTAZIONI(A, corrente, usato)
+    se lunghezza(corrente) = n allora
+        registra una copia di corrente
+        ritorna
+    per i da 0 a n-1
+        se non usato[i] allora
+            usato[i] <- vero
+            aggiungi A[i] a corrente
+            PERMUTAZIONI(A, corrente, usato)
+            togli l'ultimo elemento di corrente
+            usato[i] <- falso
+
+algoritmo REGINE(riga, n)
+    se riga = n allora
+        registra la disposizione
+        ritorna
+    per colonna da 0 a n-1
+        se colonna, riga - colonna, riga + colonna sono liberi
+            occupa colonna, riga - colonna, riga + colonna
+            posizione[riga] <- colonna
+            REGINE(riga + 1, n)
+            libera colonna, riga - colonna, riga + colonna
+
+algoritmo CERCA_SOMMA(A, i, somma, restante, obiettivo)
+    // restante: somma degli elementi da A[i] in poi
+    se somma = obiettivo allora
+        ritorna vero
+    se i = n oppure somma > obiettivo
+            oppure somma + restante < obiettivo allora
+        ritorna falso                         // potatura
+    ritorna CERCA_SOMMA(A, i+1, somma + A[i],
+                        restante - A[i], obiettivo)
+        oppure CERCA_SOMMA(A, i+1, somma,
+                        restante - A[i], obiettivo)
+
+algoritmo ZAINO_BB(i, peso, valore)
+    // oggetti ordinati per valore/peso decrescente
+    se valore > migliore allora
+        migliore <- valore
+    se i = n allora
+        ritorna
+    se LIMITE(i, peso, valore) ≤ migliore allora
+        ritorna                               // potatura
+    se peso + pesi[i] ≤ C allora
+        ZAINO_BB(i+1, peso + pesi[i], valore + valori[i])
+    ZAINO_BB(i+1, peso, valore)
+
+algoritmo LIMITE(i, peso, valore)
+    // valore + zaino frazionario sugli oggetti da i in poi
+    resto <- C - peso
+    per j da i a n-1
+        se pesi[j] ≤ resto allora
+            valore <- valore + valori[j]
+            resto <- resto - pesi[j]
+        altrimenti
+            ritorna valore + valori[j] * resto / pesi[j]
+    ritorna valore

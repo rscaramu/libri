@@ -1,0 +1,52 @@
+Capitolo 29 – Cammini minimi: Dijkstra, Bellman-Ford, Floyd-Warshall
+
+algoritmo RILASSA(u, v, w)
+    se distanza[u] + w < distanza[v] allora
+        distanza[v] <- distanza[u] + w
+        predecessore[v] <- u
+
+algoritmo DIJKSTRA(G, s)
+    per ogni vertice v
+        distanza[v] <- ∞
+        predecessore[v] <- nullo
+    distanza[s] <- 0
+    H <- heap di minimo contenente (0, s)
+    finché H non è vuoto
+        (d, u) <- ESTRAI_MINIMO(H)
+        se d > distanza[u] allora
+            continua                 // copia superata
+        per ogni (v, w) adiacente a u
+            se d + w < distanza[v] allora
+                distanza[v] <- d + w
+                predecessore[v] <- u
+                INSERISCI(H, (distanza[v], v))
+    ritorna (distanza, predecessore)
+
+algoritmo BELLMAN_FORD(V, archi, s)
+    per ogni vertice v
+        distanza[v] <- ∞
+    distanza[s] <- 0
+    ripeti V - 1 volte
+        cambiato <- falso
+        per ogni (u, v, w) in archi
+            se distanza[u] + w < distanza[v] allora
+                distanza[v] <- distanza[u] + w
+                predecessore[v] <- u
+                cambiato <- vero
+        se non cambiato allora
+            esci dal ciclo            // stime già definitive
+    per ogni (u, v, w) in archi
+        se distanza[u] + w < distanza[v] allora
+            errore "ciclo di peso negativo"
+    ritorna (distanza, predecessore)
+
+algoritmo FLOYD_WARSHALL(D)
+    // D[i][j]: peso dell'arco da i a j; ∞ se manca;
+    // 0 se i = j
+    per k da 0 a V-1
+        per i da 0 a V-1
+            per j da 0 a V-1
+                se D[i][k] + D[k][j] < D[i][j] allora
+                    D[i][j] <- D[i][k] + D[k][j]
+                    prossimo[i][j] <- prossimo[i][k]
+    ritorna D

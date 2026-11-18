@@ -1,0 +1,52 @@
+Capitolo 11 – Alberi bilanciati: AVL e rosso-neri
+
+algoritmo RUOTA_DESTRA(y)
+    x <- y.sinistro
+    y.sinistro <- x.destro
+    x.destro <- y
+    aggiorna le informazioni di y, poi quelle di x
+    ritorna x                // nuova radice del sottoalbero
+
+algoritmo RUOTA_SINISTRA(x)
+    y <- x.destro
+    x.destro <- y.sinistro
+    y.sinistro <- x
+    aggiorna le informazioni di x, poi quelle di y
+    ritorna y
+
+algoritmo BILANCIA(nodo)
+    aggiorna l'altezza di nodo
+    f <- altezza(nodo.sinistro) - altezza(nodo.destro)
+    se f > 1 allora
+        se fattore(nodo.sinistro) < 0 allora
+            nodo.sinistro <- RUOTA_SINISTRA(nodo.sinistro)
+        ritorna RUOTA_DESTRA(nodo)
+    se f < -1 allora
+        se fattore(nodo.destro) > 0 allora
+            nodo.destro <- RUOTA_DESTRA(nodo.destro)
+        ritorna RUOTA_SINISTRA(nodo)
+    ritorna nodo
+
+algoritmo INSERISCI_AVL(nodo, k)
+    se nodo = nullo allora
+        ritorna nuovo nodo con chiave k
+    se k < nodo.chiave allora
+        nodo.sinistro <- INSERISCI_AVL(nodo.sinistro, k)
+    altrimenti se k > nodo.chiave allora
+        nodo.destro <- INSERISCI_AVL(nodo.destro, k)
+    ritorna BILANCIA(nodo)
+
+algoritmo INSERISCI_RN(h, k)
+    se h = nullo allora
+        ritorna nuovo nodo rosso con chiave k
+    se k < h.chiave allora
+        h.sinistro <- INSERISCI_RN(h.sinistro, k)
+    altrimenti se k > h.chiave allora
+        h.destro <- INSERISCI_RN(h.destro, k)
+    se rosso(h.destro) e non rosso(h.sinistro) allora
+        h <- RUOTA_SINISTRA(h)
+    se rosso(h.sinistro) e rosso(h.sinistro.sinistro) allora
+        h <- RUOTA_DESTRA(h)
+    se rosso(h.sinistro) e rosso(h.destro) allora
+        INVERTI_COLORI(h)
+    ritorna h

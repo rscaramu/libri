@@ -1,0 +1,40 @@
+Capitolo 21 – Algoritmi golosi
+
+algoritmo RESTO_GOLOSO(importo, tagli)
+    // tagli in ordine decrescente
+    monete <- sequenza vuota
+    per ogni t in tagli
+        finché importo ≥ t
+            aggiungi t a monete
+            importo <- importo - t
+    ritorna monete
+
+algoritmo SELEZIONA_ATTIVITA(attivita)
+    ordina attivita per orario di fine crescente
+    scelte <- sequenza vuota
+    libera_da <- -∞
+    per ogni (inizio, fine) in attivita
+        se inizio ≥ libera_da allora
+            aggiungi (inizio, fine) a scelte
+            libera_da <- fine
+    ritorna scelte
+
+algoritmo ZAINO_FRAZIONARIO(merci, capacita)
+    ordina merci per valore/peso decrescente
+    totale <- 0
+    per ogni (peso, valore) in merci
+        se capacita = 0 allora
+            esci dal ciclo
+        presa <- min(peso, capacita)
+        totale <- totale + valore * presa / peso
+        capacita <- capacita - presa
+    ritorna totale
+
+algoritmo SALE_NECESSARIE(attivita)
+    ordina attivita per orario di inizio
+    H <- heap di minimo vuoto        // orari di fine
+    per ogni (inizio, fine) in attivita
+        se H non è vuoto e minimo(H) ≤ inizio allora
+            ESTRAI_MINIMO(H)         // riusa quella sala
+        INSERISCI(H, fine)
+    ritorna numero di elementi di H

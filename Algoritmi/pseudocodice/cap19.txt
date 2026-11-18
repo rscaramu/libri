@@ -1,0 +1,65 @@
+Capitolo 19 – Ricerca binaria e selezione
+
+algoritmo LIMITE_INFERIORE(A, x)
+    basso <- 0
+    alto <- n
+    finché basso < alto
+        // invariante: A[0..basso-1] < x  e  A[alto..n-1] ≥ x
+        medio <- basso + (alto - basso) div 2
+        se A[medio] < x allora
+            basso <- medio + 1
+        altrimenti
+            alto <- medio
+    ritorna basso
+
+algoritmo LIMITE_SUPERIORE(A, x)
+    basso <- 0
+    alto <- n
+    finché basso < alto
+        medio <- basso + (alto - basso) div 2
+        se A[medio] ≤ x allora
+            basso <- medio + 1
+        altrimenti
+            alto <- medio
+    ritorna basso
+
+algoritmo PRIMO_VERO(basso, alto, P)
+    // P monotona: falsa fino a un certo punto, poi vera
+    // restituisce il più piccolo i in [basso, alto) con P(i)
+    // vera, oppure alto se P non è mai vera
+    finché basso < alto
+        medio <- basso + (alto - basso) div 2
+        se P(medio) allora
+            alto <- medio
+        altrimenti
+            basso <- medio + 1
+    ritorna basso
+
+algoritmo SELEZIONE_RAPIDA(A, k)
+    basso <- 0
+    alto <- n - 1
+    ripeti
+        se basso = alto allora
+            ritorna A[basso]
+        scegli a caso un perno in A[basso..alto]
+        p <- PARTIZIONA(A, basso, alto)
+        se k = p allora
+            ritorna A[p]
+        se k < p allora
+            alto <- p - 1
+        altrimenti
+            basso <- p + 1
+
+algoritmo MIN_E_MAX(A)
+    // n ≥ 1
+    se n è dispari allora
+        min <- A[0];  max <- A[0];  i <- 1
+    altrimenti
+        (min, max) <- (minore, maggiore) fra A[0] e A[1]
+        i <- 2
+    finché i < n
+        (p, g) <- (minore, maggiore) fra A[i] e A[i+1]
+        se p < min allora min <- p
+        se g > max allora max <- g
+        i <- i + 2
+    ritorna (min, max)

@@ -1,0 +1,23 @@
+Capitolo 6 – Analisi ammortizzata e caso medio
+
+algoritmo AGGIUNGI(V, x)
+    // V.dati: array di capacità V.capacita
+    // V.n: numero di elementi presenti
+    se V.n = V.capacita allora
+        nuova <- max(1, 2 * V.capacita)
+        B <- nuovo array di capacità nuova
+        per i da 0 a V.n - 1
+            B[i] <- V.dati[i]
+        V.dati <- B
+        V.capacita <- nuova
+    V.dati[V.n] <- x
+    V.n <- V.n + 1
+
+algoritmo INCREMENTA(B)
+    // B: sequenza di k bit, B[0] è il meno significativo
+    i <- 0
+    finché i < k e B[i] = 1
+        B[i] <- 0
+        i <- i + 1
+    se i < k allora
+        B[i] <- 1

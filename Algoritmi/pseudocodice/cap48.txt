@@ -1,0 +1,52 @@
+Capitolo 48 – Date e calendario
+
+algoritmo BISESTILE(anno)
+    se anno mod 400 = 0 allora
+        ritorna vero
+    se anno mod 100 = 0 allora
+        ritorna falso
+    ritorna anno mod 4 = 0
+
+algoritmo GIORNI_DA_DATA(anno, mese, giorno)
+    // numero di giorni dal 1 gennaio 1970
+    se mese ≤ 2 allora
+        anno <- anno - 1
+        mese <- mese + 12
+    m <- mese - 3                       // marzo = 0
+    nell_anno <- (153 * m + 2) div 5 + giorno - 1
+    ritorna 365 * anno + anno div 4 - anno div 100
+            + anno div 400 + nell_anno - 719468
+
+algoritmo DATA_DA_GIORNI(n)
+    n <- n + 719468
+    era <- n div 146097                 // cicli di 400 anni
+    g <- n mod 146097                   // giorno nel ciclo
+    a <- (g - g div 1460 + g div 36524 - g div 146096) div 365
+    anno <- a + era * 400
+    nell_anno <- g - (365 * a + a div 4 - a div 100)
+    m <- (5 * nell_anno + 2) div 153
+    giorno <- nell_anno - (153 * m + 2) div 5 + 1
+    mese <- m + 3
+    se mese > 12 allora
+        mese <- mese - 12
+        anno <- anno + 1
+    ritorna (anno, mese, giorno)
+
+algoritmo GIORNO_DELLA_SETTIMANA(n)
+    // n: giorni dal 1 gennaio 1970
+    // risultato: 0 = lunedì, ..., 6 = domenica
+    ritorna (n + 3) mod 7
+
+algoritmo PASQUA(anno)
+    a <- anno mod 19              // posto nel ciclo lunare
+    b <- anno div 100;  c <- anno mod 100
+    d <- b div 4;  e <- b mod 4
+    f <- (b + 8) div 25
+    g <- (b - f + 1) div 3
+    h <- (19*a + b - d - g + 15) mod 30     // età della luna
+    i <- c div 4;  k <- c mod 4
+    l <- (32 + 2*e + 2*i - h - k) mod 7     // alla domenica
+    m <- (a + 11*h + 22*l) div 451
+    mese <- (h + l - 7*m + 114) div 31
+    giorno <- (h + l - 7*m + 114) mod 31 + 1
+    ritorna (mese, giorno)

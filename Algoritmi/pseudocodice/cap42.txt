@@ -1,0 +1,37 @@
+Capitolo 42 – Confronto approssimato: distanza di edit, sottosequenza comune, diff
+
+algoritmo DISTANZA_DI_EDIT(A, B)
+    D <- tabella (n+1) × (m+1)
+    per i da 0 a n
+        D[i][0] <- i
+    per j da 0 a m
+        D[0][j] <- j
+    per i da 1 a n
+        per j da 1 a m
+            se A[i-1] = B[j-1] allora
+                D[i][j] <- D[i-1][j-1]
+            altrimenti
+                D[i][j] <- 1 + min(D[i-1][j-1],
+                                   D[i-1][j],
+                                   D[i][j-1])
+    ritorna D[n][m]
+
+algoritmo SOTTOSEQUENZA_COMUNE(A, B)
+    L <- tabella (n+1) × (m+1) di zeri
+    per i da 1 a n
+        per j da 1 a m
+            se A[i-1] = B[j-1] allora
+                L[i][j] <- L[i-1][j-1] + 1
+            altrimenti
+                L[i][j] <- max(L[i-1][j], L[i][j-1])
+    // ricostruzione, dalla casella finale all'indietro
+    i <- n;  j <- m;  S <- sequenza vuota
+    finché i > 0 e j > 0
+        se A[i-1] = B[j-1] allora
+            aggiungi A[i-1] in testa a S
+            i <- i - 1;  j <- j - 1
+        altrimenti se L[i-1][j] ≥ L[i][j-1] allora
+            i <- i - 1
+        altrimenti
+            j <- j - 1
+    ritorna S

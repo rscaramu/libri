@@ -1,0 +1,59 @@
+Capitolo 34 – Grandi numeri e polinomi
+
+algoritmo PRODOTTO_SCOLASTICO(A, B)
+    // A, B: cifre in base b, la meno significativa in testa
+    C <- sequenza di lunghezza(A) + lunghezza(B) zeri
+    per i da 0 a lunghezza(A) - 1
+        riporto <- 0
+        per j da 0 a lunghezza(B) - 1
+            t <- C[i+j] + A[i] * B[j] + riporto
+            C[i+j] <- t mod b
+            riporto <- t div b
+        C[i + lunghezza(B)] <- riporto
+    ritorna C
+
+algoritmo KARATSUBA(x, y)
+    se x oppure y ha poche cifre allora
+        ritorna x * y                     // metodo diretto
+    m <- metà del numero di cifre del maggiore
+    (x1, x0) <- parte alta e parte bassa di x
+    (y1, y0) <- parte alta e parte bassa di y
+    a <- KARATSUBA(x1, y1)
+    c <- KARATSUBA(x0, y0)
+    b <- KARATSUBA(x1 + x0, y1 + y0) - a - c
+    ritorna a * b^(2m) + b * b^m + c
+    // nell'ultima riga b^(2m) e b^m sono potenze della base:
+    // moltiplicare per esse è uno spostamento di cifre
+
+algoritmo HORNER(a, x)
+    // a[i]: coefficiente di x^i; n: grado
+    r <- a[n]
+    per i da n-1 giù fino a 0
+        r <- r * x + a[i]
+    ritorna r
+
+algoritmo LAGRANGE(X, Y, x)
+    // valore in x del polinomio che passa per (X[i], Y[i])
+    totale <- 0
+    per i da 0 a n
+        termine <- Y[i]
+        per j da 0 a n
+            se j ≠ i allora
+                termine <- termine * (x - X[j])
+                                   / (X[i] - X[j])
+        totale <- totale + termine
+    ritorna totale
+
+algoritmo FFT(a, inversa)
+    // n: lunghezza di a, potenza di due
+    se n = 1 allora
+        ritorna a
+    pari <- FFT(elementi di a di indice pari, inversa)
+    dispari <- FFT(elementi di a di indice dispari, inversa)
+    angolo <- 2π/n, cambiato di segno se inversa
+    per k da 0 a n/2 - 1
+        w <- cos(k * angolo) + i * sen(k * angolo)
+        y[k] <- pari[k] + w * dispari[k]
+        y[k + n/2] <- pari[k] - w * dispari[k]
+    ritorna y
+    // la trasformata inversa va infine divisa per n

@@ -1,0 +1,84 @@
+Capitolo 43 – Analisi del testo: automi, tokenizzazione, shunting-yard
+
+algoritmo ACCETTA(tabella, finali, stringa)
+    stato <- "inizio"
+    per ogni carattere c in stringa
+        classe <- CLASSE(c)     // segno, cifra, virgola
+        se (stato, classe) non è in tabella allora
+            ritorna falso
+        stato <- tabella[(stato, classe)]
+    ritorna stato è in finali
+
+algoritmo TOKENIZZA(testo)
+    token <- sequenza vuota
+    i <- 0
+    finché i < n
+        c <- testo[i]
+        se c è uno spazio allora
+            i <- i + 1
+        altrimenti se c è una cifra allora
+            j <- i
+            finché j < n e testo[j] è cifra o virgola
+                j <- j + 1
+            aggiungi (NUMERO, testo[i..j-1]) a token
+            i <- j
+        altrimenti se c è una lettera allora
+            j <- i
+            finché j < n e testo[j] è lettera o cifra
+                j <- j + 1
+            aggiungi (NOME, testo[i..j-1]) a token
+            i <- j
+        altrimenti se c è un operatore o una parentesi allora
+            aggiungi (SIMBOLO, c) a token
+            i <- i + 1
+        altrimenti
+            errore "carattere inatteso alla posizione i"
+    ritorna token
+
+algoritmo IN_POSTFISSA(token)
+    uscita <- sequenza vuota
+    pila <- pila vuota
+    per ogni t in token
+        se t è un numero allora
+            aggiungi t a uscita
+        altrimenti se t è un operatore allora
+            finché pila non è vuota e cima è un operatore
+                    e (prec(cima) > prec(t) oppure
+                       (prec(cima) = prec(t)
+                        e t associa a sinistra))
+                sposta la cima di pila in uscita
+            metti t su pila
+        altrimenti se t = "(" allora
+            metti t su pila
+        altrimenti se t = ")" allora
+            finché cima di pila ≠ "("
+                sposta la cima di pila in uscita
+            togli "(" da pila
+    sposta in uscita tutto ciò che resta su pila
+    ritorna uscita
+
+algoritmo ESPRESSIONE()
+    valore <- TERMINE()
+    finché il token corrente è + oppure -
+        op <- token corrente;  avanza
+        destra <- TERMINE()
+        valore <- valore op destra
+    ritorna valore
+
+algoritmo TERMINE()
+    valore <- FATTORE()
+    finché il token corrente è * oppure /
+        op <- token corrente;  avanza
+        destra <- FATTORE()
+        valore <- valore op destra
+    ritorna valore
+
+algoritmo FATTORE()
+    se il token corrente è un numero allora
+        avanza e ritorna il suo valore
+    se il token corrente è "(" allora
+        avanza;  valore <- ESPRESSIONE()
+        esigi ")";  ritorna valore
+    se il token corrente è "-" allora
+        avanza;  ritorna -FATTORE()
+    errore "atteso un numero o una parentesi"

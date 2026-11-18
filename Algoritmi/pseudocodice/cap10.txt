@@ -1,0 +1,95 @@
+Capitolo 10 – Alberi binari di ricerca
+
+algoritmo VISITA_SIMMETRICA(nodo)
+    se nodo = nullo allora
+        ritorna
+    VISITA_SIMMETRICA(nodo.sinistro)
+    tratta nodo
+    VISITA_SIMMETRICA(nodo.destro)
+
+algoritmo VISITA_PER_LIVELLI(radice)
+    Q <- coda vuota
+    se radice ≠ nullo allora
+        accoda radice a Q
+    finché Q non è vuota
+        nodo <- estrai da Q
+        tratta nodo
+        se nodo.sinistro ≠ nullo allora
+            accoda nodo.sinistro a Q
+        se nodo.destro ≠ nullo allora
+            accoda nodo.destro a Q
+
+algoritmo CERCA(radice, k)
+    nodo <- radice
+    finché nodo ≠ nullo e nodo.chiave ≠ k
+        se k < nodo.chiave allora
+            nodo <- nodo.sinistro
+        altrimenti
+            nodo <- nodo.destro
+    ritorna nodo
+
+algoritmo MINIMO(nodo)
+    finché nodo.sinistro ≠ nullo
+        nodo <- nodo.sinistro
+    ritorna nodo
+
+algoritmo INSERISCI(radice, k)
+    nuovo <- nuovo nodo con chiave k
+    se radice = nullo allora
+        ritorna nuovo
+    nodo <- radice
+    ripeti
+        se k = nodo.chiave allora
+            ritorna radice              // già presente
+        se k < nodo.chiave allora
+            se nodo.sinistro = nullo allora
+                nodo.sinistro <- nuovo
+                ritorna radice
+            nodo <- nodo.sinistro
+        altrimenti
+            se nodo.destro = nullo allora
+                nodo.destro <- nuovo
+                ritorna radice
+            nodo <- nodo.destro
+
+algoritmo ELIMINA(nodo, k)
+    // restituisce la nuova radice del sottoalbero
+    se nodo = nullo allora
+        ritorna nullo
+    se k < nodo.chiave allora
+        nodo.sinistro <- ELIMINA(nodo.sinistro, k)
+    altrimenti se k > nodo.chiave allora
+        nodo.destro <- ELIMINA(nodo.destro, k)
+    altrimenti
+        se nodo.sinistro = nullo allora
+            ritorna nodo.destro
+        se nodo.destro = nullo allora
+            ritorna nodo.sinistro
+        s <- MINIMO(nodo.destro)
+        nodo.chiave <- s.chiave
+        nodo.destro <- ELIMINA(nodo.destro, s.chiave)
+    ritorna nodo
+
+algoritmo TETTO(radice, k)
+    // la più piccola chiave ≥ k, oppure nullo
+    migliore <- nullo
+    nodo <- radice
+    finché nodo ≠ nullo
+        se nodo.chiave = k allora
+            ritorna nodo
+        se nodo.chiave > k allora
+            migliore <- nodo
+            nodo <- nodo.sinistro
+        altrimenti
+            nodo <- nodo.destro
+    ritorna migliore
+
+algoritmo INTERVALLO(nodo, a, b, uscita)
+    se nodo = nullo allora
+        ritorna
+    se a < nodo.chiave allora
+        INTERVALLO(nodo.sinistro, a, b, uscita)
+    se a ≤ nodo.chiave e nodo.chiave ≤ b allora
+        aggiungi nodo.chiave a uscita
+    se nodo.chiave < b allora
+        INTERVALLO(nodo.destro, a, b, uscita)

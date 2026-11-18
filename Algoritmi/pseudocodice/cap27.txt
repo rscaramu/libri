@@ -1,0 +1,71 @@
+Capitolo 27 – Ordinamento topologico e componenti connesse
+
+algoritmo ORDINAMENTO_TOPOLOGICO(G)
+    per ogni vertice v
+        entranti[v] <- numero di archi che entrano in v
+    Q <- coda dei vertici con entranti = 0
+    ordine <- sequenza vuota
+    finché Q non è vuota
+        u <- estrai da Q
+        aggiungi u a ordine
+        per ogni v adiacente a u
+            entranti[v] <- entranti[v] - 1
+            se entranti[v] = 0 allora
+                accoda v a Q
+    se lunghezza(ordine) < V allora
+        errore "il grafo contiene un ciclo"
+    ritorna ordine
+
+algoritmo TOPOLOGICO_DFS(G)
+    per ogni vertice v
+        colore[v] <- BIANCO
+    ordine <- sequenza vuota
+    per ogni vertice s
+        se colore[s] = BIANCO allora
+            VISITA(s)
+    ritorna ordine rovesciato
+
+algoritmo VISITA(u)
+    colore[u] <- GRIGIO
+    per ogni v adiacente a u
+        se colore[v] = GRIGIO allora
+            errore "il grafo contiene un ciclo"
+        se colore[v] = BIANCO allora
+            VISITA(v)
+    colore[u] <- NERO
+    aggiungi u a ordine
+
+algoritmo DURATA_PROGETTO(G, durata)
+    fine <- sequenza di V zeri
+    per ogni u in ordine topologico
+        fine[u] <- fine[u] + durata[u]
+        per ogni v adiacente a u
+            fine[v] <- max(fine[v], fine[u])
+    ritorna massimo di fine
+
+algoritmo BIPARTITO(G)
+    per ogni vertice v
+        colore[v] <- nullo
+    per ogni vertice s con colore[s] = nullo
+        colore[s] <- 0
+        Q <- coda contenente s
+        finché Q non è vuota
+            u <- estrai da Q
+            per ogni v adiacente a u
+                se colore[v] = nullo allora
+                    colore[v] <- 1 - colore[u]
+                    accoda v a Q
+                altrimenti se colore[v] = colore[u] allora
+                    ritorna nullo           // non bipartito
+    ritorna colore
+
+algoritmo COMPONENTI_FORTI(G)
+    ordine <- vertici in ordine di completamento
+              di una visita in profondità di G
+    T <- grafo trasposto di G
+    k <- 0
+    per ogni s in ordine, dall'ultimo al primo
+        se s non ha ancora una componente allora
+            visita T da s assegnando componente k
+            k <- k + 1
+    ritorna le componenti

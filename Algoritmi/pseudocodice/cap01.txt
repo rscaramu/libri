@@ -1,0 +1,41 @@
+Capitolo 1 – Che cos’è un algoritmo
+
+algoritmo MASSIMO(A)
+    // A: sequenza non vuota di n elementi
+    m <- A[0]
+    per i da 1 a n-1
+        se A[i] > m allora
+            m <- A[i]
+    ritorna m
+
+algoritmo MCD_SOTTRAZIONI(a, b)
+    // a, b: interi positivi
+    finché a ≠ b
+        se a > b allora
+            a <- a - b
+        altrimenti
+            b <- b - a
+    ritorna a
+
+algoritmo MCD(a, b)
+    // a, b: interi non negativi, non entrambi nulli
+    finché b ≠ 0
+        r <- a mod b
+        a <- b
+        b <- r
+    ritorna a
+
+algoritmo DUPLICATI_COPPIE(A)
+    per i da 0 a n-2
+        per j da i+1 a n-1
+            se A[i] = A[j] allora
+                ritorna vero
+    ritorna falso
+
+algoritmo DUPLICATI_INSIEME(A)
+    visti <- insieme vuoto
+    per ogni x in A
+        se x è in visti allora
+            ritorna vero
+        aggiungi x a visti
+    ritorna falso

@@ -1,0 +1,53 @@
+Capitolo 12 – Heap e code con priorità
+
+algoritmo INSERISCI(H, x)
+    aggiungi x in fondo a H
+    i <- n - 1                       // n: nuova lunghezza
+    finché i > 0 e H[i] < H[(i-1) div 2]
+        scambia H[i] e H[(i-1) div 2]
+        i <- (i-1) div 2
+
+algoritmo SCENDI(H, i, n)
+    ripeti
+        minore <- i
+        s <- 2*i + 1
+        d <- 2*i + 2
+        se s < n e H[s] < H[minore] allora minore <- s
+        se d < n e H[d] < H[minore] allora minore <- d
+        se minore = i allora
+            ritorna
+        scambia H[i] e H[minore]
+        i <- minore
+
+algoritmo ESTRAI_MINIMO(H)
+    se H è vuoto allora
+        errore "heap vuoto"
+    minimo <- H[0]
+    H[0] <- H[n-1]
+    togli l'ultimo elemento di H
+    SCENDI(H, 0, n-1)
+    ritorna minimo
+
+algoritmo COSTRUISCI_HEAP(H)
+    per i da (n div 2) - 1 giù fino a 0
+        SCENDI(H, i, n)
+
+algoritmo K_MAGGIORI(flusso, k)
+    H <- heap di minimo vuoto
+    per ogni x in flusso
+        se H ha meno di k elementi allora
+            INSERISCI(H, x)
+        altrimenti se x > H[0] allora
+            H[0] <- x
+            SCENDI(H, 0, k)
+    ritorna gli elementi di H
+
+algoritmo FONDI_K(sequenze)
+    H <- heap vuoto
+    per ogni sequenza non vuota S di indice j
+        INSERISCI(H, (S[0], j, 0))
+    finché H non è vuoto
+        (valore, j, i) <- ESTRAI_MINIMO(H)
+        aggiungi valore all'uscita
+        se i + 1 < lunghezza di sequenze[j] allora
+            INSERISCI(H, (sequenze[j][i+1], j, i+1))

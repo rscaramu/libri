@@ -1,0 +1,33 @@
+Capitolo 35 – Combinatoria e conteggio
+
+algoritmo BINOMIALE(n, k)
+    se k < 0 oppure k > n allora
+        ritorna 0
+    k <- min(k, n - k)
+    r <- 1
+    per i da 1 a k
+        r <- r * (n - k + i) div i
+    ritorna r
+
+algoritmo PERMUTAZIONE_SUCCESSIVA(A)
+    i <- n - 2
+    finché i ≥ 0 e A[i] ≥ A[i+1]
+        i <- i - 1
+    se i < 0 allora
+        ritorna falso                 // era l'ultima
+    j <- n - 1
+    finché A[j] ≤ A[i]
+        j <- j - 1
+    scambia A[i] e A[j]
+    rovescia A[i+1..n-1]
+    ritorna vero
+
+algoritmo FIBONACCI_MATRICE(n)
+    M <- [[1, 1], [1, 0]]
+    R <- matrice identità 2 × 2
+    finché n > 0
+        se n è dispari allora
+            R <- R * M
+        M <- M * M
+        n <- n div 2
+    ritorna R[0][1]

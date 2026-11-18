@@ -1,0 +1,42 @@
+Capitolo 47 – Numeri casuali, mescolamento e campionamento
+
+algoritmo PROSSIMO(stato)
+    ritorna (a * stato + c) mod m
+
+algoritmo XORSHIFT64(x)
+    // x: stato a 64 bit, mai zero
+    x <- x XOR (x << 13)
+    x <- x XOR (x >> 7)
+    x <- x XOR (x << 17)
+    ritorna x                          // troncato a 64 bit
+
+algoritmo INTERO_CASUALE(n)
+    // uniforme fra 0 e n-1; il generatore dà valori in [0, R)
+    limite <- R - (R mod n)
+    ripeti
+        x <- prossimo valore del generatore
+    finché x ≥ limite
+    ritorna x mod n
+
+algoritmo MESCOLA(A)
+    per i da n-1 giù fino a 1
+        j <- intero casuale fra 0 e i, estremi compresi
+        scambia A[i] e A[j]
+
+algoritmo SERBATOIO(flusso, k)
+    S <- sequenza vuota
+    i <- 0
+    per ogni x in flusso
+        i <- i + 1
+        se i ≤ k allora
+            aggiungi x a S
+        altrimenti
+            j <- intero casuale fra 1 e i
+            se j ≤ k allora
+                S[j - 1] <- x
+    ritorna S
+
+algoritmo SCELTA_PESATA(cumulate)
+    // cumulate[i]: somma dei pesi fino all'elemento i
+    r <- numero casuale in [0, cumulate[n-1])
+    ritorna il primo indice i con cumulate[i] > r

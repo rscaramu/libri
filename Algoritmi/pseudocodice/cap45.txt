@@ -1,0 +1,58 @@
+Capitolo 45 – Hash, checksum e codifiche
+
+algoritmo LUHN_VALIDO(cifre)
+    somma <- 0
+    per ogni cifra c, da destra, di posizione p = 0, 1, ...
+        se p è dispari allora
+            c <- 2 * c
+            se c > 9 allora
+                c <- c - 9
+        somma <- somma + c
+    ritorna somma mod 10 = 0
+
+algoritmo CRC32(dati)
+    crc <- 0xFFFFFFFF
+    per ogni byte b in dati
+        crc <- crc XOR b
+        ripeti 8 volte
+            se il bit meno significativo di crc è 1 allora
+                crc <- (crc spostato a destra di 1)
+                       XOR 0xEDB88320
+            altrimenti
+                crc <- crc spostato a destra di 1
+    ritorna crc XOR 0xFFFFFFFF
+
+algoritmo FNV1A(dati)
+    h <- 2166136261
+    per ogni byte b in dati
+        h <- h XOR b
+        h <- (h * 16777619) mod 2^32
+    ritorna h
+
+algoritmo BASE64(dati)
+    alfabeto <- "A..Z a..z 0..9 + /"
+    uscita <- stringa vuota
+    per ogni gruppo di 3 byte (b0, b1, b2)
+        n <- b0 * 65536 + b1 * 256 + b2
+        aggiungi a uscita i caratteri di posto
+            n div 262144,  (n div 4096) mod 64,
+            (n div 64) mod 64,  n mod 64
+    se restano 1 o 2 byte allora
+        completa il gruppo con byte nulli, codificalo,
+        e sostituisci gli ultimi 2 o 1 caratteri con "="
+    ritorna uscita
+
+algoritmo IN_UTF8(p)
+    // p: punto di codice
+    se p < 128 allora
+        ritorna [p]
+    se p < 2048 allora
+        ritorna [192 + p div 64,  128 + p mod 64]
+    se p < 65536 allora
+        ritorna [224 + p div 4096,
+                 128 + (p div 64) mod 64,
+                 128 + p mod 64]
+    ritorna [240 + p div 262144,
+             128 + (p div 4096) mod 64,
+             128 + (p div 64) mod 64,
+             128 + p mod 64]

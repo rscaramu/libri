@@ -1,0 +1,61 @@
+Capitolo 14 – Ordinamenti elementari
+
+algoritmo ORDINA_PER_SELEZIONE(A)
+    per i da 0 a n-2
+        // invariante: A[0..i-1] contiene, in ordine,
+        // gli i elementi più piccoli
+        m <- i
+        per j da i+1 a n-1
+            se A[j] < A[m] allora
+                m <- j
+        scambia A[i] e A[m]
+
+algoritmo ORDINA_PER_INSERIMENTO(A)
+    per i da 1 a n-1
+        // invariante: A[0..i-1] è ordinato
+        x <- A[i]
+        j <- i - 1
+        finché j ≥ 0 e A[j] > x
+            A[j+1] <- A[j]
+            j <- j - 1
+        A[j+1] <- x
+
+algoritmo ORDINA_A_BOLLE(A)
+    per i da n-1 giù fino a 1
+        scambiato <- falso
+        per j da 0 a i-1
+            se A[j] > A[j+1] allora
+                scambia A[j] e A[j+1]
+                scambiato <- vero
+        se non scambiato allora
+            ritorna
+
+algoritmo ORDINA_INSERIMENTO_BINARIO(A)
+    per i da 1 a n-1
+        x <- A[i]
+        basso <- 0
+        alto <- i
+        finché basso < alto
+            // cerca la prima posizione con A[pos] > x
+            medio <- basso + (alto - basso) div 2
+            se A[medio] ≤ x allora
+                basso <- medio + 1
+            altrimenti
+                alto <- medio
+        per j da i-1 giù fino a basso
+            A[j+1] <- A[j]
+        A[basso] <- x
+
+algoritmo ORDINA_SHELL(A)
+    h <- 1
+    finché h < n div 3
+        h <- 3 * h + 1               // 1, 4, 13, 40, 121, ...
+    finché h ≥ 1
+        per i da h a n-1
+            x <- A[i]
+            j <- i - h
+            finché j ≥ 0 e A[j] > x
+                A[j+h] <- A[j]
+                j <- j - h
+            A[j+h] <- x
+        h <- h div 3

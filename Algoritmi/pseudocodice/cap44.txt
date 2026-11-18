@@ -1,0 +1,48 @@
+Capitolo 44 – Compressione: RLE, Huffman, LZ77
+
+algoritmo COMPRIMI_RLE(dati)
+    uscita <- sequenza vuota
+    i <- 0
+    finché i < n
+        j <- i
+        finché j < n e dati[j] = dati[i]
+            j <- j + 1
+        aggiungi (j - i, dati[i]) a uscita
+        i <- j
+    ritorna uscita
+
+algoritmo HUFFMAN(frequenze)
+    H <- heap di minimo con una foglia per ogni simbolo,
+         ordinato per frequenza
+    finché H ha più di un elemento
+        a <- ESTRAI_MINIMO(H)
+        b <- ESTRAI_MINIMO(H)
+        n <- nuovo nodo con figli a e b
+        n.frequenza <- a.frequenza + b.frequenza
+        INSERISCI(H, n)
+    ritorna ESTRAI_MINIMO(H)             // la radice
+
+algoritmo COMPRIMI_LZ77(dati, finestra, minimo)
+    uscita <- sequenza vuota
+    i <- 0
+    finché i < n
+        cerca in dati[i - finestra .. i - 1] il più lungo
+            tratto uguale a quello che comincia in i:
+            sia a distanza d e di lunghezza l
+        se l ≥ minimo allora
+            aggiungi (d, l) a uscita
+            i <- i + l
+        altrimenti
+            aggiungi il letterale dati[i] a uscita
+            i <- i + 1
+    ritorna uscita
+
+algoritmo ESPANDI_LZ77(codice)
+    dati <- sequenza vuota
+    per ogni elemento e di codice
+        se e è un letterale allora
+            aggiungi e a dati
+        altrimenti                        // e = (d, l)
+            ripeti l volte
+                aggiungi dati[lunghezza(dati) - d] a dati
+    ritorna dati

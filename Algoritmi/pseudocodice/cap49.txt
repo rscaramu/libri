@@ -1,0 +1,33 @@
+Capitolo 49 – Cache e strutture probabilistiche: LRU, filtro di Bloom
+
+algoritmo LEGGI(C, chiave)
+    se chiave non è in C.tabella allora
+        ritorna nullo                         // fallimento
+    nodo <- C.tabella[chiave]
+    STACCA(nodo)
+    INSERISCI_IN_TESTA(C, nodo)
+    ritorna nodo.valore
+
+algoritmo SCRIVI(C, chiave, valore)
+    se chiave è in C.tabella allora
+        nodo <- C.tabella[chiave]
+        nodo.valore <- valore
+        STACCA(nodo)
+    altrimenti
+        se numero di elementi = C.capacita allora
+            vecchio <- nodo in coda alla lista
+            STACCA(vecchio)
+            togli vecchio.chiave da C.tabella
+        nodo <- nuovo nodo (chiave, valore)
+        C.tabella[chiave] <- nodo
+    INSERISCI_IN_TESTA(C, nodo)
+
+algoritmo INSERISCI(F, x)
+    per i da 0 a k-1
+        accendi il bit h_i(x) mod m di F
+
+algoritmo CONTIENE(F, x)
+    per i da 0 a k-1
+        se il bit h_i(x) mod m di F è spento allora
+            ritorna falso                 // certamente no
+    ritorna vero                          // probabilmente sì

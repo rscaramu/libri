@@ -1,0 +1,76 @@
+Capitolo 8 – Pile, code e deque
+
+algoritmo METTI(P, x)
+    P.dati[P.n] <- x
+    P.n <- P.n + 1
+
+algoritmo TOGLI(P)
+    se P.n = 0 allora
+        errore "pila vuota"
+    P.n <- P.n - 1
+    ritorna P.dati[P.n]
+
+algoritmo BILANCIATE(s)
+    P <- pila vuota
+    per ogni carattere c in s
+        se c è una parentesi aperta allora
+            METTI(P, c)
+        altrimenti se c è una parentesi chiusa allora
+            se P è vuota allora
+                ritorna falso
+            a <- TOGLI(P)
+            se a non è l'aperta corrispondente a c allora
+                ritorna falso
+    ritorna P è vuota
+
+algoritmo VALUTA_POSTFISSA(simboli)
+    P <- pila vuota
+    per ogni s in simboli
+        se s è un numero allora
+            METTI(P, s)
+        altrimenti
+            b <- TOGLI(P)
+            a <- TOGLI(P)
+            METTI(P, risultato di a s b)
+    ritorna TOGLI(P)
+
+algoritmo ACCODA(Q, x)
+    se Q.n = Q.capacita allora
+        errore "coda piena"       // oppure si raddoppia
+    fondo <- (Q.testa + Q.n) mod Q.capacita
+    Q.dati[fondo] <- x
+    Q.n <- Q.n + 1
+
+algoritmo ESTRAI(Q)
+    se Q.n = 0 allora
+        errore "coda vuota"
+    x <- Q.dati[Q.testa]
+    Q.testa <- (Q.testa + 1) mod Q.capacita
+    Q.n <- Q.n - 1
+    ritorna x
+
+algoritmo ACCODA2(Q, x)
+    METTI(Q.ingresso, x)
+
+algoritmo ESTRAI2(Q)
+    se Q.uscita è vuota allora
+        finché Q.ingresso non è vuota
+            METTI(Q.uscita, TOGLI(Q.ingresso))
+    se Q.uscita è vuota allora
+        errore "coda vuota"
+    ritorna TOGLI(Q.uscita)
+
+algoritmo MASSIMI_FINESTRA(A, k)
+    D <- deque vuota di indici
+    R <- sequenza vuota
+    per i da 0 a n-1
+        // in fondo, chi non supera A[i] non serve più
+        finché D non è vuota e A[ultimo di D] ≤ A[i]
+            togli dal fondo di D
+        aggiungi i in fondo a D
+        // l'indice in testa è uscito dalla finestra?
+        se primo di D ≤ i - k allora
+            togli dalla testa di D
+        se i ≥ k - 1 allora
+            aggiungi A[primo di D] a R
+    ritorna R

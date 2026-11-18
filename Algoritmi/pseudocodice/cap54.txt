@@ -1,0 +1,41 @@
+Capitolo 54 – Algoritmi su flussi di dati
+
+algoritmo AGGIORNA(stato, x)
+    stato.n <- stato.n + 1
+    delta <- x - stato.media
+    stato.media <- stato.media + delta / stato.n
+    stato.scarti <- stato.scarti + delta * (x - stato.media)
+    // varianza = stato.scarti / stato.n
+
+algoritmo MISRA_GRIES(flusso, k)
+    C <- dizionario vuoto
+    per ogni x in flusso
+        se x è in C allora
+            C[x] <- C[x] + 1
+        altrimenti se C ha meno di k-1 elementi allora
+            C[x] <- 1
+        altrimenti
+            per ogni y in C
+                C[y] <- C[y] - 1
+                se C[y] = 0 allora
+                    togli y da C
+    ritorna C
+
+algoritmo AGGIUNGI(S, x)
+    per r da 0 a d-1
+        S[r][h_r(x) mod w] <- S[r][h_r(x) mod w] + 1
+
+algoritmo STIMA(S, x)
+    ritorna il minimo, per r da 0 a d-1, di S[r][h_r(x) mod w]
+
+algoritmo AGGIUNGI(R, x)
+    // R: m = 2^b registri, inizialmente a zero
+    h <- hash di x, su 64 bit
+    j <- i primi b bit di h                  // quale registro
+    resto <- gli altri 64 - b bit di h
+    z <- 1 + numero di zeri iniziali di resto
+    R[j] <- max(R[j], z)
+
+algoritmo STIMA(R)
+    ritorna alfa * m^2 / (somma, su j, di 2^(-R[j]))
+    // alfa: costante di correzione, circa 0,72

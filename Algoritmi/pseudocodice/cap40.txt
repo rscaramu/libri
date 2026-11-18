@@ -1,0 +1,53 @@
+Capitolo 40 – Ottimizzazione
+
+algoritmo SEZIONE_AUREA(f, a, b, tolleranza)
+    r <- (√5 - 1) / 2                  // circa 0,618
+    c <- b - r * (b - a)
+    d <- a + r * (b - a)
+    fc <- f(c)
+    fd <- f(d)
+    finché b - a > tolleranza
+        se fc < fd allora          // minimo in [a, d]
+            b <- d
+            d <- c;  fd <- fc
+            c <- b - r * (b - a);  fc <- f(c)
+        altrimenti                 // minimo in [c, b]
+            a <- c
+            c <- d;  fc <- fd
+            d <- a + r * (b - a);  fd <- f(d)
+    ritorna (a + b) / 2
+
+algoritmo DISCESA_DEL_GRADIENTE(grad, x, alfa, toll, max)
+    ripeti max volte
+        g <- grad(x)
+        se norma(g) ≤ toll allora
+            ritorna x
+        x <- x - alfa * g
+    ritorna x                          // limite raggiunto
+
+algoritmo RETTA_AI_MINIMI_QUADRATI(X, Y)
+    // retta y = m*x + q che approssima gli n punti
+    mx <- media di X
+    my <- media di Y
+    sxy <- somma di (X[i] - mx) * (Y[i] - my)
+    sxx <- somma di (X[i] - mx)^2
+    m <- sxy / sxx
+    q <- my - m * mx
+    ritorna (m, q)
+
+algoritmo SIMPLESSO(c, A, b)
+    // massimizza c·x con A·x ≤ b, x ≥ 0, b ≥ 0
+    costruisci la tabella T = [A | I | b]
+    con ultima riga [-c | 0 | 0]
+    ripeti
+        j <- colonna con il valore più negativo
+             nell'ultima riga
+        se quel valore non è negativo allora
+            ritorna la soluzione letta dalla tabella
+        i <- riga con T[i][j] > 0 che rende minimo
+             il rapporto b[i] / T[i][j]
+        se nessuna riga ha T[i][j] > 0 allora
+            errore "problema illimitato"
+        esegui il perno su (i, j): dividi la riga i
+            per T[i][j] e annulla la colonna j
+            in tutte le altre righe

@@ -1,0 +1,13 @@
+Capitolo 51 – NP-completezza
+
+algoritmo VERIFICA(formula, assegnazione)
+    per ogni clausola in formula
+        se nessun termine della clausola è vero allora
+            ritorna falso
+    ritorna vero
+
+algoritmo CERCA(formula, n)
+    per ogni assegnazione delle n variabili        // 2^n
+        se VERIFICA(formula, assegnazione) allora
+            ritorna assegnazione
+    ritorna nullo

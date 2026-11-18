@@ -1,0 +1,31 @@
+Capitolo 28 – Alberi ricoprenti minimi: Kruskal e Prim
+
+algoritmo KRUSKAL(V, archi)
+    ordina archi per peso crescente
+    D <- insiemi disgiunti su V elementi
+    albero <- sequenza vuota
+    per ogni (peso, u, v) in archi
+        se TROVA(D, u) ≠ TROVA(D, v) allora
+            UNISCI(D, u, v)
+            aggiungi (peso, u, v) ad albero
+            se lunghezza(albero) = V - 1 allora
+                esci dal ciclo
+    ritorna albero
+
+algoritmo PRIM(G, s)
+    nell_albero <- sequenza di V valori falso
+    H <- heap di minimo vuoto
+    albero <- sequenza vuota
+    AGGIUNGI_VERTICE(s)
+    finché H non è vuoto e lunghezza(albero) < V - 1
+        (peso, u, v) <- ESTRAI_MINIMO(H)
+        se non nell_albero[v] allora
+            aggiungi (peso, u, v) ad albero
+            AGGIUNGI_VERTICE(v)
+    ritorna albero
+
+algoritmo AGGIUNGI_VERTICE(u)
+    nell_albero[u] <- vero
+    per ogni (v, peso) adiacente a u
+        se non nell_albero[v] allora
+            INSERISCI(H, (peso, u, v))

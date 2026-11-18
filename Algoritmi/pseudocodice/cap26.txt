@@ -1,0 +1,50 @@
+Capitolo 26 – Rappresentazione e visite: BFS e DFS
+
+algoritmo VISITA_IN_AMPIEZZA(G, s)
+    per ogni vertice v di G
+        distanza[v] <- ∞
+        genitore[v] <- nullo
+    distanza[s] <- 0
+    Q <- coda contenente s
+    finché Q non è vuota
+        u <- estrai da Q
+        per ogni v adiacente a u
+            se distanza[v] = ∞ allora          // mai visto
+                distanza[v] <- distanza[u] + 1
+                genitore[v] <- u
+                accoda v a Q
+    ritorna (distanza, genitore)
+
+algoritmo VISITA_IN_PROFONDITA(G, u)
+    visitato[u] <- vero
+    tratta u all'ingresso
+    per ogni v adiacente a u
+        se non visitato[v] allora
+            genitore[v] <- u
+            VISITA_IN_PROFONDITA(G, v)
+    tratta u all'uscita
+
+algoritmo PROFONDITA_ITERATIVA(G, s)
+    visitato[s] <- vero
+    pila <- pila contenente (s, 0)
+    finché pila non è vuota
+        (u, i) <- cima di pila
+        se i < numero dei vicini di u allora
+            sostituisci la cima con (u, i + 1)
+            v <- vicino numero i di u
+            se non visitato[v] allora
+                visitato[v] <- vero
+                metti (v, 0) in cima a pila
+        altrimenti
+            togli la cima              // u è completato
+
+algoritmo COMPONENTI(G)
+    per ogni vertice v
+        componente[v] <- -1
+    k <- 0
+    per ogni vertice s
+        se componente[s] = -1 allora
+            visita da s assegnando componente k
+                a tutti i vertici raggiunti
+            k <- k + 1
+    ritorna k

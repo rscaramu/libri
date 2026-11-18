@@ -1,0 +1,41 @@
+Capitolo 36 – Ricerca degli zeri
+
+algoritmo BISEZIONE(f, a, b, tolleranza)
+    // f(a) e f(b) di segno opposto
+    fa <- f(a)
+    finché b - a > tolleranza
+        m <- a + (b - a) / 2
+        fm <- f(m)
+        se fm = 0 allora
+            ritorna m
+        se fa e fm hanno lo stesso segno allora
+            a <- m
+            fa <- fm
+        altrimenti
+            b <- m
+    ritorna a + (b - a) / 2
+
+algoritmo NEWTON(f, df, x, tolleranza, massimo_passi)
+    ripeti massimo_passi volte
+        fx <- f(x)
+        d <- df(x)
+        se d = 0 allora
+            errore "derivata nulla"
+        passo <- fx / d
+        x <- x - passo
+        se |passo| ≤ tolleranza * max(1, |x|) allora
+            ritorna x
+    errore "mancata convergenza"
+
+algoritmo SECANTI(f, x0, x1, tolleranza, massimo_passi)
+    f0 <- f(x0)
+    f1 <- f(x1)
+    ripeti massimo_passi volte
+        se f1 = f0 allora
+            errore "secante orizzontale"
+        x2 <- x1 - f1 * (x1 - x0) / (f1 - f0)
+        se |x2 - x1| ≤ tolleranza * max(1, |x2|) allora
+            ritorna x2
+        (x0, f0) <- (x1, f1)
+        (x1, f1) <- (x2, f(x2))
+    errore "mancata convergenza"

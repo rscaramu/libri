@@ -1,0 +1,61 @@
+Capitolo 50 – Geometria computazionale
+
+algoritmo ORIENTAMENTO(a, b, c)
+    ritorna (b.x - a.x) * (c.y - a.y)
+          - (b.y - a.y) * (c.x - a.x)
+
+algoritmo AREA_POLIGONO(P)
+    // P: vertici in ordine lungo il contorno
+    s <- 0
+    per i da 0 a n-1
+        j <- (i + 1) mod n
+        s <- s + P[i].x * P[j].y - P[j].x * P[i].y
+    ritorna s / 2
+
+algoritmo SI_INTERSECANO(a, b, c, d)
+    o1 <- segno di ORIENTAMENTO(a, b, c)
+    o2 <- segno di ORIENTAMENTO(a, b, d)
+    o3 <- segno di ORIENTAMENTO(c, d, a)
+    o4 <- segno di ORIENTAMENTO(c, d, b)
+    se o1 ≠ o2 e o3 ≠ o4 allora
+        ritorna vero                      // caso generale
+    se o1 = 0 e SUL_SEGMENTO(a, b, c) allora ritorna vero
+    se o2 = 0 e SUL_SEGMENTO(a, b, d) allora ritorna vero
+    se o3 = 0 e SUL_SEGMENTO(c, d, a) allora ritorna vero
+    se o4 = 0 e SUL_SEGMENTO(c, d, b) allora ritorna vero
+    ritorna falso
+
+algoritmo SUL_SEGMENTO(a, b, p)
+    // p allineato con a e b: sta fra i due?
+    ritorna min(a.x, b.x) ≤ p.x ≤ max(a.x, b.x)
+          e min(a.y, b.y) ≤ p.y ≤ max(a.y, b.y)
+
+algoritmo DENTRO(P, q)
+    dentro <- falso
+    per i da 0 a n-1
+        a <- P[i];  b <- P[(i + 1) mod n]
+        // il lato scavalca la quota di q?
+        se (a.y > q.y) ≠ (b.y > q.y) allora
+            // q sta a sinistra del lato a quella quota?
+            x <- a.x + (q.y - a.y) * (b.x - a.x) / (b.y - a.y)
+            se q.x < x allora
+                dentro <- non dentro
+    ritorna dentro
+
+algoritmo INVILUPPO_CONVESSO(punti)
+    ordina punti per x, e a parità di x per y
+    inferiore <- pila vuota
+    per ogni p in punti
+        finché inferiore ha almeno 2 punti e
+               ORIENTAMENTO(penultimo, ultimo, p) ≤ 0
+            togli l'ultimo da inferiore
+        aggiungi p a inferiore
+    superiore <- pila vuota
+    per ogni p in punti, in ordine inverso
+        finché superiore ha almeno 2 punti e
+               ORIENTAMENTO(penultimo, ultimo, p) ≤ 0
+            togli l'ultimo da superiore
+        aggiungi p a superiore
+    // l'ultimo punto di ogni metà è il primo dell'altra
+    ritorna inferiore senza l'ultimo
+          + superiore senza l'ultimo

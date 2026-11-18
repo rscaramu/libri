@@ -1,0 +1,48 @@
+Capitolo 5 – Ricorsione e relazioni di ricorrenza
+
+algoritmo FATTORIALE(n)
+    // n: intero non negativo
+    se n = 0 allora
+        ritorna 1
+    ritorna n * FATTORIALE(n - 1)
+
+algoritmo HANOI(n, partenza, arrivo, appoggio)
+    se n = 0 allora
+        ritorna
+    HANOI(n - 1, partenza, appoggio, arrivo)
+    sposta il disco n da partenza ad arrivo
+    HANOI(n - 1, appoggio, arrivo, partenza)
+
+algoritmo FIB(n)
+    se n < 2 allora
+        ritorna n
+    ritorna FIB(n - 1) + FIB(n - 2)
+
+algoritmo FIB_MEMO(n, tabella)
+    se n < 2 allora
+        ritorna n
+    se n è in tabella allora
+        ritorna tabella[n]
+    tabella[n] <- FIB_MEMO(n-1, tabella)
+                  + FIB_MEMO(n-2, tabella)
+    ritorna tabella[n]
+
+algoritmo FIB_ITERATIVO(n)
+    a <- 0
+    b <- 1
+    per i da 1 a n
+        (a, b) <- (b, a + b)
+    ritorna a
+
+algoritmo SOMMA_ANNIDATA(L)
+    // L: sequenza i cui elementi sono numeri o altre sequenze
+    totale <- 0
+    pila <- pila contenente L
+    finché pila non è vuota
+        x <- estrai dalla cima di pila
+        se x è un numero allora
+            totale <- totale + x
+        altrimenti
+            per ogni y in x
+                metti y in cima a pila
+    ritorna totale

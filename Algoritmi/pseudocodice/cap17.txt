@@ -1,0 +1,21 @@
+Capitolo 17 – Heapsort e limite inferiore dell’ordinamento per confronti
+
+algoritmo HEAPSORT(A)
+    per i da (n div 2) - 1 giù fino a 0       // costruzione
+        SCENDI_MAX(A, i, n)
+    per fine da n-1 giù fino a 1              // estrazione
+        scambia A[0] e A[fine]
+        SCENDI_MAX(A, 0, fine)
+
+algoritmo SCENDI_MAX(A, i, n)
+    // fa scendere A[i] nell'heap di massimo A[0..n-1]
+    ripeti
+        maggiore <- i
+        s <- 2*i + 1
+        d <- 2*i + 2
+        se s < n e A[s] > A[maggiore] allora maggiore <- s
+        se d < n e A[d] > A[maggiore] allora maggiore <- d
+        se maggiore = i allora
+            ritorna
+        scambia A[i] e A[maggiore]
+        i <- maggiore

@@ -1,0 +1,47 @@
+Capitolo 9 – Tabelle hash
+
+algoritmo HASH_STRINGA(s, m)
+    h <- 0
+    per ogni carattere c in s
+        h <- (h * 31 + codice(c)) mod 2^32
+    ritorna h mod m
+
+algoritmo CERCA(T, k)
+    per ogni coppia (chiave, valore) in T.tabella[h(k)]
+        se chiave = k allora
+            ritorna valore
+    ritorna nullo
+
+algoritmo INSERISCI(T, k, v)
+    lista <- T.tabella[h(k)]
+    se k compare in lista allora
+        sostituisci il valore associato con v
+    altrimenti
+        aggiungi (k, v) a lista
+        T.n <- T.n + 1
+        se T.n > 0,75 * T.m allora
+            RIDIMENSIONA(T, 2 * T.m)
+
+algoritmo RIDIMENSIONA(T, nuova)
+    vecchia <- T.tabella
+    T.tabella <- nuova tabella di nuova liste vuote
+    T.m <- nuova
+    per ogni lista in vecchia
+        per ogni (k, v) in lista
+            aggiungi (k, v) a T.tabella[h(k)]
+
+algoritmo CERCA_APERTA(T, k)
+    i <- h(k)
+    finché T.tabella[i] non è VUOTA
+        se T.tabella[i] non è LAPIDE e T.tabella[i].chiave = k
+            ritorna i
+        i <- (i + 1) mod T.m
+    ritorna -1
+
+algoritmo DUE_ADDENDI(A, s)
+    visti <- dizionario vuoto      // valore -> indice
+    per i da 0 a n-1
+        se s - A[i] è in visti allora
+            ritorna (visti[s - A[i]], i)
+        visti[A[i]] <- i
+    ritorna nullo

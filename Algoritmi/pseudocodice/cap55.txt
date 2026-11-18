@@ -1,0 +1,28 @@
+Capitolo 55 – Algoritmi paralleli
+
+algoritmo MAP_REDUCE(dati, f, combina, p)
+    dividi dati in p blocchi
+    in parallelo, per ogni blocco B
+        parziale[B] <- riduzione con combina di f(x), x in B
+    ritorna riduzione con combina di tutti i parziali
+
+algoritmo SOMME_PREFISSE_PARALLELE(A)
+    // salita: S[v] = somma degli elementi sotto il nodo v
+    per ogni livello dell'albero, dal basso, in parallelo
+        S[v] <- S[sinistro di v] + S[destro di v]
+    // discesa: P[v] = somma di ciò che sta a sinistra di v
+    P[radice] <- 0
+    per ogni livello dell'albero, dall'alto, in parallelo
+        P[sinistro di v] <- P[v]
+        P[destro di v] <- P[v] + S[sinistro di v]
+    ritorna, per ogni foglia i, P[i] + A[i]
+
+algoritmo ORDINA_IN_PARALLELO(A, basso, alto)
+    se alto - basso < SOGLIA allora
+        ordina A[basso..alto] in modo sequenziale
+        ritorna
+    medio <- basso + (alto - basso) div 2
+    avvia ORDINA_IN_PARALLELO(A, basso, medio)
+    ORDINA_IN_PARALLELO(A, medio + 1, alto)
+    attendi
+    fondi A[basso..medio] e A[medio+1..alto]

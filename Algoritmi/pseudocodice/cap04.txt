@@ -1,0 +1,29 @@
+Capitolo 4 – Analisi della complessità e notazione asintotica
+
+algoritmo RICERCA_LINEARE(A, x)
+    per i da 0 a n-1
+        se A[i] = x allora
+            ritorna i
+    ritorna -1
+
+algoritmo SOMMA_COPPIE(A)
+    s <- 0
+    per i da 0 a n-1
+        per j da 0 a n-1
+            s <- s + A[i] * A[j]
+    ritorna s
+
+algoritmo CONTA_COPPIE_ORDINATE(A)
+    c <- 0
+    per i da 0 a n-2
+        per j da i+1 a n-1
+            se A[i] < A[j] allora
+                c <- c + 1
+    ritorna c
+
+algoritmo DIMEZZA(n)
+    passi <- 0
+    finché n > 1
+        n <- n div 2
+        passi <- passi + 1
+    ritorna passi

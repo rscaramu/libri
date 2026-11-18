@@ -1,0 +1,24 @@
+Capitolo 31 – Virgola mobile ed errori numerici
+
+algoritmo QUASI_UGUALI(a, b, rel, ass)
+    // rel: tolleranza relativa; ass: tolleranza assoluta
+    ritorna |a - b| ≤ max(rel * max(|a|, |b|), ass)
+
+algoritmo SECONDO_GRADO(a, b, c)
+    // a ≠ 0, discriminante non negativo
+    d <- radice quadrata di (b*b - 4*a*c)
+    se b ≥ 0 allora
+        q <- -(b + d) / 2
+    altrimenti
+        q <- -(b - d) / 2
+    ritorna (q / a, c / q)            // se q ≠ 0
+
+algoritmo SOMMA_KAHAN(A)
+    somma <- 0
+    c <- 0                  // errore accumulato
+    per ogni x in A
+        y <- x - c          // corregge l'addendo
+        t <- somma + y      // qui si perdono cifre di y
+        c <- (t - somma) - y    // quante se ne sono perse
+        somma <- t
+    ritorna somma

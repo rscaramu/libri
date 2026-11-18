@@ -1,0 +1,60 @@
+Capitolo 20 – Divide et impera oltre l’ordinamento
+
+algoritmo POTENZA_VELOCE(b, e)
+    se e = 0 allora
+        ritorna 1
+    m <- POTENZA_VELOCE(b, e div 2)
+    se e è pari allora
+        ritorna m * m
+    altrimenti
+        ritorna m * m * b
+
+algoritmo POTENZA_ITERATIVA(b, e)
+    r <- 1
+    finché e > 0
+        se e è dispari allora
+            r <- r * b
+        b <- b * b
+        e <- e div 2
+    ritorna r
+
+algoritmo SOMMA_MASSIMA(A, basso, alto)
+    se basso = alto allora
+        ritorna A[basso]
+    medio <- basso + (alto - basso) div 2
+    sinistra <- SOMMA_MASSIMA(A, basso, medio)
+    destra <- SOMMA_MASSIMA(A, medio + 1, alto)
+    // miglior tratto che attraversa il confine
+    s <- 0;  migliore_s <- -∞
+    per i da medio giù fino a basso
+        s <- s + A[i]
+        migliore_s <- max(migliore_s, s)
+    s <- 0;  migliore_d <- -∞
+    per i da medio + 1 a alto
+        s <- s + A[i]
+        migliore_d <- max(migliore_d, s)
+    ritorna max(sinistra, destra, migliore_s + migliore_d)
+
+algoritmo KADANE(A)
+    qui <- A[0]             // miglior tratto che termina in i
+    migliore <- A[0]
+    per i da 1 a n-1
+        qui <- max(A[i], qui + A[i])
+        migliore <- max(migliore, qui)
+    ritorna migliore
+
+algoritmo VOTO_DI_MAGGIORANZA(A)
+    candidato <- nullo
+    conta <- 0
+    per ogni x in A
+        se conta = 0 allora
+            candidato <- x
+            conta <- 1
+        altrimenti se x = candidato allora
+            conta <- conta + 1
+        altrimenti
+            conta <- conta - 1
+    // seconda passata: il candidato è davvero di maggioranza?
+    se le occorrenze di candidato in A superano n/2 allora
+        ritorna candidato
+    ritorna nullo

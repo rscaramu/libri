@@ -1,0 +1,34 @@
+Capitolo 52 – Algoritmi di approssimazione
+
+algoritmo COPERTURA_APPROSSIMATA(archi)
+    C <- insieme vuoto
+    per ogni arco (u, v) in archi
+        se u non è in C e v non è in C allora
+            aggiungi u e v a C
+    ritorna C
+
+algoritmo COPERTURA_DI_INSIEMI(universo, famiglia)
+    scoperti <- universo
+    scelti <- sequenza vuota
+    finché scoperti non è vuoto
+        S <- insieme di famiglia che contiene più
+             elementi di scoperti
+        aggiungi S a scelti
+        scoperti <- scoperti senza gli elementi di S
+    ritorna scelti
+
+algoritmo GIRO_APPROSSIMATO(città, distanza)
+    T <- albero ricoprente minimo del grafo completo
+    giro <- vertici di T nell'ordine di una visita
+            in profondità a partire da una città
+    ritorna giro, chiuso tornando alla partenza
+
+algoritmo IMPACCHETTA(oggetti, capacita)
+    ordina oggetti in senso decrescente
+    contenitori <- sequenza vuota       // spazio rimasto
+    per ogni x in oggetti
+        se esiste un contenitore con spazio ≥ x allora
+            mettilo nel primo che lo ha
+        altrimenti
+            apri un nuovo contenitore con spazio capacita - x
+    ritorna numero dei contenitori

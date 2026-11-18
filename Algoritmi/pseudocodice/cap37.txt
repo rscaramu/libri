@@ -1,0 +1,62 @@
+Capitolo 37 – Sistemi lineari e matrici
+
+algoritmo PRODOTTO_MATRICI(A, B)
+    // A: m × n,  B: n × p,  C: m × p
+    per i da 0 a m-1
+        per j da 0 a p-1
+            C[i][j] <- 0
+            per k da 0 a n-1
+                C[i][j] <- C[i][j] + A[i][k] * B[k][j]
+    ritorna C
+
+algoritmo GAUSS(A, b)
+    // risolve A x = b; modifica A e b
+    per k da 0 a n-1
+        // scelta del perno
+        p <- indice i ≥ k con |A[i][k]| massimo
+        se |A[p][k]| è zero o trascurabile allora
+            errore "matrice singolare"
+        scambia le righe k e p di A; scambia b[k] e b[p]
+        // eliminazione
+        per i da k+1 a n-1
+            m <- A[i][k] / A[k][k]
+            per j da k a n-1
+                A[i][j] <- A[i][j] - m * A[k][j]
+            b[i] <- b[i] - m * b[k]
+    // sostituzione all'indietro
+    per i da n-1 giù fino a 0
+        s <- b[i]
+        per j da i+1 a n-1
+            s <- s - A[i][j] * x[j]
+        x[i] <- s / A[i][i]
+    ritorna x
+
+algoritmo FATTORIZZA_LU(A)
+    // sul posto: sotto la diagonale L, il resto è U
+    perm <- (0, 1, ..., n-1)
+    segno <- 1
+    per k da 0 a n-1
+        p <- indice i ≥ k con |A[i][k]| massimo
+        se p ≠ k allora
+            scambia le righe k e p di A e di perm
+            segno <- -segno
+        per i da k+1 a n-1
+            A[i][k] <- A[i][k] / A[k][k]      // va in L
+            per j da k+1 a n-1
+                A[i][j] <- A[i][j] - A[i][k] * A[k][j]
+    ritorna (A, perm, segno)
+
+algoritmo GAUSS_SEIDEL(A, b, tolleranza, massimo_passi)
+    x <- vettore di n zeri
+    ripeti massimo_passi volte
+        variazione <- 0
+        per i da 0 a n-1
+            s <- b[i]
+            per j da 0 a n-1, j ≠ i
+                s <- s - A[i][j] * x[j]
+            nuovo <- s / A[i][i]
+            variazione <- max(variazione, |nuovo - x[i]|)
+            x[i] <- nuovo
+        se variazione ≤ tolleranza allora
+            ritorna x
+    errore "mancata convergenza"

@@ -1,0 +1,44 @@
+Capitolo 32 – Aritmetica degli interi
+
+algoritmo MCD(a, b)
+    finché b ≠ 0
+        (a, b) <- (b, a mod b)
+    ritorna a
+
+algoritmo EUCLIDE_ESTESO(a, b)
+    // restituisce (d, x, y) con a*x + b*y = d = mcd(a, b)
+    (r0, r1) <- (a, b)
+    (x0, x1) <- (1, 0)
+    (y0, y1) <- (0, 1)
+    finché r1 ≠ 0
+        q <- r0 div r1
+        (r0, r1) <- (r1, r0 - q * r1)
+        (x0, x1) <- (x1, x0 - q * x1)
+        (y0, y1) <- (y1, y0 - q * y1)
+    ritorna (r0, x0, y0)
+
+algoritmo POTENZA_MODULARE(b, e, m)
+    r <- 1
+    b <- b mod m
+    finché e > 0
+        se e è dispari allora
+            r <- (r * b) mod m
+        b <- (b * b) mod m
+        e <- e div 2
+    ritorna r
+
+algoritmo INVERSO_MODULARE(a, m)
+    (d, x, y) <- EUCLIDE_ESTESO(a, m)
+    se d ≠ 1 allora
+        errore "l'inverso non esiste"
+    ritorna x mod m
+
+algoritmo RESTO_CINESE(resti, moduli)
+    x <- resti[0]
+    M <- moduli[0]
+    per i da 1 a k-1
+        inv <- INVERSO_MODULARE(M, moduli[i])
+        t <- ((resti[i] - x) * inv) mod moduli[i]
+        x <- x + M * t
+        M <- M * moduli[i]
+    ritorna (x, M)
