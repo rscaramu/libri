@@ -1,0 +1,1 @@
+Scheda: {{ $book->title }}
